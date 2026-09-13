@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { FlatList, type NativeScrollEvent, type NativeSyntheticEvent, View } from 'react-native'
+import {
+  FlatList,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  Platform,
+  View,
+} from 'react-native'
 
 import type { SelfEvalRating } from '../../entities/card/fsrs'
 import type { Card } from '../../entities/card/schema'
@@ -43,6 +49,16 @@ export const FeedList = ({
     onIndexChange(index)
   }
 
+  // O react-native-web só emite `onScroll`: o `ScrollViewBase` dele nunca dispara
+  // `onMomentumScrollEnd`, e sem isto rolar de roda do mouse deixaria o índice parado no
+  // primeiro card. No nativo o evento de momento já resolve e este aqui só atrapalharia,
+  // porque dispara no meio do arrasto.
+  const handleWebScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (pageHeight === 0) return
+    const index = Math.round(event.nativeEvent.contentOffset.y / pageHeight)
+    if (index !== activeIndex) onIndexChange(index)
+  }
+
   return (
     <View style={{ flex: 1 }} onLayout={(event) => handleLayout(event.nativeEvent.layout.height)}>
       {pageHeight > 0 ? (
@@ -55,6 +71,8 @@ export const FeedList = ({
           snapToInterval={pageHeight}
           decelerationRate="fast"
           onMomentumScrollEnd={handleMomentumEnd}
+          onScroll={Platform.OS === 'web' ? handleWebScroll : undefined}
+          scrollEventThrottle={16}
           getItemLayout={(_, index) => ({
             length: pageHeight,
             offset: pageHeight * index,
