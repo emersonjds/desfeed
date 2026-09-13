@@ -58,9 +58,16 @@ const OptionRow = ({
     >
       <SolidShadow height={48} shadowColor={shadowColor} borderRadius={16} pressed={pressed}>
         <View className="h-full w-full flex-row items-center justify-between rounded-2xl bg-surface px-3">
-          <View className="min-w-0 flex-1 flex-row items-center gap-3">
+          <View
+            style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
+            className="flex-row items-center gap-3"
+          >
             <Badge letter={letter} state={badgeState} />
-            <Text className="flex-1 text-sm font-semibold text-text" numberOfLines={1}>
+            <Text
+              style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
+              className="text-sm font-semibold text-text"
+              numberOfLines={1}
+            >
               {label}
             </Text>
           </View>
@@ -103,9 +110,12 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
   };
 
   return (
-    <View style={{ height }} className="gap-3 px-4 pt-2">
+    <View style={{ height, width: '100%' }} className="gap-3 px-4 pt-2">
       <View className="flex-row items-center justify-between gap-2">
-        <View className="min-w-0 flex-1 flex-row flex-wrap items-center gap-1.5">
+        <View
+          style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
+          className="flex-row flex-wrap items-center gap-1.5"
+        >
           <Pill icon="📖" label={`${card.subject} • ${card.chapter}`} tone="neutral" />
           <Pill
             icon="🧠"
@@ -113,7 +123,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
             tone="accent"
           />
         </View>
-        <View className="shrink-0">
+        <View style={{ flexShrink: 0 }}>
           <CircularTimer secondsLeft={secondsLeft} totalSeconds={CARD_TIMER_SECONDS} />
         </View>
       </View>
@@ -135,7 +145,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
       </Text>
 
       <View className="flex-row gap-3">
-        <View className="min-w-0 flex-1 gap-2.5">
+        <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }} className="gap-2.5">
           {card.options.map((option) => (
             <OptionRow
               key={option.id}
@@ -147,7 +157,10 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
             />
           ))}
         </View>
-        <View className="w-11 shrink-0 items-center justify-end gap-3.5 pb-1">
+        <View
+          style={{ flexShrink: 0, width: 44 }}
+          className="items-center justify-end gap-3.5 pb-1"
+        >
           <View className="items-center gap-0.5">
             <Text className="text-lg">🧠</Text>
             <Text className="text-xs font-bold text-text-muted">{card.masteryPercent}%</Text>
