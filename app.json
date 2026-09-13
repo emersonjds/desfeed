@@ -16,7 +16,11 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -34,6 +38,13 @@
       "expo-font",
       "expo-splash-screen"
     ],
-    "scheme": "desfeed"
+    "scheme": "desfeed",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5cb999c9-ec8a-42e5-a0d0-410401a7b78c"
+      }
+    },
+    "owner": "emersonjdss"
   }
 }
