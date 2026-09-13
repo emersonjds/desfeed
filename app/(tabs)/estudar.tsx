@@ -15,6 +15,52 @@ import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 
 const CARDS_PER_SESSION = 12
 
+// Curadoria local: o aluno toca em vez de digitar. Matéria fora desta lista cai no campo livre.
+const TOPICS_BY_SUBJECT: Record<string, readonly string[]> = {
+  Biologia: [
+    'Fotossíntese: fase clara e ciclo de Calvin',
+    'Respiração celular e mitocôndrias',
+    'Divisão celular: mitose e meiose',
+    'Genética mendeliana',
+    'Ecologia: cadeias e teias alimentares',
+  ],
+  Física: [
+    'Termodinâmica: entropia e segunda lei',
+    'Leis de Newton e força resultante',
+    'Trabalho, energia e potência',
+    'Eletrodinâmica: corrente e resistência',
+    'Ondulatória: som e luz',
+  ],
+  História: [
+    'Era Vargas e o Estado Novo',
+    'Revolução Industrial',
+    'Brasil Colônia: economia açucareira',
+    'Guerra Fria e a bipolarização',
+    'Independências na América Latina',
+  ],
+  Literatura: [
+    'Modernismo brasileiro: primeira fase',
+    'Realismo e Machado de Assis',
+    'Romantismo: gerações da poesia',
+    'Barroco e Arcadismo',
+    'Literatura contemporânea brasileira',
+  ],
+  Matemática: [
+    'Derivadas e regra da cadeia',
+    'Funções do segundo grau',
+    'Probabilidade e análise combinatória',
+    'Geometria espacial: prismas e pirâmides',
+    'Progressões aritmética e geométrica',
+  ],
+  Química: [
+    'Estequiometria e cálculo de mol',
+    'Ligações químicas e geometria molecular',
+    'Termoquímica: entalpia e Lei de Hess',
+    'Equilíbrio químico e Le Chatelier',
+    'Eletroquímica: pilhas e eletrólise',
+  ],
+}
+
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: memfeedColor.surfaceSoft },
   content: { padding: 14, gap: 14, paddingBottom: 30 },
@@ -127,6 +173,7 @@ export default function EstudarScreen() {
   const [subject, setSubject] = useState<string | null>(null)
   const [topic, setTopic] = useState('')
 
+  const subjectTopics = subject ? (TOPICS_BY_SUBJECT[subject] ?? []) : []
   const canGenerate = subject !== null && topic.trim().length >= 3 && !generate.isPending
 
   const finishWithCards = (cards: Card[]) => {
@@ -173,7 +220,10 @@ export default function EstudarScreen() {
               return (
                 <Pressable
                   key={item}
-                  onPress={() => setSubject(selected ? null : item)}
+                  onPress={() => {
+                    setSubject(selected ? null : item)
+                    setTopic('')
+                  }}
                   style={[styles.chip, selected ? styles.chipOn : null]}
                   accessibilityRole="button"
                 >
@@ -184,15 +234,39 @@ export default function EstudarScreen() {
           </View>
 
           <Text style={styles.sectionLabel}>Assunto</Text>
-          <TextInput
-            value={topic}
-            onChangeText={setTopic}
-            placeholder="Ex.: entropia em processos irreversíveis"
-            placeholderTextColor={memfeedColor.textMuted}
-            style={styles.input}
-            returnKeyType="go"
-            onSubmitEditing={() => canGenerate && subject && runGeneration(subject, topic.trim())}
-          />
+          {subjectTopics.length > 0 ? (
+            <View style={styles.chips}>
+              {subjectTopics.map((item) => {
+                const selected = item === topic
+                return (
+                  <Pressable
+                    key={item}
+                    onPress={() => setTopic(selected ? '' : item)}
+                    style={[styles.chip, selected ? styles.chipOn : null]}
+                    accessibilityRole="button"
+                  >
+                    <Text style={[styles.chipText, selected ? styles.chipTextOn : null]}>
+                      {item}
+                    </Text>
+                  </Pressable>
+                )
+              })}
+            </View>
+          ) : (
+            <TextInput
+              value={topic}
+              onChangeText={setTopic}
+              placeholder={
+                subject
+                  ? 'Ex.: entropia em processos irreversíveis'
+                  : 'Escolha uma matéria acima'
+              }
+              placeholderTextColor={memfeedColor.textMuted}
+              style={styles.input}
+              returnKeyType="go"
+              onSubmitEditing={() => canGenerate && subject && runGeneration(subject, topic.trim())}
+            />
+          )}
 
           <Pressable
             disabled={!canGenerate}
