@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Desfeed — Pivotar para a plataforma do professor?</title>
+<style>
+  @page { size: A4; margin: 17mm 15mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #0f131d; font-size: 10.2pt; line-height: 1.5; margin: 0;
+  }
+  h1 { font-size: 21pt; letter-spacing: -0.5px; margin: 0 0 4px; line-height: 1.15; }
+  h2 {
+    font-size: 13pt; margin: 26px 0 8px; padding-top: 10px;
+    border-top: 2px solid #10b981; letter-spacing: -0.2px;
+  }
+  h3 { font-size: 10.8pt; margin: 16px 0 5px; color: #059669; }
+  p { margin: 0 0 8px; }
+  ul, ol { margin: 0 0 8px; padding-left: 17px; }
+  li { margin-bottom: 4px; }
+  .lede { color: #3f4757; font-size: 10.6pt; margin-bottom: 2px; }
+  .meta {
+    font-size: 8.6pt; color: #6B7280; text-transform: uppercase;
+    letter-spacing: 0.9px; font-weight: 700; margin-bottom: 18px;
+  }
+  .verdict {
+    background: #ecfdf5; border-left: 4px solid #10b981;
+    padding: 13px 15px; margin: 14px 0 6px; border-radius: 0 8px 8px 0;
+  }
+  .verdict strong { color: #047857; }
+  .warn {
+    background: #fef2f2; border-left: 4px solid #dc2626;
+    padding: 13px 15px; margin: 12px 0; border-radius: 0 8px 8px 0;
+  }
+  .warn strong { color: #b91c1c; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 12px; font-size: 9.2pt; }
+  th {
+    text-align: left; background: #f8fafc; padding: 7px 9px;
+    border-bottom: 2px solid #cbd5e1; font-size: 8.4pt;
+    text-transform: uppercase; letter-spacing: 0.5px; color: #475569;
+  }
+  td { padding: 7px 9px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+  td.no { color: #b91c1c; font-weight: 600; }
+  td.yes { color: #047857; font-weight: 600; }
+  code {
+    background: #f1f5f9; padding: 1px 5px; border-radius: 4px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 8.8pt;
+  }
+  .pill {
+    display: inline-block; background: #10b981; color: #fff; font-size: 8pt;
+    font-weight: 700; padding: 2px 9px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.6px; vertical-align: 2px;
+  }
+  .pill.red { background: #dc2626; }
+  .pill.grey { background: #64748b; }
+  .quote {
+    font-size: 13pt; font-weight: 700; color: #0f131d; text-align: center;
+    padding: 16px 12px; margin: 14px 0; background: #faf8ff;
+    border-radius: 10px; letter-spacing: -0.3px; line-height: 1.35;
+  }
+  .cols { display: flex; gap: 16px; }
+  .cols > div { flex: 1; }
+  .cols h3 { margin-top: 0; }
+  footer {
+    margin-top: 26px; padding-top: 9px; border-top: 1px solid #e2e8f0;
+    font-size: 8pt; color: #94a3b8;
+  }
+  .avoid { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<h1>Pivotar para a plataforma do professor?</h1>
+<p class="lede">Análise de decisão para a entrega pré-pitching do HACKTUDO 2026</p>
+<p class="meta">Desfeed · 13 de setembro de 2026 · ~8 horas para o prazo das 12h00</p>
+
+<div class="verdict">
+  <p><strong>Recomendação: não pivote o código. Absorva a sala ao vivo como canal de
+  distribuição e mostre-a no deck como Fase 2.</strong></p>
+  <p style="margin-bottom:0">A entrega das 12h00 é um <em>PDF de até 10 slides + mockup</em> —
+  não é software rodando. Então colocar a sala ao vivo na apresentação custa zero risco de
+  engenharia, enquanto construí-la agora custa o demo que já está no ar e funcionando.
+  O <em>upside</em> de pivotar o código é um slide; o <em>downside</em> é chegar ao meio-dia
+  sem nada.</p>
+</div>
+
+<h2>1. O medo do "Carrot melhorado" é legítimo — e pior do que parece</h2>
+
+<p>A intuição está certa, e vale checar antes de defender qualquer coisa na banca. O que foi
+descrito — professor digita "gere 15 questões de Biologia, tema Mitocôndria", sai um PIN,
+alunos entram, respondem, professor vê relatório — não é um espaço aberto. É o produto
+principal de empresas com mais de dez anos de vantagem:</p>
+
+<table class="avoid">
+  <tr>
+    <th style="width:32%">Peça da ideia</th>
+    <th style="width:34%">Quem já entrega hoje</th>
+    <th>Situação</th>
+  </tr>
+  <tr>
+    <td>Gerar N questões a partir de um tema digitado</td>
+    <td>Kahoot! (gerador por IA a partir de um tópico)</td>
+    <td class="no">Paridade total</td>
+  </tr>
+  <tr>
+    <td>Transformar anotação/caderno em cartão de estudo</td>
+    <td>Kahoot! Study ("AI Notes: turn notes into flashcards")</td>
+    <td class="no">Paridade total</td>
+  </tr>
+  <tr>
+    <td>Sala ao vivo com PIN e ranking na tela</td>
+    <td>Kahoot! — é o núcleo do produto desde 2013</td>
+    <td class="no">Paridade total</td>
+  </tr>
+  <tr>
+    <td>Dever de casa no ritmo do aluno, com analytics</td>
+    <td>Quizizz / Wayground (renomeado em jun/2025)</td>
+    <td class="no">Paridade total</td>
+  </tr>
+  <tr>
+    <td>Embaralhar questões para dificultar cola</td>
+    <td>Kahoot! (shuffle "to reduce guesswork")</td>
+    <td class="no">Paridade total</td>
+  </tr>
+</table>
+
+<div class="warn">
+  <p style="margin-bottom:0"><strong>Consequência direta para o pitch:</strong> a frase
+  "somos os únicos que usam repetição espaçada" <strong>não pode ser dita</strong>. O Kahoot
+  Study já tem flashcards e ferramentas de estudo espaçado. Foi esse tipo de afirmação
+  fácil de derrubar que já precisou sair do deck antes — se ela voltar, a banca derruba no Q&amp;A
+  e leva junto a credibilidade do resto.</p>
+</div>
+
+<p>Ou seja: pivotar para a plataforma do professor é caminhar para dentro do ponto mais
+forte do incumbente, com um fim de semana de vantagem contra uma década deles.</p>
+
+<h2>2. O que nenhum deles faz — e é onde mora o diferencial real</h2>
+
+<p>Cada ingrediente isolado já existe em algum lugar. O que não existe é o <strong>circuito
+fechado</strong> entre eles. Nas ferramentas atuais, a aula e o estudo individual são produtos
+separados: o quiz ao vivo do professor não alimenta a fila de revisão pessoal do aluno, e o
+relatório do professor não sabe dizer o que sobrou daquela aula um mês depois.</p>
+
+<table class="avoid">
+  <tr>
+    <th style="width:36%">Pergunta que o relatório responde</th>
+    <th style="width:32%">Kahoot / Quizizz</th>
+    <th>Desfeed</th>
+  </tr>
+  <tr>
+    <td>Quem participou da atividade de terça?</td>
+    <td class="yes">Sim</td>
+    <td class="yes">Sim</td>
+  </tr>
+  <tr>
+    <td>Quem acertou mais na hora?</td>
+    <td class="yes">Sim</td>
+    <td class="yes">Sim</td>
+  </tr>
+  <tr>
+    <td>O que a turma ainda lembra em D+7?</td>
+    <td class="no">Não</td>
+    <td class="yes">Sim</td>
+  </tr>
+  <tr>
+    <td>Qual conceito a turma esqueceu primeiro?</td>
+    <td class="no">Não</td>
+    <td class="yes">Sim</td>
+  </tr>
+  <tr>
+    <td>A aula de abril ainda está na cabeça em maio?</td>
+    <td class="no">Não</td>
+    <td class="yes">Sim</td>
+  </tr>
+</table>
+
+<p>A unidade de medida deles é <strong>a sessão</strong>. A unidade do Desfeed é
+<strong>a curva</strong>. Isso não é diferença de funcionalidade — é diferença de categoria,
+e é a única coisa aqui que não se copia numa sprint, porque exige um escalonador de memória
+por aluno rodando desde o primeiro dia.</p>
+
+<div class="quote">"O Kahoot mede a aula.<br>O Desfeed mede o que sobrou dela."</div>
+
+<h2>3. A reformulação que dissolve a tensão</h2>
+
+<p>A sala ao vivo não é um produto concorrente ao feed. <strong>Ela é o funil de aquisição
+dele.</strong> É assim que 30 alunos instalam o Desfeed em dois minutos, sem campanha de
+marketing e sem custo de aquisição: o professor projeta o QR code, a turma entra.</p>
+
+<p>O que transforma isso em Desfeed e não em mais um Kahoot é o que acontece
+<em>depois do sinal tocar</em>: as questões daquela aula não morrem ali. Elas entram na fila
+FSRS pessoal de cada aluno e voltam no dia 3, no dia 7, no dia 16 — dentro do feed, junto com
+o que ele fotografou do próprio caderno. E o painel do professor passa a reportar retenção ao
+longo do tempo, que é exatamente o relatório que uma direção de escola quer ver e que nenhum
+concorrente consegue produzir.</p>
+
+<p>Com essa leitura, <strong>a tese "TikTok + Duolingo + Anki" não é abandonada — ela é o
+motor</strong>. A plataforma do professor vira a carroceria. Não há pivô: há uma camada de
+distribuição sendo acrescentada por cima do que já existe.</p>
+
+<h2>4. Prós e contras, sem maquiagem</h2>
+
+<div class="cols avoid">
+  <div>
+    <h3>A favor de pivotar agora</h3>
+    <ul>
+      <li><strong>Demo de palco muito superior.</strong> Trinta celulares acendendo ao mesmo
+      tempo impressiona mais que uma pessoa deslizando um feed.</li>
+      <li><strong>B2B é onde está o dinheiro.</strong> Escola assina contrato; aluno
+      adolescente não paga assinatura.</li>
+      <li><strong>Rubrica de avaliação.</strong> Se a banca pontuar "solução para a
+      escola/professor", um app puro de aluno pontua menos.</li>
+      <li><strong>Dado real de uso</strong> — aluno, turma, data, acertos — é concreto e
+      conta bem numa apresentação.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Contra pivotar agora</h3>
+    <ul>
+      <li><strong>Paridade de feature com o incumbente</strong> e nenhum fosso, como mostra
+      a tabela da seção 1.</li>
+      <li><strong>Joga fora o que já está pronto e no ar</strong> — o app roda hoje em
+      qualquer celular por link.</li>
+      <li><strong>O backend ainda não existe.</strong> Sala + WebSocket + painel + relatório
+      em menos de 8 horas, partindo do zero, não fecha.</li>
+      <li><strong>Perde a tese científica</strong> (Ebbinghaus / FSRS), que é justamente o
+      argumento que a banca não ouviu dos outros times.</li>
+      <li><strong>Risco assimétrico.</strong> O ganho é um slide; a perda possível é chegar
+      ao meio-dia sem entrega.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>5. Como a sala encaixa depois, sem re-arquitetar nada</h2>
+
+<p>Vale registrar agora para o time de backend, porque muda o que ele constrói primeiro:
+<strong>a sala ao vivo é apenas uma sessão cujos cards foram pré-gerados e são
+compartilhados.</strong> Se <code>POST /api/reviews</code> já grava
+<code>(alunoId, cardId, nota, timestamp)</code>, a sala acrescenta só quatro peças:</p>
+
+<ol>
+  <li><code>POST /api/rooms</code> — professor manda tema e quantidade; a IA gera o pool; volta um PIN.</li>
+  <li><code>POST /api/rooms/:pin/join</code> — aluno entra com o nome, sem cadastro.</li>
+  <li>Um canal WebSocket transmitindo o índice da questão atual e o placar.</li>
+  <li>A visão agregada do professor, que <strong>lê a mesma tabela de reviews</strong> já usada pelo feed.</li>
+</ol>
+
+<p>Nada disso contradiz o modelo atual, e é por isso que dá para prometer no pitch sem
+mentir: o contrato de dados que o app já consome hoje comporta a sala sem reescrita.</p>
+
+<h3>Dever de casa com questões distintas por aluno — problema resolvido e barato</h3>
+
+<p>Essa parte pareceu a mais complexa, mas é a mais simples das quatro. Não se gera uma prova
+por aluno: gera-se <strong>um pool por tema</strong> (por exemplo 45 questões para uma tarefa
+de 15) e cada aluno recebe um subconjunto e uma ordem determinados por
+<code>hash(alunoId + tarefaId)</code>.</p>
+
+<ul>
+  <li>Uma chamada de IA serve 30 alunos — sem custo 30×.</li>
+  <li>Cada aluno vê questões e ordem diferentes: cola por WhatsApp deixa de funcionar.</li>
+  <li>É determinístico: o professor consegue reproduzir exatamente a prova de cada aluno.</li>
+  <li>E como o motor é FSRS, <strong>o que o aluno errou é o que volta</strong> — o dever de
+  casa vira adaptativo por consequência, não por esforço extra.</li>
+</ul>
+
+<h2>6. O que o app ainda não tem (para não prometer o que não existe)</h2>
+
+<p>Importante ter isso à mão antes de escrever qualquer slide:</p>
+
+<ul>
+  <li><strong>Telas que não existem:</strong> Onboarding, Sala ao Vivo / entrar por PIN,
+  Resultado da Sala, Detalhe do Caderno, Configuração do Algoritmo.</li>
+  <li><strong>Não há backend.</strong> Tudo hoje responde por rota mockada no próprio app.</li>
+  <li><strong>Não verificado em aparelho real:</strong> o gesto de deslizar e o retorno tátil
+  de acerto/erro rodaram em emulador e navegador; a demo web não prova nenhum dos dois.</li>
+  <li><strong>Funciona e está no ar:</strong> feed com paginação, cronômetro por card,
+  autoavaliação FSRS com intervalos reais, cadernos com saúde de memória, ranking semanal,
+  perfil — tudo acessível por link, sem instalar.</li>
+</ul>
+
+<h2>7. Decisão recomendada para as próximas 8 horas</h2>
+
+<table class="avoid">
+  <tr>
+    <th style="width:22%">Frente</th>
+    <th style="width:20%">Decisão</th>
+    <th>Motivo</th>
+  </tr>
+  <tr>
+    <td>Código do app</td>
+    <td><span class="pill">Congelar</span></td>
+    <td>Está no ar e funcional. Mexer agora só cria risco sem ganho na entrega das 12h.</td>
+  </tr>
+  <tr>
+    <td>Sala ao vivo</td>
+    <td><span class="pill grey">Mockup + Fase 2</span></td>
+    <td>Entra no deck como roadmap com tela desenhada. Custo zero de engenharia.</td>
+  </tr>
+  <tr>
+    <td>Backend</td>
+    <td><span class="pill">Seguir</span></td>
+    <td>Contrato já congelado em <code>routes.ts</code>; construir feed e sala sobre o mesmo schema.</td>
+  </tr>
+  <tr>
+    <td>Narrativa do pitch</td>
+    <td><span class="pill">Reescrever</span></td>
+    <td>Trocar "somos únicos" pelo circuito fechado aula → curva → relatório de retenção.</td>
+  </tr>
+  <tr>
+    <td>Pivô completo</td>
+    <td><span class="pill red">Descartar</span></td>
+    <td>Paridade com Kahoot/Quizizz, sem fosso, e sem tempo hábil de construir.</td>
+  </tr>
+</table>
+
+<p>O caminho é o mesmo que já estava traçado — TikTok + Duolingo + Anki continua sendo a
+espinha. O que a conversa com o avaliador acrescentou não foi um produto diferente: foi a
+percepção de que <strong>faltava contar como o produto chega na mão de 30 alunos de uma vez</strong>.
+A sala ao vivo responde a isso, e responde como capítulo dois.</p>
+
+<footer>
+  Desfeed · HACKTUDO 2026 · Documento de decisão, 13/09/2026.
+  Fontes de verificação competitiva: Kahoot! Help Center (geração por IA, Kahoot Study),
+  TriviaMaker (comparativo Kahoot × Quizizz, 2026).
+</footer>
+
+</body>
+</html>
