@@ -2,6 +2,7 @@ import { IconFill, IconOutline } from '@ant-design/icons-react-native'
 import * as Haptics from 'expo-haptics'
 import { List, Tag } from '@ant-design/react-native'
 import { useEffect, useMemo, useState } from 'react'
+import { BlurView } from 'expo-blur'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
 import { formatReviewLabel, type SelfEvalRating } from '../../entities/card/fsrs'
@@ -9,6 +10,7 @@ import type { Card, OptionId } from '../../entities/card/schema'
 import { AnswerFeedback } from '../../features/answer-card/AnswerFeedback'
 import { SelfEvaluation } from '../../features/answer-card/SelfEvaluation'
 import { memfeedColor, memfeedFont } from '../../shared/theme'
+import { MemfeedMark } from '../../shared/ui/MemfeedMark'
 import { TimerRing } from './TimerRing'
 
 type QuestionCardProps = {
@@ -107,6 +109,12 @@ const styles = StyleSheet.create({
   mediaImage: {
     width: '100%',
     height: '100%',
+  },
+  mediaFallback: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: memfeedColor.primarySoft,
   },
   mediaOverlay: {
     position: 'absolute',
@@ -411,6 +419,18 @@ export const QuestionCard = ({ card, xpReward, isActive, onRate }: QuestionCardP
             nomear a resposta, e o card existe para o aluno recuperá-la sozinho. */}
         {card.imageUrl ? (
           <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
+        ) : (
+          // Nem todo assunto tem figura de acervo. Sem este painel o bloco de mídia cresce
+          // vazio e come metade da tela.
+          <View style={styles.mediaFallback}>
+            <MemfeedMark size={44} color={memfeedColor.primary} />
+          </View>
+        )}
+        {/* Diagrama de acervo vem rotulado, e o rótulo costuma nomear a resposta. O borrão
+            deixa a figura situar o assunto sem entregar a palavra; ele sai quando o aluno
+            responde e a figura vira material de estudo. */}
+        {card.imageUrl && !selectedOptionId ? (
+          <BlurView intensity={14} tint="light" style={StyleSheet.absoluteFill} />
         ) : null}
         <View style={styles.mediaOverlay}>
           <View style={styles.mediaBadge}>
