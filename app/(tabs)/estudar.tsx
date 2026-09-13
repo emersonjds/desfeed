@@ -5,8 +5,11 @@ import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import type { Card } from '../../src/entities/card/schema'
+import { queueTodayResponseSchema } from '../../src/entities/card/schema'
 import { useGenerateSessionMutation, useStudyThemesQuery } from '../../src/entities/study/queries'
 import type { StudyTheme } from '../../src/entities/study/schema'
+import { fetchJson } from '../../src/shared/api/client'
 import { useDailySessionStore } from '../../src/features/daily-session/store'
 import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 
@@ -61,9 +64,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 8,
-    backgroundColor: memfeedColor.primary,
+    backgroundColor: memfeedColor.primaryDeep,
     borderBottomWidth: 4,
-    borderBottomColor: memfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.text,
   },
   ctaOff: { backgroundColor: memfeedColor.border, borderBottomColor: '#94a3b8' },
   ctaText: { fontFamily: memfeedFont.extrabold, fontSize: 16, color: memfeedColor.surface },
@@ -126,13 +129,22 @@ export default function EstudarScreen() {
 
   const canGenerate = subject !== null && topic.trim().length >= 3 && !generate.isPending
 
+  const finishWithCards = (cards: Card[]) => {
+    startSession(cards, cards.length)
+    router.push('/hoje')
+  }
+
   const runGeneration = (chosenSubject: string, chosenTopic: string) => {
     generate.mutate(
       { subject: chosenSubject, theme: chosenTopic, cardCount: CARDS_PER_SESSION },
       {
-        onSuccess: (response) => {
-          startSession(response.cards, response.cards.length)
-          router.push('/hoje')
+        onSuccess: (response) => finishWithCards(response.cards),
+        // Gerador fora do ar não pode derrubar a demo: a fila do dia assume o
+        // lugar dos cards novos e a sessão começa do mesmo jeito, sem erro na tela.
+        onError: () => {
+          fetchJson('/api/queue/today', queueTodayResponseSchema)
+            .then((fallback) => finishWithCards(fallback.cards))
+            .catch(() => router.push('/hoje'))
         },
       },
     )
@@ -194,7 +206,7 @@ export default function EstudarScreen() {
               <IconOutline name="thunderbolt" size={19} color={memfeedColor.surface} />
             )}
             <Text style={styles.ctaText}>
-              {generate.isPending ? 'Escrevendo as perguntas…' : 'Gerar minha sessão'}
+              {generate.isPending ? 'Gerando os cards…' : 'Gerar feed'}
             </Text>
           </Pressable>
         </View>
