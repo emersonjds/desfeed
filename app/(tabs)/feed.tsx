@@ -13,7 +13,7 @@ import { useSessionTodayQuery } from '../../src/entities/session/queries'
 import { currentSessionCard, useDailySessionStore } from '../../src/features/daily-session/store'
 import { desfeedColor, desfeedFont } from '../../src/shared/theme'
 import { InfinityMark } from '../../src/shared/ui/InfinityMark'
-import { QuestionCard } from '../../src/widgets/question-card/QuestionCard'
+import { FeedList } from '../../src/widgets/feed-list/FeedList'
 
 const XP_PER_CARD = 30
 
@@ -163,6 +163,8 @@ export default function FeedScreen() {
   const startSession = useDailySessionStore((state) => state.start)
   const answerCard = useDailySessionStore((state) => state.answer)
   const addXp = useDailySessionStore((state) => state.addXp)
+  const goTo = useDailySessionStore((state) => state.goTo)
+  const queue = useDailySessionStore((state) => state.queue)
 
   useEffect(() => {
     if (queueQuery.data && !isStarted) {
@@ -254,12 +256,13 @@ export default function FeedScreen() {
           />
         ) : null}
 
-        {card && !isFinished ? (
-          <QuestionCard
-            key={`${card.id}-${currentIndex}`}
-            card={card}
+        {queue.length > 0 && !isFinished ? (
+          <FeedList
+            cards={queue}
+            activeIndex={currentIndex}
             xpReward={XP_PER_CARD}
-            onRate={(rating) => handleRate(card, rating)}
+            onIndexChange={goTo}
+            onRate={handleRate}
           />
         ) : null}
       </View>
