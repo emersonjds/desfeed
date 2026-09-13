@@ -168,7 +168,7 @@ export default function EvolucaoScreen() {
 
   return (
     <SafeAreaView style={styles.screen} edges={['top']}>
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View>
           <Text style={styles.title}>Sua evolução</Text>
           <Text style={styles.lede}>Você contra o seu esquecimento — não contra a turma.</Text>
