@@ -3,8 +3,8 @@ import { Tabs } from 'expo-router'
 import { Platform, StyleSheet, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
-import { InfinityMark } from '../../src/shared/ui/InfinityMark'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
+import { MemfeedMark } from '../../src/shared/ui/MemfeedMark'
 import { ICON_SLOT_HEIGHT, TabIconSlot } from '../../src/shared/ui/TabIconSlot'
 
 const INACTIVE = '#94a3b8'
@@ -13,8 +13,8 @@ const STUDY_SIZE = 44
 
 const styles = StyleSheet.create({
   bar: {
-    backgroundColor: desfeedColor.surface,
-    borderTopColor: desfeedColor.borderSoft,
+    backgroundColor: memfeedColor.surface,
+    borderTopColor: memfeedColor.borderSoft,
     borderTopWidth: StyleSheet.hairlineWidth,
     paddingTop: 4,
     elevation: 0,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 11,
     lineHeight: 14,
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     marginTop: 2,
   },
   studyButton: {
@@ -39,22 +39,22 @@ const styles = StyleSheet.create({
     borderRadius: STUDY_SIZE / 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
     // Sombra sólida sem blur: a assinatura visual do produto, em vez de sombra difusa.
     borderBottomWidth: 4,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
   },
 })
 
 const TabIcon = ({ name, focused }: { name: OutlineGlyphMapType; focused: boolean }) => (
-  <TabIconSlot focused={focused} haloColor={desfeedColor.primarySoft}>
-    <IconOutline name={name} size={23} color={focused ? desfeedColor.primary : INACTIVE} />
+  <TabIconSlot focused={focused} haloColor={memfeedColor.primarySoft}>
+    <IconOutline name={name} size={23} color={focused ? memfeedColor.primary : INACTIVE} />
   </TabIconSlot>
 )
 
 const TodayIcon = ({ focused }: { focused: boolean }) => (
-  <TabIconSlot focused={focused} haloColor={desfeedColor.primarySoft}>
-    <InfinityMark size={25} color={focused ? desfeedColor.primary : INACTIVE} />
+  <TabIconSlot focused={focused} haloColor={memfeedColor.primarySoft}>
+    <MemfeedMark size={25} color={focused ? memfeedColor.primary : INACTIVE} />
   </TabIconSlot>
 )
 
@@ -64,10 +64,10 @@ const StudyIcon = ({ focused }: { focused: boolean }) => (
     <View
       style={[
         styles.studyButton,
-        focused ? { backgroundColor: desfeedColor.primaryDeep } : null,
+        focused ? { backgroundColor: memfeedColor.primaryDeep } : null,
       ]}
     >
-      <IconOutline name="thunderbolt" size={24} color={desfeedColor.surface} />
+      <IconOutline name="thunderbolt" size={24} color={memfeedColor.surface} />
     </View>
   </TabIconSlot>
 )
@@ -83,7 +83,7 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: desfeedColor.primary,
+        tabBarActiveTintColor: memfeedColor.primary,
         tabBarInactiveTintColor: INACTIVE,
         tabBarStyle: [
           styles.bar,

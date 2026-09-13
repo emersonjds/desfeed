@@ -11,8 +11,8 @@ import type { Card } from '../../src/entities/card/schema'
 import { useSubmitReviewMutation } from '../../src/entities/review/mutations'
 import { useSessionTodayQuery } from '../../src/entities/session/queries'
 import { currentSessionCard, useDailySessionStore } from '../../src/features/daily-session/store'
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
-import { InfinityMark } from '../../src/shared/ui/InfinityMark'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
+import { MemfeedMark } from '../../src/shared/ui/MemfeedMark'
 import { FeedList } from '../../src/widgets/feed-list/FeedList'
 
 const XP_PER_CARD = 30
@@ -20,7 +20,7 @@ const XP_PER_CARD = 30
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   header: {
     flexDirection: 'row',
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   brandName: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 19,
     letterSpacing: -0.4,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   headerStats: {
     flexDirection: 'row',
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 11,
     paddingVertical: 6,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   statText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 14,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   avatar: {
     width: 32,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
   },
   goal: {
     paddingHorizontal: 12,
@@ -88,31 +88,31 @@ const styles = StyleSheet.create({
     width: 7,
     height: 7,
     borderRadius: 4,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
   },
   goalLabel: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.6,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
     textTransform: 'uppercase',
   },
   goalCount: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 11,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   progressOuter: {
     height: 9,
     borderRadius: 999,
     overflow: 'hidden',
-    backgroundColor: desfeedColor.borderSoft,
+    backgroundColor: memfeedColor.borderSoft,
   },
   // A barra do Progress é desenhada como borda inferior, não como altura de View.
   progressBar: {
     borderBottomWidth: 9,
     borderRadius: 999,
-    borderColor: desfeedColor.primary,
+    borderColor: memfeedColor.primary,
   },
   body: {
     flex: 1,
@@ -125,10 +125,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   centeredText: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 14,
     textAlign: 'center',
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
 })
 
@@ -198,14 +198,14 @@ export default function FeedScreen() {
     <SafeAreaView style={styles.screen} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.brand}>
-          <InfinityMark size={26} color={desfeedColor.primary} />
-          <Text style={styles.brandName}>Desfeed</Text>
+          <MemfeedMark size={26} color={memfeedColor.primary} />
+          <Text style={styles.brandName}>Memfeed</Text>
         </View>
         <View style={styles.headerStats}>
           <HeaderStat icon="fire" value={`${streak}d`} color="#ea580c" />
-          <HeaderStat icon="thunderbolt" value={`${xp}`} color={desfeedColor.warning} />
+          <HeaderStat icon="thunderbolt" value={`${xp}`} color={memfeedColor.warning} />
           <View style={styles.avatar}>
-            <IconOutline name="user" size={20} color={desfeedColor.primaryDeep} />
+            <IconOutline name="user" size={20} color={memfeedColor.primaryDeep} />
           </View>
         </View>
       </View>
@@ -229,14 +229,14 @@ export default function FeedScreen() {
       <View style={styles.body}>
         {queueQuery.isLoading ? (
           <View style={styles.centered}>
-            <ActivityIndicator color={desfeedColor.primary} />
+            <ActivityIndicator color={memfeedColor.primary} />
             <Text style={styles.centeredText}>Carregando a fila de hoje…</Text>
           </View>
         ) : null}
 
         {queueQuery.isError ? (
           <Result
-            img={<IconOutline name="close-circle" size={54} color={desfeedColor.error} />}
+            img={<IconOutline name="close-circle" size={54} color={memfeedColor.error} />}
             title="Não deu para buscar a fila de hoje"
             message="Confira sua conexão e tente de novo."
             buttonText="Tentar novamente"
@@ -247,9 +247,9 @@ export default function FeedScreen() {
 
         {queueQuery.data && queueQuery.data.cards.length === 0 ? (
           <Result
-            img={<IconOutline name="book" size={54} color={desfeedColor.primary} />}
+            img={<IconOutline name="book" size={54} color={memfeedColor.primary} />}
             title="Nada para revisar agora"
-            message="Escolha um assunto e o Desfeed escreve as perguntas para você."
+            message="Escolha um assunto e o Memfeed escreve as perguntas para você."
             buttonText="Escolher um assunto"
             buttonType="primary"
             onButtonClick={() => router.push('/estudar')}
