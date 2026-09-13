@@ -20,7 +20,7 @@ export const SolidShadow = ({
   style,
   children,
 }: SolidShadowProps) => (
-  <View style={{ height: height + shadowHeight }}>
+  <View style={{ height: height + shadowHeight, width: '100%' }}>
     <View
       style={{
         position: 'absolute',
