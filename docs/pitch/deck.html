@@ -396,18 +396,12 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
         <div class="delta">−19 pontos em sete dias — é esse número que dispara a ação “gerar reforço”</div>
       </div>
       <div class="states">
-        <div class="state f"><div class="s-n">Firme</div><div class="s-d">acertou de novo no intervalo calculado pelo FSRS</div></div>
-        <div class="state r"><div class="s-n">Em risco</div><div class="s-d">acertou no dia, hesitou na reaplicação</div></div>
-        <div class="state e"><div class="s-n">Esquecido</div><div class="s-d">errou na reaplicação — entra na sessão de reforço</div></div>
-        <div class="state k"><div class="s-n">Nunca nota. Nunca ranking.</div><div class="s-d">estado, não classificação — e o reforço é dirigido, privado, só o aluno enxerga</div></div>
+        <div class="state f"><div class="s-n">Firme</div><div class="s-d">acertou de novo</div></div>
+        <div class="state r"><div class="s-n">Em risco</div><div class="s-d">hesitou na reaplicação</div></div>
+        <div class="state e"><div class="s-n">Esquecido</div><div class="s-d">errou na reaplicação</div></div>
+        <div class="state k"><div class="s-n">Nunca nota. Nunca ranking.</div><div class="s-d">estado, nunca classificação</div></div>
       </div>
     </div>
-  </div>
-
-  <div class="quotebox">
-    <p>“O Wayground plota <strong>uma atividade diferente a cada ponto</strong> — é a nota subindo no bimestre.
-    Nós reaplicamos <strong>o mesmo conceito</strong> num intervalo calculado pelo FSRS e comparamos contra o acerto do dia da aula.
-    <strong>Um mede progresso; o outro mede esquecimento.</strong>”</p>
   </div>
 
   <div class="foot">
@@ -549,9 +543,7 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
     <div class="gcard hl">
       <div class="g-k" style="color:var(--accent-l)">A decisão que nos separa</div>
       <div class="g-t">A figura de cada card vem do acervo da Wikipédia. Nunca de modelo de imagem.</div>
-      <div class="g-p">Diagrama científico gerado por IA sai com a seta trocada e a molécula inventada.
-      Num app de educação, isso <strong>ensina errado</strong> — e o erro se propaga pela fila de revisão, que é justamente o que fixa memória.
-      A IA escolhe o verbete; a imagem vem do acervo real.</div>
+      <div class="g-p">Diagrama gerado por IA sai com a seta trocada. A IA escolhe o verbete; a imagem vem do acervo.</div>
     </div>
     <div class="gcard dark">
       <div class="g-k">A stack</div>
@@ -562,19 +554,6 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
         <li><strong>FSRS:</strong> <code>ts-fsrs</code>, licença MIT</li>
         <li><strong>zod</strong> em toda fronteira de confiança: saída do LLM, payload de API, resposta externa</li>
       </ul>
-    </div>
-  </div>
-
-  <div class="cardrow">
-    <div class="gcard dark" style="flex:1.1;">
-      <div class="g-k">No ar hoje</div>
-      <div class="g-p">App do aluno com feed, autoavaliação, FSRS e sessão com fim · painel do professor com turma, análises e aulas publicadas ·
-      retenção por conceito contra o acerto do dia · <strong>39 cards gerados por IA em 6 matérias, turma de 34 alunos, 27 responderam</strong> — demonstração do protótipo.</div>
-    </div>
-    <div class="gcard dark" style="flex:1;">
-      <div class="g-k" style="color:#fbbf24">O que vem depois — e o que ainda não está de pé</div>
-      <div class="g-p">Piloto em uma escola, com uma métrica-mãe: <strong>quantos alunos voltam no D+7</strong>. Sem esse retorno não existe relatório de retenção —
-      é a hipótese mais frágil do produto. E o painel já mostra o <em>n</em>, mas ainda não marca <strong>“amostra insuficiente”</strong> quando o retorno é baixo demais para decidir: decidido, não implementado.</div>
     </div>
   </div>
 
@@ -596,32 +575,24 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
     <div class="gcard hl">
       <div class="g-k" style="color:var(--accent-l)">Escola pública</div>
       <div class="g-t">Gratuito</div>
-      <div class="g-p">É onde o problema está: 73% abaixo do básico em matemática, 6,33 milhões de matrículas no ensino médio.
-      É também o motor de distribuição e de credibilidade.</div>
+      <div class="g-p">Onde o problema está — e o motor de distribuição.</div>
       <div class="g-price">sem custo para a escola</div>
     </div>
     <div class="gcard">
       <div class="g-k">Escola particular</div>
       <div class="g-t">Licença por aluno / ano</div>
-      <div class="g-p">Com painel de coordenação sobre múltiplas turmas. Ela compra o que não tem: evidência de aprendizagem
-      <em>antes</em> da prova bimestral, com sete dias de aula pela frente para agir.</div>
+      <div class="g-p">Evidência de aprendizagem <b>antes</b> da prova, com sete dias para agir.</div>
       <div class="g-price">hipótese · comparáveis do mercado (Plurall, Árvore, Wayground School) não publicam preço</div>
     </div>
     <div class="gcard">
       <div class="g-k">Aluno individual</div>
       <div class="g-t">Assinatura no modelo Spotify</div>
-      <div class="g-p">Camada gratuita limitada (uma geração por dia, meta diária padrão). Premium com geração ilimitada por assunto
-      e reforço sob demanda, cancelamento a qualquer momento, plano anual de estudante mais barato.</div>
+      <div class="g-p">Camada gratuita limitada; Premium com geração ilimitada e reforço sob demanda.</div>
       <div class="g-price">hipótese de precificação, ancorada entre Quizlet Plus (US$ 2,99/mês) e o cursinho ENEM do Descomplica (12× R$ 49,90)</div>
     </div>
   </div>
 
-  <div class="bar-strip">
-    <p><strong>A unidade econômica:</strong> o conteúdo que o professor publica é gerado <strong>uma vez</strong> e consumido pela turma inteira —
-    na demonstração, 34 alunos. O custo de inferência por aluno é dividido pelo tamanho da turma. Já a geração que o aluno pede é 1:1,
-    e é exatamente ela que o plano pago cobre. <strong>Por isso a escola pública sai de graça sem quebrar a conta:
-    a origem gratuita é a que amortiza; a origem paga é a que custa por cabeça.</strong></p>
-  </div>
+  <div class="bar-strip"><b>A origem gratuita é a que amortiza; a paga é a que custa por cabeça.</b> A aula do professor é gerada uma vez para 34 alunos.</div>
 
   <div class="punch">
     O problema nunca foi o formato.<br/>
