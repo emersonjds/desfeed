@@ -1,6 +1,13 @@
 import { cardSchema, type Card } from '../../../entities/card/schema'
 import { submitReviewRequestSchema } from '../../../entities/review/schema'
-import { emptySession, mockCards, mockProfile, mockSession } from './data'
+import {
+  emptySession,
+  mockCards,
+  mockNotebookLibrary,
+  mockProfile,
+  mockRanking,
+  mockSession,
+} from './data'
 
 export type MockScenario = 'happy' | 'empty' | 'error'
 
@@ -87,6 +94,22 @@ export const resolveMockRoute = (
   if (verb === 'GET' && path === '/api/profile') {
     if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar o perfil' } }
     return { status: 200, body: mockProfile }
+  }
+
+  if (verb === 'GET' && path === '/api/notebooks') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar seus cadernos' } }
+    if (scenario === 'empty') {
+      return { status: 200, body: { ...mockNotebookLibrary, notebooks: [], peaks: [] } }
+    }
+    return { status: 200, body: mockNotebookLibrary }
+  }
+
+  if (verb === 'GET' && path === '/api/ranking') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar o ranking' } }
+    if (scenario === 'empty') {
+      return { status: 200, body: { ...mockRanking, entries: [] } }
+    }
+    return { status: 200, body: mockRanking }
   }
 
   if (verb === 'POST' && path === '/api/reviews') {

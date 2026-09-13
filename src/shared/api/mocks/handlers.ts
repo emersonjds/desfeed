@@ -15,6 +15,8 @@ export const handlers = [
   http.get(`${API_BASE_URL}/api/queue/today`, () => respond('GET', '/api/queue/today')),
   http.get(`${API_BASE_URL}/api/session/today`, () => respond('GET', '/api/session/today')),
   http.get(`${API_BASE_URL}/api/profile`, () => respond('GET', '/api/profile')),
+  http.get(`${API_BASE_URL}/api/notebooks`, () => respond('GET', '/api/notebooks')),
+  http.get(`${API_BASE_URL}/api/ranking`, () => respond('GET', '/api/ranking')),
   http.post(`${API_BASE_URL}/api/reviews`, async ({ request }: { request: Request }) =>
     respond('POST', '/api/reviews', await request.json()),
   ),
