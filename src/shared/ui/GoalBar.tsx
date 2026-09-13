@@ -14,11 +14,11 @@ export const GoalBar = ({ completed, goal, label }: GoalBarProps) => {
       <View className="flex-row items-center justify-between">
         <View className="flex-row items-center gap-1.5">
           <View className="h-2 w-2 rounded-full bg-primary" />
-          <Text className="text-[10px] font-extrabold uppercase tracking-wider text-primary-deep">
+          <Text className="text-[10px] font-jk-extrabold uppercase tracking-wider text-primary-deep">
             {label}
           </Text>
         </View>
-        <Text className="text-xs font-bold text-text-muted">
+        <Text className="text-xs font-jk-bold text-text-muted">
           {completed}/{goal} Concluídos
         </Text>
       </View>

@@ -61,11 +61,11 @@ const RatingButton = ({
             isPrimary ? 'bg-primary' : 'bg-surface-soft'
           }`}
         >
-          <Text className={`text-sm font-extrabold leading-none ${ratingTextClass[rating]}`}>
+          <Text className={`text-sm font-jk-extrabold leading-none ${ratingTextClass[rating]}`}>
             {ratingLabel[rating]}
           </Text>
           <Text
-            className={`mt-1 text-xs font-bold ${isPrimary ? 'text-white/90' : 'text-text-muted opacity-75'}`}
+            className={`mt-1 text-xs font-jk-bold ${isPrimary ? 'text-white/90' : 'text-text-muted opacity-75'}`}
           >
             {intervalLabel}
           </Text>
@@ -81,11 +81,11 @@ export const SelfEvaluation = ({ fsrsData, onRate, disabled = false }: SelfEvalu
   return (
     <View className="rounded-2xl bg-surface p-3.5 shadow-sm">
       <View className="mb-2.5 flex-row items-center justify-between">
-        <Text className="text-xs font-extrabold uppercase tracking-wider text-text">
+        <Text className="text-xs font-jk-extrabold uppercase tracking-wider text-text">
           Autoavaliação da lembrança
         </Text>
         <View className="rounded-full bg-primary/10 px-2 py-0.5">
-          <Text className="text-xs font-extrabold text-primary-deep">+30 XP</Text>
+          <Text className="text-xs font-jk-extrabold text-primary-deep">+30 XP</Text>
         </View>
       </View>
       <View className="flex-row gap-1.5">
