@@ -1,19 +1,47 @@
+import { IconOutline, type OutlineGlyphMapType } from '@ant-design/icons-react-native'
 import { Tabs } from 'expo-router'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
-import { Icon, type IconName } from '../../src/shared/ui/Icon'
-import { SolidShadow } from '../../src/shared/ui/SolidShadow'
+import { desfeedColor, desfeedFont } from '../../src/shared/theme'
 
-const TabIcon = ({ name, focused }: { name: IconName; focused: boolean }) => (
-  <Icon name={name} size={24} color={focused ? '#10b981' : '#94a3b8'} />
+const styles = StyleSheet.create({
+  scanButton: {
+    width: 46,
+    height: 46,
+    marginTop: -12,
+    borderRadius: 23,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: desfeedColor.primary,
+    borderBottomWidth: 3,
+    borderBottomColor: desfeedColor.primaryDeep,
+  },
+  bar: {
+    height: 88,
+    paddingTop: 10,
+    paddingBottom: 18,
+    paddingHorizontal: 12,
+    backgroundColor: desfeedColor.surface,
+    borderTopColor: desfeedColor.borderSoft,
+  },
+  // Sem largura máxima os quatro itens se espalham até encostar na borda da tela.
+  item: {
+    maxWidth: 96,
+  },
+  label: {
+    fontSize: 11,
+    fontFamily: desfeedFont.bold,
+  },
+})
+
+const TabIcon = ({ name, focused }: { name: OutlineGlyphMapType; focused: boolean }) => (
+  <IconOutline name={name} size={23} color={focused ? desfeedColor.primary : '#94a3b8'} />
 )
 
 const ScanTabIcon = () => (
-  <SolidShadow height={48} shadowColor="#059669" borderRadius={24}>
-    <View className="h-full w-full items-center justify-center rounded-full bg-primary">
-      <Icon name="escanear" size={24} color="#ffffff" />
-    </View>
-  </SolidShadow>
+  <View style={styles.scanButton}>
+    <IconOutline name="scan" size={24} color={desfeedColor.surface} />
+  </View>
 )
 
 export default function TabsLayout() {
@@ -21,18 +49,11 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#10b981',
+        tabBarActiveTintColor: desfeedColor.primary,
         tabBarInactiveTintColor: '#94a3b8',
-        tabBarStyle: {
-          height: 84,
-          paddingTop: 10,
-          paddingBottom: 22,
-          borderTopColor: '#dfe2f1',
-        },
-        tabBarLabelStyle: {
-          fontSize: 11,
-          fontFamily: 'PlusJakartaSans_700Bold',
-        },
+        tabBarStyle: styles.bar,
+        tabBarItemStyle: styles.item,
+        tabBarLabelStyle: styles.label,
       }}
     >
       <Tabs.Screen name="index" options={{ href: null }} />
@@ -40,7 +61,7 @@ export default function TabsLayout() {
         name="feed"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ focused }) => <TabIcon name="infinito" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="retweet" focused={focused} />,
         }}
       />
       <Tabs.Screen
@@ -48,25 +69,20 @@ export default function TabsLayout() {
         options={{
           title: 'Escanear',
           tabBarIcon: () => <ScanTabIcon />,
-          tabBarLabelStyle: {
-            fontSize: 11,
-            fontFamily: 'PlusJakartaSans_700Bold',
-            marginTop: 6,
-          },
         }}
       />
       <Tabs.Screen
         name="ranking"
         options={{
           title: 'Ranking',
-          tabBarIcon: ({ focused }) => <TabIcon name="ranking" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="bar-chart" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="cadernos"
         options={{
           title: 'Cadernos',
-          tabBarIcon: ({ focused }) => <TabIcon name="cadernos" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="book" focused={focused} />,
         }}
       />
     </Tabs>

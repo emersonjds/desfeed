@@ -1,13 +1,26 @@
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { IconOutline } from '@ant-design/icons-react-native'
+import { Result } from '@ant-design/react-native'
+import { StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+import { desfeedColor } from '../../src/shared/theme'
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: desfeedColor.surfaceSoft,
+  },
+})
 
 export default function CadernosScreen() {
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-surface px-6" edges={['top']}>
-      <Text className="text-lg font-jk-bold text-text">Cadernos em breve</Text>
-      <Text className="mt-2 text-center text-sm text-text-muted font-jk">
-        A lista de cadernos escaneados ganha tela própria depois da espinha da demo.
-      </Text>
+    <SafeAreaView style={styles.screen} edges={['top']}>
+      <Result
+        img={<IconOutline name="book" size={54} color={desfeedColor.primary} />}
+        title="Cadernos em breve"
+        message="A lista de cadernos escaneados ganha tela própria depois da espinha da demo."
+      />
     </SafeAreaView>
-  );
+  )
 }

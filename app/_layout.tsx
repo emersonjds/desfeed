@@ -1,5 +1,4 @@
-import '../global.css'
-
+import { Provider } from '@ant-design/react-native'
 import {
   PlusJakartaSans_400Regular,
   PlusJakartaSans_500Medium,
@@ -15,6 +14,7 @@ import { useEffect } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { queryClient } from '../src/shared/api/query-client'
+import { desfeedTheme } from '../src/shared/theme'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -25,6 +25,8 @@ export default function RootLayout() {
     PlusJakartaSans_600SemiBold,
     PlusJakartaSans_700Bold,
     PlusJakartaSans_800ExtraBold,
+    antoutline: require('@ant-design/icons-react-native/fonts/antoutline.ttf'),
+    antfill: require('@ant-design/icons-react-native/fonts/antfill.ttf'),
   })
 
   useEffect(() => {
@@ -37,12 +39,14 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <QueryClientProvider client={queryClient}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="sessao-concluida" options={{ presentation: 'fullScreenModal' }} />
-        </Stack>
-      </QueryClientProvider>
+      <Provider theme={desfeedTheme}>
+        <QueryClientProvider client={queryClient}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="sessao-concluida" options={{ presentation: 'fullScreenModal' }} />
+          </Stack>
+        </QueryClientProvider>
+      </Provider>
     </SafeAreaProvider>
   )
 }

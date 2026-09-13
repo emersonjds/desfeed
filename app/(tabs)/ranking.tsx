@@ -1,13 +1,26 @@
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { IconOutline } from '@ant-design/icons-react-native'
+import { Result } from '@ant-design/react-native'
+import { StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+import { desfeedColor } from '../../src/shared/theme'
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: desfeedColor.surfaceSoft,
+  },
+})
 
 export default function RankingScreen() {
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-surface px-6" edges={['top']}>
-      <Text className="text-lg font-jk-bold text-text">Ranking em breve</Text>
-      <Text className="mt-2 text-center text-sm text-text-muted font-jk">
-        Ligas e ranking social ficam para a próxima fase do Desfeed.
-      </Text>
+    <SafeAreaView style={styles.screen} edges={['top']}>
+      <Result
+        img={<IconOutline name="trophy" size={54} color={desfeedColor.primary} />}
+        title="Ranking em breve"
+        message="Ligas e ranking social ficam para a próxima fase do Desfeed."
+      />
     </SafeAreaView>
-  );
+  )
 }
