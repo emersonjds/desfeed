@@ -19,6 +19,11 @@ dentro de uma sessão que **acaba de propósito**.
 ![Expo Go](https://img.shields.io/badge/roda_no-Expo_Go-000020?style=flat-square&logo=expo&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
 
+[![App no ar](https://img.shields.io/badge/app-memfeed--app.netlify.app-10B981?style=flat-square&logo=netlify&logoColor=white)](https://memfeed-app.netlify.app)
+[![Landing](https://img.shields.io/badge/landing-memfeed--web.netlify.app-4F46E5?style=flat-square)](https://memfeed-web.netlify.app)
+
+**[Abrir o app no navegador](https://memfeed-app.netlify.app)** · **[Landing e painel do professor](https://memfeed-web.netlify.app)**
+
 </div>
 
 ---
@@ -85,20 +90,27 @@ o professor vê a turma no agregado, nunca o aluno.
 
 <br />
 
-## Rodando
+## Rodando local
+
+Pré-requisitos: Node 22+ e, para o aparelho físico, o [Expo Go](https://expo.dev/go).
 
 ```bash
 npm install
-npm run ios          # ou: npm run android · npm run web
+npm run web          # abre no navegador
+npm run ios          # simulador iOS · npm run android para o emulador
+npm start            # QR code para abrir no Expo Go do seu celular
 ```
 
 O app fala com a [`memfeed-api`](https://github.com/emersonjds/memfeed-api). Crie um `.env`:
 
 ```bash
 EXPO_PUBLIC_USE_MOCKS=false
-EXPO_PUBLIC_API_URL=http://192.168.0.10:3333    # o IP da sua máquina na rede, não localhost
+EXPO_PUBLIC_API_URL=http://192.168.0.10:3000    # o IP da sua máquina na rede, não localhost
 EXPO_PUBLIC_STUDENT_ID=11111111-1111-4111-8111-111111111111
 ```
+
+No celular, `localhost` aponta para o próprio aparelho — por isso o IP da máquina. No
+`npm run web`, `http://localhost:3000` funciona normalmente.
 
 Com `EXPO_PUBLIC_USE_MOCKS=true` o app resolve tudo por `src/shared/api/mocks/routes.ts`, com
 latência simulada e o mesmo contrato — útil para mexer em tela sem subir o backend.
