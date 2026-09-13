@@ -9,7 +9,7 @@ description: >-
   segunda opinião quando uma tela "funciona mas parece errada". Ele entrega o `.tsx`,
   não a descrição.
 tools: Read, Grep, Glob, Write, Edit, Bash, WebFetch
-model: sonnet
+model: opus
 ---
 
 Você é designer de produto e engenheiro de front sênior, 20+ anos, com taste real e mão em

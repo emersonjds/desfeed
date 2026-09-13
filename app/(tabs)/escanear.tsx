@@ -1,162 +1,351 @@
-import { CameraView, useCameraPermissions } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
-import { useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { IconOutline } from '@ant-design/icons-react-native'
+import { ActivityIndicator, Button, Progress, Result } from '@ant-design/react-native'
+import { CameraView, useCameraPermissions } from 'expo-camera'
+import { useRouter } from 'expo-router'
+import * as ImagePicker from 'expo-image-picker'
+import { useRef } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { useScanNotebook, type ScanStage } from '../../src/features/scan-notebook/useScanNotebook';
-import { Button } from '../../src/shared/ui/Button';
-import { Pill } from '../../src/shared/ui/Pill';
-import { SolidShadow } from '../../src/shared/ui/SolidShadow';
+import { useScanNotebook, type ScanStage } from '../../src/features/scan-notebook/useScanNotebook'
+import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { CameraPermissionPrimer } from '../../src/widgets/scanner/CameraPermissionPrimer'
+import { ScanResult } from '../../src/widgets/scanner/ScanResult'
 
-const DEMO_NOTEBOOK_ID = 'demo-notebook';
+const DEMO_NOTEBOOK_ID = 'demo-notebook'
 
-const stageMessage: Record<ScanStage, string | null> = {
+const stageProgress: Record<ScanStage, { percent: number; label: string } | null> = {
   idle: null,
-  uploading: 'Enviando foto…',
-  reading: 'Lendo a página…',
-  generating: 'Gerando perguntas…',
+  uploading: { percent: 25, label: 'Guardando a foto…' },
+  reading: { percent: 62, label: 'Lendo o que está escrito…' },
+  generating: { percent: 88, label: 'Montando as perguntas…' },
   done: null,
   error: null,
-};
+}
 
-const ProcessingBanner = ({ stage }: { stage: ScanStage }) => {
-  const message = stageMessage[stage];
-  if (!message) {
-    return null;
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: desfeedColor.surfaceSoft,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+    paddingHorizontal: 12,
+    paddingBottom: 8,
+  },
+  headerTitle: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 19,
+    letterSpacing: -0.4,
+    color: desfeedColor.text,
+  },
+  body: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingBottom: 12,
+    gap: 12,
+  },
+  centered: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  viewfinder: {
+    flex: 1,
+    minHeight: 220,
+    borderRadius: 20,
+    overflow: 'hidden',
+    backgroundColor: desfeedColor.text,
+  },
+  camera: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  // A moldura para acima da faixa de dica: canto sobreposto por texto deixa de ser guia.
+  frame: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    right: 16,
+    bottom: 58,
+  },
+  corner: {
+    position: 'absolute',
+    width: 34,
+    height: 34,
+    borderColor: desfeedColor.surface,
+  },
+  cornerTopLeft: {
+    top: 0,
+    left: 0,
+    borderTopWidth: 4,
+    borderLeftWidth: 4,
+    borderTopLeftRadius: 14,
+  },
+  cornerTopRight: {
+    top: 0,
+    right: 0,
+    borderTopWidth: 4,
+    borderRightWidth: 4,
+    borderTopRightRadius: 14,
+  },
+  cornerBottomLeft: {
+    bottom: 0,
+    left: 0,
+    borderBottomWidth: 4,
+    borderLeftWidth: 4,
+    borderBottomLeftRadius: 14,
+  },
+  cornerBottomRight: {
+    bottom: 0,
+    right: 0,
+    borderBottomWidth: 4,
+    borderRightWidth: 4,
+    borderBottomRightRadius: 14,
+  },
+  hint: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    backgroundColor: 'rgba(15, 19, 29, 0.72)',
+  },
+  hintText: {
+    flex: 1,
+    fontFamily: desfeedFont.semibold,
+    fontSize: 13,
+    color: desfeedColor.surface,
+  },
+  progressOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    backgroundColor: 'rgba(15, 19, 29, 0.66)',
+  },
+  progressCard: {
+    alignSelf: 'stretch',
+    borderRadius: 18,
+    padding: 16,
+    gap: 12,
+    backgroundColor: desfeedColor.surface,
+  },
+  progressHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  progressLabel: {
+    flex: 1,
+    fontFamily: desfeedFont.bold,
+    fontSize: 15,
+    color: desfeedColor.text,
+  },
+  progressOuter: {
+    height: 9,
+    borderRadius: 999,
+    overflow: 'hidden',
+    backgroundColor: desfeedColor.borderSoft,
+  },
+  progressBar: {
+    borderBottomWidth: 9,
+    borderRadius: 999,
+    borderColor: desfeedColor.primary,
+  },
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  shutter: {
+    flex: 2,
+    height: 52,
+    borderRadius: 16,
+    borderBottomWidth: 4,
+    borderBottomColor: desfeedColor.primaryDeep,
+  },
+  galleryAction: {
+    flex: 1,
+    height: 52,
+    borderRadius: 16,
+    borderWidth: 0,
+    backgroundColor: desfeedColor.surface,
+    borderBottomWidth: 3,
+    borderBottomColor: desfeedColor.borderSoft,
+  },
+})
+
+const ViewfinderFrame = () => (
+  <View style={styles.frame} pointerEvents="none">
+    <View style={[styles.corner, styles.cornerTopLeft]} />
+    <View style={[styles.corner, styles.cornerTopRight]} />
+    <View style={[styles.corner, styles.cornerBottomLeft]} />
+    <View style={[styles.corner, styles.cornerBottomRight]} />
+  </View>
+)
+
+const ScanProgress = ({ stage }: { stage: ScanStage }) => {
+  const progress = stageProgress[stage]
+  if (!progress) {
+    return null
   }
+
   return (
-    <View className="flex-row items-center gap-2 rounded-2xl bg-surface-soft px-4 py-3">
-      <ActivityIndicator color="#10b981" size="small" />
-      <Text className="text-sm font-semibold text-text">{message}</Text>
+    <View style={styles.progressOverlay}>
+      <View style={styles.progressCard}>
+        <View style={styles.progressHead}>
+          <ActivityIndicator size="small" color={desfeedColor.primary} />
+          <Text style={styles.progressLabel}>{progress.label}</Text>
+        </View>
+        <Progress
+          percent={progress.percent}
+          styles={{ progressOuter: styles.progressOuter, progressBar: styles.progressBar }}
+        />
+      </View>
     </View>
-  );
-};
+  )
+}
 
 const CaptureScreen = () => {
-  const [permission, requestPermission] = useCameraPermissions();
-  const cameraRef = useRef<CameraView>(null);
-  const { stage, result, errorMessage, scan, reset } = useScanNotebook();
-  const [pressed, setPressed] = useState(false);
+  const router = useRouter()
+  const [permission, requestPermission] = useCameraPermissions()
+  const cameraRef = useRef<CameraView>(null)
+  const { stage, result, errorMessage, scan, reset } = useScanNotebook()
 
   const handleCapture = async () => {
-    const picture = await cameraRef.current?.takePictureAsync({ quality: 0.6 });
+    const picture = await cameraRef.current?.takePictureAsync({ quality: 0.6 })
     if (picture?.uri) {
-      await scan(DEMO_NOTEBOOK_ID, picture.uri);
+      await scan(DEMO_NOTEBOOK_ID, picture.uri)
     }
-  };
+  }
 
   const handlePickFromGallery = async () => {
-    const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.6 });
-    const uri = picked.assets?.[0]?.uri;
+    const picked = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      quality: 0.6,
+    })
+    const uri = picked.assets?.[0]?.uri
     if (!picked.canceled && uri) {
-      await scan(DEMO_NOTEBOOK_ID, uri);
+      await scan(DEMO_NOTEBOOK_ID, uri)
     }
-  };
+  }
 
   if (!permission) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator color="#10b981" />
+      <View style={styles.centered}>
+        <ActivityIndicator color={desfeedColor.primary} />
       </View>
-    );
+    )
   }
 
   if (!permission.granted) {
     return (
-      <View className="flex-1 items-center justify-center gap-4 px-8">
-        <Text className="text-4xl">📷</Text>
-        <Text className="text-center text-base font-bold text-text">
-          O Desfeed usa a câmera para fotografar seu caderno
-        </Text>
-        <Text className="text-center text-sm text-text-muted">
-          A foto vira perguntas de revisão automaticamente. Sem a câmera, você ainda pode escolher
-          uma foto já salva na galeria.
-        </Text>
-        <Button label="Permitir câmera" onPress={requestPermission} />
-        <Button label="Escolher da galeria" variant="neutral" onPress={handlePickFromGallery} />
-      </View>
-    );
+      <CameraPermissionPrimer
+        canAskAgain={permission.canAskAgain}
+        onAllow={requestPermission}
+        onPickFromGallery={handlePickFromGallery}
+      />
+    )
   }
 
   if (stage === 'error') {
     return (
-      <View className="flex-1 items-center justify-center gap-4 px-8">
-        <Text className="text-4xl">⚠️</Text>
-        <Text className="text-center text-sm text-text-muted">{errorMessage}</Text>
-        <Button label="Tentar novamente" onPress={reset} />
+      <View style={styles.centered}>
+        <Result
+          img={<IconOutline name="exclamation-circle" size={54} color={desfeedColor.warning} />}
+          title="Não deu para processar essa página"
+          message={errorMessage ?? ''}
+          buttonText="Tentar de novo"
+          buttonType="primary"
+          onButtonClick={reset}
+        />
       </View>
-    );
+    )
   }
 
   if (stage === 'done' && result) {
     if (result.confidence === 'baixa' || result.cards.length === 0) {
       return (
-        <View className="flex-1 items-center justify-center gap-4 px-8">
-          <Text className="text-4xl">🤔</Text>
-          <Text className="text-center text-base font-bold text-text">
-            Não deu para ler essa página com confiança
-          </Text>
-          <Text className="text-center text-sm text-text-muted">
-            Prefira gerar cards ruins? Não. Tire outra foto com mais luz e o texto mais legível.
-          </Text>
-          <Button label="Tirar nova foto" onPress={reset} />
+        <View style={styles.centered}>
+          <Result
+            img={<IconOutline name="question-circle" size={54} color={desfeedColor.textMuted} />}
+            title="Essa página saiu difícil de ler"
+            message="Tente de novo com mais luz e a página bem aberta — pergunta errada atrapalha mais do que ajuda."
+            buttonText="Tirar outra foto"
+            buttonType="primary"
+            onButtonClick={reset}
+          />
         </View>
-      );
+      )
     }
 
     return (
-      <View className="flex-1 gap-4 px-4 pt-4">
-        <View className="flex-row items-center justify-between">
-          <Text className="text-lg font-extrabold text-text">Cards gerados</Text>
-          <Pill label={`Confiança ${result.confidence}`} tone="primary" />
-        </View>
-        {result.cards.map((card) => (
-          <View key={card.id} className="gap-1.5 rounded-2xl bg-surface p-4 shadow-sm">
-            <Text className="text-xs font-bold uppercase tracking-wide text-text-muted">
-              {card.subject} • {card.chapter}
-            </Text>
-            <Text className="text-base font-bold text-text">{card.question}</Text>
-          </View>
-        ))}
-        <Button
-          label={`Iniciar feed deste caderno (${result.cards.length} cards prontos)`}
-          onPress={reset}
-        />
-      </View>
-    );
+      <ScanResult
+        cards={result.cards}
+        onStartFeed={() => {
+          reset()
+          router.push('/feed')
+        }}
+        onScanAgain={reset}
+      />
+    )
   }
 
   return (
-    <View className="flex-1 gap-4 px-4 pt-4">
-      <View className="w-full overflow-hidden rounded-2xl bg-surface-soft" style={{ height: 320 }}>
-        <CameraView ref={cameraRef} style={{ flex: 1 }} facing="back" />
+    <View style={styles.body}>
+      <View style={styles.viewfinder}>
+        <CameraView ref={cameraRef} style={styles.camera} facing="back" />
+        <ViewfinderFrame />
+        <View style={styles.hint}>
+          <IconOutline name="bulb" size={16} color={desfeedColor.surface} />
+          <Text style={styles.hintText}>
+            Página inteira na moldura, bem iluminada.
+          </Text>
+        </View>
+        <ScanProgress stage={stage} />
       </View>
 
-      <ProcessingBanner stage={stage} />
-
-      <View className="mt-auto flex-row items-center justify-center gap-6 pb-4">
-        <Button label="Galeria" variant="neutral" onPress={handlePickFromGallery} />
-        <Pressable style={{ opacity: stage !== 'idle' ? 0.5 : 1 }} onPress={handleCapture} disabled={stage !== 'idle'} onPressIn={() => setPressed(true)} onPressOut={() => setPressed(false)}>
-          <SolidShadow height={64} shadowColor="#059669" borderRadius={32} pressed={pressed}>
-            <View className="h-full w-full items-center justify-center rounded-full bg-primary">
-              <Text className="text-2xl">📸</Text>
-            </View>
-          </SolidShadow>
-        </Pressable>
+      <View style={styles.actions}>
+        <Button style={styles.galleryAction} onPress={handlePickFromGallery}>
+          Galeria
+        </Button>
+        <Button
+          type="primary"
+          style={styles.shutter}
+          disabled={stage !== 'idle'}
+          onPress={handleCapture}
+        >
+          Fotografar página
+        </Button>
       </View>
     </View>
-  );
-};
+  )
+}
 
 export default function EscanearScreen() {
   return (
-    <SafeAreaView className="flex-1 bg-surface" edges={['top']}>
-      <View className="flex-row items-center gap-2 px-4 pb-2">
-        <Text className="text-xl">🧠</Text>
-        <Text className="text-lg font-extrabold tracking-tight text-text">Desfeed</Text>
+    <SafeAreaView style={styles.screen} edges={['top', 'bottom']}>
+      <View style={styles.header}>
+        <IconOutline name="scan" size={22} color={desfeedColor.primary} />
+        <Text style={styles.headerTitle}>Escanear</Text>
       </View>
       <CaptureScreen />
     </SafeAreaView>
-  );
+  )
 }

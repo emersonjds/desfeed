@@ -17,6 +17,7 @@ type DailySessionState = {
   lastNextDue: Date | null;
   start: (queue: Card[], goal: number) => void;
   answer: (rating: SelfEvalRating, now?: Date) => void;
+  goTo: (index: number) => void;
   addXp: (amount: number) => void;
   reset: () => void;
 };
@@ -55,6 +56,16 @@ export const useDailySessionStore = create<DailySessionState>()((set, get) => ({
       lastIntervalLabel: preview?.intervalLabel ?? state.lastIntervalLabel,
       lastNextDue: preview?.nextDue ?? state.lastNextDue,
     });
+  },
+
+  // O feed é deslizável: quando o aluno arrasta, o índice visível precisa virar o índice
+  // da sessão, senão a nota iria para o card errado.
+  goTo: (index) => {
+    const { queue, currentIndex } = get();
+    if (index === currentIndex || index < 0 || index >= queue.length) {
+      return;
+    }
+    set({ currentIndex: index });
   },
 
   addXp: (amount) => set((state) => ({ xpEarned: state.xpEarned + amount })),

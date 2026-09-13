@@ -1,13 +1,234 @@
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { IconOutline } from '@ant-design/icons-react-native'
+import { ActivityIndicator, Result } from '@ant-design/react-native'
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Svg, { Circle } from 'react-native-svg'
+
+import {
+  type ForgettingPeak,
+  type NotebookStatus,
+  type NotebookSummary,
+} from '../../src/entities/notebook/library-schema'
+import { useNotebookLibraryQuery } from '../../src/entities/notebook/library-queries'
+import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+
+const RING_SIZE = 84
+const RING_STROKE = 8
+
+const statusStyle: Record<NotebookStatus, { label: string; color: string; background: string }> = {
+  'revisao-hoje': { label: 'Revisão hoje', color: desfeedColor.primaryDeep, background: desfeedColor.primarySoft },
+  estavel: { label: 'Retenção estável', color: desfeedColor.accent, background: desfeedColor.accentSoft },
+  reforco: { label: 'Reforço necessário', color: desfeedColor.warning, background: '#fef3c7' },
+}
+
+const urgencyColor: Record<ForgettingPeak['urgency'], string> = {
+  alta: desfeedColor.error,
+  media: desfeedColor.warning,
+  baixa: desfeedColor.primary,
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: desfeedColor.surfaceSoft },
+  content: { padding: 14, gap: 12, paddingBottom: 28 },
+  title: { fontFamily: desfeedFont.extrabold, fontSize: 22, color: desfeedColor.text },
+  card: { backgroundColor: desfeedColor.surface, borderRadius: 18, padding: 16 },
+  healthRow: { flexDirection: 'row', alignItems: 'center', gap: 16 },
+  healthInfo: { flex: 1, gap: 4 },
+  eyebrow: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 11,
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+    color: desfeedColor.primaryDeep,
+  },
+  healthTitle: { fontFamily: desfeedFont.extrabold, fontSize: 19, color: desfeedColor.text },
+  muted: { fontFamily: desfeedFont.medium, fontSize: 13, color: desfeedColor.textMuted, lineHeight: 18 },
+  ringWrap: { width: RING_SIZE, height: RING_SIZE, alignItems: 'center', justifyContent: 'center' },
+  ringLabel: { position: 'absolute', alignItems: 'center' },
+  ringValue: { fontFamily: desfeedFont.extrabold, fontSize: 19, color: desfeedColor.primaryDeep },
+  ringCaption: { fontFamily: desfeedFont.bold, fontSize: 9, color: desfeedColor.textMuted },
+  stabilityRow: {
+    marginTop: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: desfeedColor.surfaceSoft,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  stabilityText: { flex: 1, fontFamily: desfeedFont.semibold, fontSize: 13, color: desfeedColor.text },
+  stabilityValue: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: desfeedColor.primaryDeep },
+  sectionTitle: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 12,
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+    color: desfeedColor.text,
+    marginTop: 4,
+  },
+  notebook: { flexDirection: 'row', gap: 12, alignItems: 'center' },
+  cover: { width: 60, height: 60, borderRadius: 14, backgroundColor: desfeedColor.surfaceSoft },
+  notebookInfo: { flex: 1, gap: 3 },
+  notebookTitle: { fontFamily: desfeedFont.bold, fontSize: 15, color: desfeedColor.text },
+  badge: { alignSelf: 'flex-start', borderRadius: 999, paddingHorizontal: 9, paddingVertical: 3 },
+  badgeText: { fontFamily: desfeedFont.bold, fontSize: 10 },
+  notebookMeta: { fontFamily: desfeedFont.medium, fontSize: 12, color: desfeedColor.textMuted },
+  peak: { flexDirection: 'row', gap: 10 },
+  peakDot: { width: 9, height: 9, borderRadius: 5, marginTop: 5 },
+  peakInfo: { flex: 1, gap: 2 },
+  peakWhen: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 10,
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
+  },
+  peakTitle: { fontFamily: desfeedFont.bold, fontSize: 14, color: desfeedColor.text },
+  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 10, padding: 24 },
+})
+
+const HealthRing = ({ percent }: { percent: number }) => {
+  const radius = (RING_SIZE - RING_STROKE) / 2
+  const circumference = 2 * Math.PI * radius
+  const filled = circumference * (percent / 100)
+
+  return (
+    <View style={styles.ringWrap}>
+      <Svg width={RING_SIZE} height={RING_SIZE}>
+        <Circle
+          cx={RING_SIZE / 2}
+          cy={RING_SIZE / 2}
+          r={radius}
+          stroke={desfeedColor.borderSoft}
+          strokeWidth={RING_STROKE}
+          fill="none"
+        />
+        <Circle
+          cx={RING_SIZE / 2}
+          cy={RING_SIZE / 2}
+          r={radius}
+          stroke={desfeedColor.primary}
+          strokeWidth={RING_STROKE}
+          strokeLinecap="round"
+          strokeDasharray={`${filled} ${circumference}`}
+          fill="none"
+          transform={`rotate(-90 ${RING_SIZE / 2} ${RING_SIZE / 2})`}
+        />
+      </Svg>
+      <View style={styles.ringLabel}>
+        <Text style={styles.ringValue}>{percent}%</Text>
+        <Text style={styles.ringCaption}>RETENÇÃO</Text>
+      </View>
+    </View>
+  )
+}
+
+const NotebookRow = ({ notebook }: { notebook: NotebookSummary }) => {
+  const status = statusStyle[notebook.status]
+
+  return (
+    <Pressable style={[styles.card, styles.notebook]}>
+      <Image source={{ uri: notebook.coverUrl }} style={styles.cover} resizeMode="cover" />
+      <View style={styles.notebookInfo}>
+        <View style={[styles.badge, { backgroundColor: status.background }]}>
+          <Text style={[styles.badgeText, { color: status.color }]}>{status.label}</Text>
+        </View>
+        <Text style={styles.notebookTitle}>{notebook.title}</Text>
+        <Text style={styles.notebookMeta}>
+          {`${notebook.cardCount} cards · ${notebook.retentionPercent}% de retenção`}
+        </Text>
+        <Text style={styles.notebookMeta}>{notebook.nextReviewLabel}</Text>
+      </View>
+      <IconOutline name="right" size={18} color={desfeedColor.textMuted} />
+    </Pressable>
+  )
+}
 
 export default function CadernosScreen() {
+  const libraryQuery = useNotebookLibraryQuery()
+
+  if (libraryQuery.isLoading) {
+    return (
+      <SafeAreaView style={styles.screen} edges={['top']}>
+        <View style={styles.centered}>
+          <ActivityIndicator color={desfeedColor.primary} />
+          <Text style={styles.muted}>Carregando seus cadernos…</Text>
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+  if (libraryQuery.isError || !libraryQuery.data) {
+    return (
+      <SafeAreaView style={styles.screen} edges={['top']}>
+        <Result
+          title="Não deu para carregar seus cadernos"
+          message="Confira sua conexão e tente de novo."
+          buttonText="Tentar novamente"
+          onButtonClick={() => libraryQuery.refetch()}
+        />
+      </SafeAreaView>
+    )
+  }
+
+  const library = libraryQuery.data
+
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-surface px-6" edges={['top']}>
-      <Text className="text-lg font-bold text-text">Cadernos em breve</Text>
-      <Text className="mt-2 text-center text-sm text-text-muted">
-        A lista de cadernos escaneados ganha tela própria depois da espinha da demo.
-      </Text>
+    <SafeAreaView style={styles.screen} edges={['top']}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>Cadernos</Text>
+
+        <View style={styles.card}>
+          <View style={styles.healthRow}>
+            <View style={styles.healthInfo}>
+              <Text style={styles.eyebrow}>FSRS ativo</Text>
+              <Text style={styles.healthTitle}>Saúde sináptica global</Text>
+              <Text style={styles.muted}>
+                {`${library.consolidatedConcepts} de ${library.totalConcepts} conceitos consolidados em memória de longo prazo.`}
+              </Text>
+            </View>
+            <HealthRing percent={library.globalRetentionPercent} />
+          </View>
+          <View style={styles.stabilityRow}>
+            <IconOutline name="line-chart" size={17} color={desfeedColor.primaryDeep} />
+            <Text style={styles.stabilityText}>Índice de estabilidade</Text>
+            <Text style={styles.stabilityValue}>{`S = ${library.stabilityDays} dias`}</Text>
+          </View>
+        </View>
+
+        <Text style={styles.sectionTitle}>
+          {`Cadernos ativos · ${library.notebooks.length}`}
+        </Text>
+
+        {library.notebooks.length === 0 ? (
+          <View style={styles.card}>
+            <Text style={styles.muted}>
+              Nenhum caderno ainda. Escaneie uma página para gerar seus primeiros cards.
+            </Text>
+          </View>
+        ) : (
+          library.notebooks.map((notebook) => (
+            <NotebookRow key={notebook.id} notebook={notebook} />
+          ))
+        )}
+
+        <Text style={styles.sectionTitle}>Picos de esquecimento</Text>
+
+        <View style={[styles.card, { gap: 16 }]}>
+          {library.peaks.map((peak) => (
+            <View key={peak.id} style={styles.peak}>
+              <View style={[styles.peakDot, { backgroundColor: urgencyColor[peak.urgency] }]} />
+              <View style={styles.peakInfo}>
+                <Text style={[styles.peakWhen, { color: urgencyColor[peak.urgency] }]}>
+                  {`${peak.whenLabel} · ${peak.cardCount} cards`}
+                </Text>
+                <Text style={styles.peakTitle}>{peak.title}</Text>
+                <Text style={styles.muted}>{peak.detail}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
-  );
+  )
 }

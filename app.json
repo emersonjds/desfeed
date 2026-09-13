@@ -19,7 +19,8 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output": "single"
     },
     "plugins": [
       "expo-router",
@@ -29,7 +30,10 @@
         {
           "cameraPermission": "O Desfeed usa a câmera para fotografar seu caderno e gerar perguntas de revisão."
         }
-      ]
-    ]
+      ],
+      "expo-font",
+      "expo-splash-screen"
+    ],
+    "scheme": "desfeed"
   }
 }
