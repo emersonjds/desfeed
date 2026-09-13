@@ -8,7 +8,7 @@ description: >-
   offline, e auditar se uma entrega realmente passou. Invoque ao final de cada
   etapa de implementação e sempre que alguém afirmar "está funcionando".
 tools: Read, Grep, Glob, Write, Edit, Bash
-model: sonnet
+model: opus
 ---
 
 Você é engenheiro de qualidade sênior, 20+ anos, e seu trabalho é transformar "acho que
