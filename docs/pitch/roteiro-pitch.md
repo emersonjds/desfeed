@@ -167,7 +167,7 @@ Aponte a curva pontilhada ao dizer "sem revisão" e a verde ao dizer "na hora ce
 
 **No slide:** quadrante. Eixo horizontal *mede o esquecimento no tempo*, vertical *devolve ao professor*. Seis produtos plotados; o canto superior direito destacado, com o Memfeed sozinho nele.
 
-**Fala:** "Esse é o mapa da concorrência, e ele tem dois eixos. (pausa)
+**Fala:** "Vou começar admitindo: **todos eles são melhores que a gente em alguma coisa.** (pausa) Esse é o mapa da concorrência, e ele tem dois eixos.
 >
 > Horizontal: o produto mede o esquecimento ao longo do tempo? Vertical: ele devolve isso **ao professor**?
 >
@@ -180,21 +180,22 @@ Aponte a curva pontilhada ao dizer "sem revisão" e a verde ao dizer "na hora ce
 > O canto superior direito está vazio. É onde a gente está."
 
 Aponte fisicamente os quatro cantos enquanto fala. Citar o Seneca como o mais perigoso mostra pesquisa real e tira do jurado a chance de te pegar. Deixa: "E a tecnologia por trás disso não prende a gente a ninguém."
-## Slide 9 · Tecnologia · 20s
+## Slide 9 · Prova viva — não é maquete · 25s
 
-**O ponto deste slide:** Tirar o risco de fornecedor da mesa em vinte segundos. Trocar de LLM é variável de ambiente, não reescrita. E a decisão que vale repetir: a figura do card vem do acervo da Wikipédia, nunca de modelo de imagem — porque diagrama científico gerado por IA sai errado, e num app de educação erro se propaga pela fila de revisão.
+**O ponto deste slide:** Num hackathon a pergunta que o júri realmente faz é "vocês construíram mesmo?". Este slide responde antes de ser perguntado, e convida à verificação na hora: o QR abre no navegador do celular do jurado, sem instalar nada. Quem escaneia durante o pitch sai convencido de um jeito que nenhum slide convence.
 
-**No slide:** três cartões — modelo trocável, a figura vinda do acervo (destacado), e a stack.
+**No slide:** o painel do professor grande à esquerda, duas telas do app à direita, o QR embaixo e três fatos curtos.
 
-**Fala:** "Três coisas, rápido. (pausa)
+**Fala:** "E eu não vim mostrar maquete. (pausa)
 >
-> Um: trocar de modelo de IA aqui é mudar uma variável de ambiente. Duas implementações da mesma interface, e a saída passa por validação de schema antes de virar card. Hoje roda no **tier gratuito** do Gemini — o custo de inferência é substituível, não estrutural.
+> Isso aí é o painel rodando, com a turma de trinta e quatro alunos. Isso aqui é o app, com card gerado por IA. Os três estão no ar agora: app, painel e API.
 >
-> Dois, e essa é a decisão que nos separa: **a figura de cada card vem do acervo da Wikipédia. Nunca de modelo de imagem.** Diagrama científico gerado por IA sai com a seta trocada e a molécula inventada. Num app de educação isso ensina errado — e o erro se propaga justamente pela fila de revisão, que é o que fixa memória.
+> Se vocês quiserem conferir enquanto eu falo — **aponta a câmera no QR**. Abre no navegador do celular de vocês, sem loja, sem instalar, sem cadastro. Um botão entra como aluno, outro como professor. (pausa)
 >
-> Três: a stack é aberta das duas pontas, com a mesma API servindo o aluno e o professor."
+> E tem uma decisão ali que eu faço questão de dizer em voz alta: **a figura de cada card vem do acervo da Wikipédia. Nunca de modelo de imagem.** Diagrama científico gerado por IA sai com a seta trocada — e num app de educação isso ensina errado."
 
-O item dois é o que fica na cabeça do jurado — diga devagar. Deixa: "E como isso se sustenta?"
+Diga "aponta a câmera" olhando para a plateia, não para o slide — e **pare de falar por dois segundos** para as pessoas pegarem o celular. Se alguém escanear, você ganhou o pitch. Deixa: "E como isso se sustenta?"
+
 ## Slide 10 · Modelo de negócio e fecho · 20s
 
 **O ponto deste slide:** Fechar mostrando que a conta fecha **por causa** da arquitetura, não apesar dela. A aula do professor é gerada uma vez e consumida por 34 alunos; a geração que o aluno pede é 1:1. Por isso a escola pública sai de graça sem quebrar o modelo. Termine no lema e segure o silêncio.

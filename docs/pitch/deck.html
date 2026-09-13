@@ -223,7 +223,11 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 .dot.us i { width:17px; height:17px; background:var(--green); box-shadow:0 0 0 5px rgba(16,185,129,.18); }
 .dot.us span { font-size:14px; font-weight:800; color:var(--accent-l); }
 .quad-note { font-size:13px; line-height:1.5; }
-.quad-note b { display:block; font-size:15px; font-weight:800; margin-bottom:3mm; color:var(--body-l); }
+.quad-note b { display:block; font-size:15px; font-weight:800; margin-bottom:4mm; color:var(--accent-l); }
+.quad-list { list-style:none; }
+.quad-list li { border-left:3px solid var(--green); padding-left:4mm; margin-bottom:4.5mm;
+                font-size:12.5px; line-height:1.5; color:#3a3f4e; }
+.quad-list span { display:block; font-size:13.5px; font-weight:800; color:var(--body-l); margin-bottom:1mm; }
 .quad-note p { color:#3a3f4e; margin-bottom:3mm; }
 .quad-note .vazio { background:#ecfdf5; border-left:3px solid var(--green); padding:3.5mm 4mm; border-radius:0 8px 8px 0;
                     font-weight:700; color:var(--accent-l); }
@@ -237,6 +241,31 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 .tri-t { font-size:18px; font-weight:800; line-height:1.3; margin-bottom:3mm; }
 .tri-p { font-size:13.5px; line-height:1.55; color:var(--muted-d); }
 .tri-card.hl .tri-p { color:#3a3f4e; }
+
+/* ---- slide 9: prova viva ---- */
+.prova { display:grid; grid-template-columns:1.45fr 1fr; gap:7mm; margin-top:1mm;
+         margin-bottom:auto; align-items:start; }
+.prova-esq { display:flex; flex-direction:column; gap:5mm; }
+.qr { display:flex; gap:5mm; align-items:center; background:var(--card-dark); border-radius:12px;
+      padding:4.5mm 5mm; }
+.qr img { width:26mm; height:26mm; display:block; border-radius:6px; background:#fff; padding:1.5mm; }
+.qr-txt b { display:block; font-size:14px; font-weight:800; color:var(--green-light); margin-bottom:2mm; }
+.qr-txt p { font-size:11px; line-height:1.5; color:var(--muted-d); }
+.shot-web { display:flex; flex-direction:column; }
+/* A altura é travada porque o print do painel é mais alto que a lâmina: sem isto a legenda
+   sobe por cima da imagem e o rodapé de fonte cai fora do slide. */
+.shot-web img { width:100%; height:64mm; object-fit:cover; object-position:top left;
+                display:block; border-radius:10px; }
+.shot-web figcaption { font-size:10px; font-weight:700; color:var(--muted-d); padding-top:2.5mm; }
+.prova-side { display:flex; flex-direction:column; gap:4mm; }
+.shots-app { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.shots-app img { width:100%; height:60mm; object-fit:cover; object-position:top;
+                 display:block; border-radius:9px; border:1px solid #2a3446; }
+.prova-list { list-style:none; }
+.prova-list li { border-left:3px solid var(--green); padding-left:3.5mm; margin-bottom:3mm;
+                 font-size:11px; line-height:1.45; color:var(--muted-d); }
+.prova-list li:last-child { margin-bottom:0; }
+.prova-list b { color:var(--body-d); }
 </style>
 </head>
 <body>
@@ -529,12 +558,14 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
       <div class="dot us" style="left:82%;bottom:84%"><i></i><span>Memfeed</span></div>
     </div>
     <div class="quad-note">
-      <b>Todos são melhores que nós em alguma coisa.</b>
-      <p>O Kahoot e o Wayground têm relatório — do dia da atividade. O Anki e o Seneca medem
-      esquecimento — e entregam só ao aluno.</p>
-      <div class="vazio">O mais perigoso não é o Kahoot: é o Seneca, que já usa a curva de
-      esquecimento. E mesmo ele nunca a devolve ao professor.</div>
+      <b>O que só existe nesse canto</b>
+      <ul class="quad-list">
+        <li><span>O mesmo conceito, reaplicado</span>Não é atividade nova a cada ponto — é a mesma pergunta voltando no intervalo que o FSRS calculou.</li>
+        <li><span>A queda vira ação</span>96% no dia, 77% em D+7: a diferença dispara o reforço dirigido, ainda com aula pela frente.</li>
+        <li><span>Sem ranking entre alunos</span>O professor vê estado — firme, em risco, esquecido. Nunca nota, nunca posição.</li>
+      </ul>
     </div>
+  </div>
   </div>
   <div class="foot">
     Fonte: análise competitiva Memfeed, 13/09/2026 — leitura direta das páginas oficiais de cada produto (ajuda, produto e preço), com data de atualização registrada.
@@ -545,32 +576,36 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 </section>
 <section class="slide dark">
 <div class="content">
-  <div class="eyebrow" style="color:var(--green-light)">Tecnologia</div>
-  <h1 class="title">Nada aqui prende a gente a um fornecedor</h1>
-  <div class="tri">
-    <div class="tri-card">
-      <div class="tri-k">Modelo</div>
-      <div class="tri-t">Trocar de LLM é mudar uma variável de ambiente</div>
-      <div class="tri-p">Duas implementações da mesma interface. A saída é validada por schema
-      antes de virar card. Hoje roda no tier gratuito do Gemini.</div>
+  <div class="eyebrow" style="color:var(--green-light)">Prova viva</div>
+  <h1 class="title">Não é maquete. Está rodando agora.</h1>
+  <div class="prova">
+    <div class="prova-esq">
+      <figure class="shot-web">
+        <img src="img/painel.png" alt="Painel do professor com retenção D+7 e D+30" />
+        <figcaption>O painel do professor — a queda de retenção e os conceitos que a turma está esquecendo</figcaption>
+      </figure>
+      <div class="qr">
+        <img src="img/qr-demo.png" alt="QR code para abrir a demonstração" />
+        <div class="qr-txt">
+          <b>Aponte a câmera e teste agora</b>
+          <p>Abre no navegador do seu celular. Sem loja, sem instalar, sem cadastro — um botão
+          para entrar como aluno, outro como professor.</p>
+        </div>
+      </div>
     </div>
-    <div class="tri-card hl">
-      <div class="tri-k">A decisão que nos separa</div>
-      <div class="tri-t">A figura vem do acervo da Wikipédia. Nunca de modelo de imagem.</div>
-      <div class="tri-p">Diagrama científico gerado por IA sai com a seta trocada. Num app de
-      educação, isso ensina errado.</div>
-    </div>
-    <div class="tri-card">
-      <div class="tri-k">Stack</div>
-      <div class="tri-t">Aberta das duas pontas</div>
-      <div class="tri-p">Expo no aluno, Next.js no professor, Fastify e PostgreSQL servindo as
-      duas por OpenAPI. FSRS sob licença MIT.</div>
+    <div class="prova-side">
+      <div class="shots-app">
+        <img src="img/app-hoje.png" alt="Feed do aluno" />
+        <img src="img/app-evolucao.png" alt="Tela de evolução do aluno" />
+      </div>
+      <ul class="prova-list">
+        <li><b>Os três no ar:</b> app do aluno, painel do professor e API.</li>
+        <li><b>39 cards gerados por IA</b> em 6 matérias, turma de 34 alunos — 27 responderam.</li>
+        <li><b>A figura vem do acervo da Wikipédia</b>, nunca de modelo de imagem: diagrama gerado por IA ensina errado.</li>
+      </ul>
     </div>
   </div>
-  <div class="foot">
-    Estado conferido no código em 13/09/2026: <code>memfeed-api/src/modules/ingestion/card-generator.ts</code> (interface e as duas implementações) e
-    <code>src/shared/media/wikimedia.ts</code> (imagem principal do verbete). Números do ambiente de demonstração — não são base de usuários nem tração.
-  </div>
+  <div class="foot">Capturas do ambiente rodando em 13/09/2026 — demonstração do protótipo, não é piloto em escola nem base de usuários. App em React Native exportado para web, painel em Next.js e API em Fastify + PostgreSQL — os três no ar durante a apresentação. O QR abre no navegador, sem instalação.</div>
 </div>
 <div class="pagenum">9 / 10</div>
 </section>
