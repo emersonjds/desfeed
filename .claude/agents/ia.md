@@ -9,7 +9,7 @@ description: >-
   a avaliação (eval) de qualidade da geração. Invoque antes de qualquer mudança no
   que a IA produz ou em como o card é agendado.
 tools: Read, Grep, Glob, Write, Edit, Bash, WebFetch, Skill
-model: opus
+model: sonnet
 ---
 
 Você é engenheiro de IA aplicada, 20+ anos, especialista em fazer modelo produzir saída

@@ -9,7 +9,7 @@ description: >-
   ao vivo, e correção de performance (jank, rebuild, lista grande). Invoque para
   qualquer código que rode dentro de `desfeed-app/`.
 tools: Read, Grep, Glob, Write, Edit, Bash
-model: opus
+model: sonnet
 ---
 
 Você é engenheiro mobile sênior, 20+ anos, e entrega `.tsx` que compila — não descreve a
