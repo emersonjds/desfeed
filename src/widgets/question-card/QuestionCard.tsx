@@ -1,193 +1,440 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Icon } from '../../shared/ui/Icon';
-import { Image, Pressable, Text, View } from 'react-native';
+import { IconFill, IconOutline } from '@ant-design/icons-react-native'
+import { List, Tag } from '@ant-design/react-native'
+import { useEffect, useMemo, useState } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 
-import type { Card, OptionId } from '../../entities/card/schema';
-import { formatReviewLabel, type SelfEvalRating } from '../../entities/card/fsrs';
-import { SelfEvaluation } from '../../features/answer-card/SelfEvaluation';
-import { Badge, type BadgeState } from '../../shared/ui/Badge';
-import { CircularTimer } from '../../shared/ui/CircularTimer';
-import { Pill } from '../../shared/ui/Pill';
-import { SolidShadow } from '../../shared/ui/SolidShadow';
+import { formatReviewLabel, type SelfEvalRating } from '../../entities/card/fsrs'
+import type { Card, OptionId } from '../../entities/card/schema'
+import { SelfEvaluation } from '../../features/answer-card/SelfEvaluation'
+import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { TimerRing } from './TimerRing'
 
 type QuestionCardProps = {
-  card: Card;
-  height: number;
-  onRate: (rating: SelfEvalRating) => void;
-};
+  card: Card
+  xpReward: number
+  onRate: (rating: SelfEvalRating) => void
+}
 
-const CARD_TIMER_SECONDS = 15;
+const CARD_TIMER_SECONDS = 15
+
+type OptionState = 'idle' | 'correct' | 'wrong'
 
 const compactCount = (value: number): string =>
-  new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 }).format(value);
+  new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 }).format(value)
 
 const splitOnHighlight = (question: string, highlightTerm: string) => {
-  const index = question.toLowerCase().indexOf(highlightTerm.toLowerCase());
+  const index = question.toLowerCase().indexOf(highlightTerm.toLowerCase())
   if (index === -1) {
-    return { before: question, match: '', after: '' };
+    return { before: question, match: '', after: '' }
   }
   return {
     before: question.slice(0, index),
     match: question.slice(index, index + highlightTerm.length),
     after: question.slice(index + highlightTerm.length),
-  };
-};
+  }
+}
 
-const OptionRow = ({
-  label,
-  letter,
-  badgeState,
-  disabled,
-  onPress,
+const styles = StyleSheet.create({
+  card: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingBottom: 4,
+    gap: 6,
+  },
+  contextRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  contextTags: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    flexShrink: 1,
+  },
+  tagContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    flexShrink: 1,
+  },
+  tagOuter: {
+    flexShrink: 1,
+    overflow: 'hidden',
+  },
+  tagOuterFixed: {
+    flexShrink: 0,
+  },
+  tagWrap: {
+    height: 28,
+    flexShrink: 1,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    backgroundColor: desfeedColor.surface,
+    borderColor: desfeedColor.borderSoft,
+  },
+  tagWrapAccent: {
+    height: 28,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    backgroundColor: desfeedColor.accentSoft,
+    borderColor: desfeedColor.accentSoft,
+  },
+  tagText: {
+    fontFamily: desfeedFont.bold,
+    fontSize: 12,
+    color: desfeedColor.text,
+    flexShrink: 1,
+  },
+  tagTextAccent: {
+    fontFamily: desfeedFont.bold,
+    fontSize: 12,
+    color: desfeedColor.accent,
+  },
+  media: {
+    flexGrow: 1,
+    flexShrink: 1,
+    minHeight: 56,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: desfeedColor.surfaceSoft,
+  },
+  mediaImage: {
+    width: '100%',
+    height: '100%',
+  },
+  mediaOverlay: {
+    position: 'absolute',
+    left: 10,
+    right: 10,
+    bottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  mediaBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    borderRadius: 999,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    backgroundColor: desfeedColor.surface,
+  },
+  mediaBadgeText: {
+    fontFamily: desfeedFont.bold,
+    fontSize: 11,
+    color: desfeedColor.text,
+  },
+  mediaBadgePrimary: {
+    borderRadius: 999,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    backgroundColor: desfeedColor.primary,
+  },
+  mediaBadgePrimaryText: {
+    fontFamily: desfeedFont.bold,
+    fontSize: 11,
+    color: desfeedColor.surface,
+  },
+  question: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 15,
+    lineHeight: 20,
+    color: desfeedColor.text,
+  },
+  questionHighlight: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 15,
+    lineHeight: 20,
+    color: desfeedColor.primaryDeep,
+    textDecorationLine: 'underline',
+  },
+  answerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 8,
+  },
+  optionList: {
+    flexShrink: 1,
+    flexGrow: 1,
+    gap: 6,
+  },
+  optionItem: {
+    borderRadius: 14,
+    backgroundColor: desfeedColor.surface,
+    borderWidth: 1,
+    borderColor: desfeedColor.borderSoft,
+    borderBottomWidth: 3,
+    borderBottomColor: desfeedColor.border,
+    paddingLeft: 10,
+  },
+  optionItemCorrect: {
+    borderRadius: 14,
+    backgroundColor: desfeedColor.surface,
+    borderWidth: 1,
+    borderColor: desfeedColor.primary,
+    borderBottomWidth: 3,
+    borderBottomColor: desfeedColor.primaryDeep,
+    paddingLeft: 10,
+  },
+  optionItemWrong: {
+    borderRadius: 14,
+    backgroundColor: desfeedColor.surface,
+    borderWidth: 1,
+    borderColor: desfeedColor.error,
+    borderBottomWidth: 3,
+    borderBottomColor: desfeedColor.error,
+    paddingLeft: 10,
+  },
+  optionLine: {
+    minHeight: 44,
+    borderBottomWidth: 0,
+    paddingRight: 10,
+    paddingVertical: 0,
+  },
+  optionContent: {
+    fontFamily: desfeedFont.semibold,
+    fontSize: 14,
+    color: desfeedColor.text,
+  },
+  optionBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    backgroundColor: desfeedColor.surfaceSoft,
+  },
+  optionBadgeCorrect: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    backgroundColor: desfeedColor.primary,
+  },
+  optionBadgeWrong: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    backgroundColor: desfeedColor.error,
+  },
+  optionBadgeText: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 13,
+    color: desfeedColor.textMuted,
+  },
+  optionMarkEmpty: {
+    width: 19,
+    height: 19,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: desfeedColor.borderSoft,
+  },
+  optionBadgeTextActive: {
+    fontFamily: desfeedFont.extrabold,
+    fontSize: 13,
+    color: desfeedColor.surface,
+  },
+  rail: {
+    width: 46,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    paddingVertical: 2,
+  },
+  railAvatar: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: desfeedColor.primarySoft,
+    borderWidth: 2,
+    borderColor: desfeedColor.surface,
+  },
+  railItem: {
+    alignItems: 'center',
+    gap: 2,
+  },
+  railValue: {
+    fontFamily: desfeedFont.bold,
+    fontSize: 11,
+    color: desfeedColor.textMuted,
+  },
+  hint: {
+    fontFamily: desfeedFont.medium,
+    fontSize: 11,
+    textAlign: 'center',
+    color: desfeedColor.textMuted,
+  },
+})
+
+const optionItemStyle = {
+  idle: styles.optionItem,
+  correct: styles.optionItemCorrect,
+  wrong: styles.optionItemWrong,
+} satisfies Record<OptionState, unknown>
+
+const optionBadgeStyle = {
+  idle: styles.optionBadge,
+  correct: styles.optionBadgeCorrect,
+  wrong: styles.optionBadgeWrong,
+} satisfies Record<OptionState, unknown>
+
+const OptionBadge = ({ letter, state }: { letter: OptionId; state: OptionState }) => (
+  <View style={optionBadgeStyle[state]}>
+    <Text style={state === 'idle' ? styles.optionBadgeText : styles.optionBadgeTextActive}>
+      {letter}
+    </Text>
+  </View>
+)
+
+const OptionMark = ({ state }: { state: OptionState }) => {
+  if (state === 'correct') {
+    return <IconFill name="check-circle" size={20} color={desfeedColor.primary} />
+  }
+  if (state === 'wrong') {
+    return <IconFill name="close-circle" size={20} color={desfeedColor.error} />
+  }
+  return <View style={styles.optionMarkEmpty} />
+}
+
+const RailItem = ({
+  icon,
+  value,
 }: {
-  label: string;
-  letter: OptionId;
-  badgeState: BadgeState;
-  disabled: boolean;
-  onPress: () => void;
-}) => {
-  const [pressed, setPressed] = useState(false);
-  const shadowColor =
-    badgeState === 'correct' ? '#059669' : badgeState === 'wrong' ? '#b91c1c' : '#cbd5e1';
+  icon: 'experiment' | 'star' | 'share-alt'
+  value: string
+}) => (
+  <View style={styles.railItem}>
+    <IconOutline name={icon} size={21} color={desfeedColor.text} />
+    <Text style={styles.railValue}>{value}</Text>
+  </View>
+)
 
-  return (
-    <Pressable
-      disabled={disabled}
-      onPress={onPress}
-      onPressIn={() => setPressed(true)}
-      onPressOut={() => setPressed(false)}
-    >
-      <SolidShadow height={48} shadowColor={shadowColor} borderRadius={16} pressed={pressed}>
-        <View className="h-full w-full flex-row items-center justify-between rounded-2xl bg-surface px-3">
-          <View
-            style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
-            className="flex-row items-center gap-3"
-          >
-            <Badge letter={letter} state={badgeState} />
-            <Text
-              style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
-              className="text-sm font-jk-semibold text-text"
-              numberOfLines={1}
-            >
-              {label}
-            </Text>
-          </View>
-          {badgeState === 'correct' ? <Icon name="acerto" size={20} color="#10b981" /> : null}
-          {badgeState === 'wrong' ? <Icon name="erro" size={20} color="#dc2626" /> : null}
-        </View>
-      </SolidShadow>
-    </Pressable>
-  );
-};
-
-export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
-  const [selectedOptionId, setSelectedOptionId] = useState<OptionId | null>(null);
-  const [secondsLeft, setSecondsLeft] = useState(CARD_TIMER_SECONDS);
-  const question = useMemo(() => splitOnHighlight(card.question, card.highlightTerm), [card]);
+export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
+  const [selectedOptionId, setSelectedOptionId] = useState<OptionId | null>(null)
+  const [secondsLeft, setSecondsLeft] = useState(CARD_TIMER_SECONDS)
+  const question = useMemo(
+    () => splitOnHighlight(card.question, card.highlightTerm),
+    [card.question, card.highlightTerm],
+  )
 
   useEffect(() => {
-    setSelectedOptionId(null);
-    setSecondsLeft(CARD_TIMER_SECONDS);
-  }, [card.id]);
-
-  useEffect(() => {
+    setSelectedOptionId(null)
+    setSecondsLeft(CARD_TIMER_SECONDS)
     const timer = setInterval(() => {
-      setSecondsLeft((seconds) => Math.max(0, seconds - 1));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [card.id]);
+      setSecondsLeft((seconds) => Math.max(0, seconds - 1))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [card.id])
 
-  const badgeStateFor = (optionId: OptionId): BadgeState => {
+  const optionStateFor = (optionId: OptionId): OptionState => {
     if (!selectedOptionId) {
-      return 'idle';
+      return 'idle'
     }
     if (optionId === card.correctOptionId) {
-      return 'correct';
+      return 'correct'
     }
     if (optionId === selectedOptionId) {
-      return 'wrong';
+      return 'wrong'
     }
-    return 'idle';
-  };
+    return 'idle'
+  }
 
   return (
-    <View style={{ height, width: '100%' }} className="gap-2 overflow-hidden px-4 pt-2 pb-1">
-      <View className="flex-row items-center justify-between gap-2">
-        <View
-          style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
-          className="flex-row flex-wrap items-center gap-1.5"
-        >
-          <Pill icon="livro" label={`${card.subject} • ${card.chapter}`} tone="neutral" />
-          <Pill
-            icon="cerebro"
-            label={formatReviewLabel(card.reviewNumber, card.fsrs.scheduled_days)}
-            tone="accent"
-          />
+    <View style={styles.card}>
+      <View style={styles.contextRow}>
+        <View style={styles.contextTags}>
+          <Tag small style={styles.tagOuter} styles={{ wrapSmall: styles.tagWrap }}>
+            <View style={styles.tagContent}>
+              <IconOutline name="book" size={13} color={desfeedColor.primaryDeep} />
+              <Text style={styles.tagText} numberOfLines={1}>
+                {`${card.subject} • ${card.chapter}`}
+              </Text>
+            </View>
+          </Tag>
+          <Tag small style={styles.tagOuterFixed} styles={{ wrapSmall: styles.tagWrapAccent }}>
+            <View style={styles.tagContent}>
+              <IconOutline name="clock-circle" size={13} color={desfeedColor.accent} />
+              <Text style={styles.tagTextAccent} numberOfLines={1}>
+                {formatReviewLabel(card.reviewNumber, card.fsrs.scheduled_days)}
+              </Text>
+            </View>
+          </Tag>
         </View>
-        <View style={{ flexShrink: 0 }}>
-          <CircularTimer secondsLeft={secondsLeft} totalSeconds={CARD_TIMER_SECONDS} />
+        <TimerRing secondsLeft={secondsLeft} totalSeconds={CARD_TIMER_SECONDS} />
+      </View>
+
+      <View style={styles.media}>
+        <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
+        <View style={styles.mediaOverlay}>
+          <View style={styles.mediaBadge}>
+            <IconOutline name="bulb" size={12} color={desfeedColor.primaryDeep} />
+            <Text style={styles.mediaBadgeText}>Recall Flashcard Hook</Text>
+          </View>
+          <View style={styles.mediaBadgePrimary}>
+            <Text style={styles.mediaBadgePrimaryText} numberOfLines={1}>
+              {card.keyTerm}
+            </Text>
+          </View>
         </View>
       </View>
 
-      <View className="min-h-0 w-full flex-[2] overflow-hidden rounded-2xl bg-surface-soft">
-        <Image source={{ uri: card.imageUrl }} className="h-full w-full" resizeMode="cover" />
-        <View className="absolute inset-x-2.5 bottom-2.5 flex-row items-center justify-between">
-          <Pill icon="brilho" label="Recall Flashcard Hook" tone="neutral" />
-          <Pill label={card.keyTerm} tone="primary" />
-        </View>
-      </View>
-
-      <Text className="shrink-0 text-base font-jk-bold leading-snug text-text">
+      <Text style={styles.question}>
         {question.before}
-        {question.match ? (
-          <Text className="text-primary-deep underline font-jk">{question.match}</Text>
-        ) : null}
+        {question.match ? <Text style={styles.questionHighlight}>{question.match}</Text> : null}
         {question.after}
       </Text>
 
-      <View className="min-h-0 flex-[3] flex-row gap-3">
-        <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }} className="gap-2.5">
-          {card.options.map((option) => (
-            <OptionRow
-              key={option.id}
-              letter={option.id}
-              label={option.label}
-              badgeState={badgeStateFor(option.id)}
-              disabled={selectedOptionId !== null}
-              onPress={() => setSelectedOptionId(option.id)}
-            />
-          ))}
+      <View style={styles.answerRow}>
+        <View style={styles.optionList}>
+          {card.options.map((option) => {
+            const state = optionStateFor(option.id)
+            return (
+              <List.Item
+                key={option.id}
+                style={optionItemStyle[state]}
+                styles={{ Line: styles.optionLine, Content: styles.optionContent }}
+                underlayColor={desfeedColor.surfaceSoft}
+                disabled={selectedOptionId !== null}
+                onPress={() => setSelectedOptionId(option.id)}
+                thumb={<OptionBadge letter={option.id} state={state} />}
+                extra={<OptionMark state={state} />}
+              >
+                {option.label}
+              </List.Item>
+            )
+          })}
         </View>
-        <View
-          style={{ flexShrink: 0, width: 44 }}
-          className="items-center justify-end gap-3.5 pb-1"
-        >
-          <View className="items-center gap-0.5">
-            <Icon name="cerebro" size={22} color="#131b2e" />
-            <Text className="text-xs font-jk-bold text-text-muted">{card.masteryPercent}%</Text>
+
+        <View style={styles.rail}>
+          <View style={styles.railAvatar}>
+            <IconOutline name="user" size={18} color={desfeedColor.primaryDeep} />
           </View>
-          <View className="items-center gap-0.5">
-            <Icon name="salvar" size={22} color="#131b2e" />
-            <Text className="text-xs font-jk-bold text-text-muted">
-              {compactCount(card.bookmarkCount)}
-            </Text>
-          </View>
-          <View className="items-center gap-0.5">
-            <Icon name="responder" size={22} color="#131b2e" />
-            <Text className="text-xs font-jk-bold text-text-muted">
-              {compactCount(card.shareCount)}
-            </Text>
-          </View>
+          <RailItem icon="experiment" value={`${card.masteryPercent}%`} />
+          <RailItem icon="star" value={compactCount(card.bookmarkCount)} />
+          <RailItem icon="share-alt" value={compactCount(card.shareCount)} />
         </View>
       </View>
 
-      <View className="shrink-0">
-        <SelfEvaluation fsrsData={card.fsrs} onRate={onRate} disabled={selectedOptionId === null} />
-      </View>
+      <SelfEvaluation
+        fsrsData={card.fsrs}
+        xpReward={xpReward}
+        onRate={onRate}
+        disabled={selectedOptionId === null}
+      />
 
-      <Text className="text-center text-xs text-text-muted opacity-60 font-jk">
-        Avalie sua lembrança para avançar automaticamente
-      </Text>
+      <Text style={styles.hint}>Avalie sua lembrança para avançar automaticamente</Text>
     </View>
-  );
-};
+  )
+}
