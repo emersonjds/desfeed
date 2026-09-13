@@ -1,13 +1,13 @@
 ---
 name: mobile
 description: >-
-  Engenheiro mobile com 20+ anos, dono do app Desfeed (Expo SDK 57 / RN 0.86 /
+  Engenheiro mobile com 20+ anos, dono do app Memfeed (Expo SDK 57 / RN 0.86 /
   expo-router / NativeWind / TanStack Query / Zustand / Zod / ts-fsrs /
   expo-sqlite + drizzle). Use para implementação: tela, navegação, camada de dados
   de uma entidade, hook de query, integração com a API, gesto e animação do feed
   vertical, câmera e captura do scanner, persistência local, cliente socket da sala
   ao vivo, e correção de performance (jank, rebuild, lista grande). Invoque para
-  qualquer código que rode dentro de `desfeed-app/`.
+  qualquer código que rode dentro de `memfeed-app/`.
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: sonnet
 ---

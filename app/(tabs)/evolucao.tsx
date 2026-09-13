@@ -5,63 +5,63 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useProgressQuery } from '../../src/entities/progress/queries'
 import type { ConceptAtRisk, SubjectProgress } from '../../src/entities/progress/schema'
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 
 const BAR_MAX_HEIGHT = 74
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: desfeedColor.surfaceSoft },
+  screen: { flex: 1, backgroundColor: memfeedColor.surfaceSoft },
   content: { padding: 14, gap: 12, paddingBottom: 30 },
-  title: { fontFamily: desfeedFont.extrabold, fontSize: 22, color: desfeedColor.text },
-  lede: { fontFamily: desfeedFont.medium, fontSize: 13, color: desfeedColor.textMuted },
-  card: { backgroundColor: desfeedColor.surface, borderRadius: 18, padding: 16, gap: 12 },
+  title: { fontFamily: memfeedFont.extrabold, fontSize: 22, color: memfeedColor.text },
+  lede: { fontFamily: memfeedFont.medium, fontSize: 13, color: memfeedColor.textMuted },
+  card: { backgroundColor: memfeedColor.surface, borderRadius: 18, padding: 16, gap: 12 },
   sectionLabel: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.7,
     textTransform: 'uppercase',
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
 
   heroRow: { flexDirection: 'row', alignItems: 'flex-end', gap: 10 },
   heroValue: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 44,
     lineHeight: 48,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
-  heroUnit: { fontFamily: desfeedFont.extrabold, fontSize: 20, color: desfeedColor.textMuted },
+  heroUnit: { fontFamily: memfeedFont.extrabold, fontSize: 20, color: memfeedColor.textMuted },
   delta: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 3,
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
     borderRadius: 999,
     paddingHorizontal: 9,
     paddingVertical: 5,
     marginBottom: 7,
   },
-  deltaText: { fontFamily: desfeedFont.extrabold, fontSize: 12, color: desfeedColor.primaryDeep },
+  deltaText: { fontFamily: memfeedFont.extrabold, fontSize: 12, color: memfeedColor.primaryDeep },
   heroCaption: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 12.5,
     lineHeight: 18,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
 
   week: { flexDirection: 'row', alignItems: 'flex-end', gap: 7, height: BAR_MAX_HEIGHT + 20 },
   weekColumn: { flex: 1, alignItems: 'center', gap: 5 },
-  bar: { width: '100%', borderRadius: 6, backgroundColor: desfeedColor.primary, minHeight: 4 },
-  barRest: { backgroundColor: desfeedColor.borderSoft },
-  weekDay: { fontFamily: desfeedFont.bold, fontSize: 11, color: desfeedColor.textMuted },
+  bar: { width: '100%', borderRadius: 6, backgroundColor: memfeedColor.primary, minHeight: 4 },
+  barRest: { backgroundColor: memfeedColor.borderSoft },
+  weekDay: { fontFamily: memfeedFont.bold, fontSize: 11, color: memfeedColor.textMuted },
 
   streakRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  streakValue: { fontFamily: desfeedFont.extrabold, fontSize: 19, color: desfeedColor.text },
+  streakValue: { fontFamily: memfeedFont.extrabold, fontSize: 19, color: memfeedColor.text },
   freeze: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 11.5,
-    color: desfeedColor.accent,
-    backgroundColor: desfeedColor.accentSoft,
+    color: memfeedColor.accent,
+    backgroundColor: memfeedColor.accentSoft,
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -70,18 +70,18 @@ const styles = StyleSheet.create({
 
   subjectRow: { gap: 6 },
   subjectHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  subjectName: { fontFamily: desfeedFont.bold, fontSize: 14, color: desfeedColor.text },
-  subjectMeta: { fontFamily: desfeedFont.medium, fontSize: 12, color: desfeedColor.textMuted },
-  track: { height: 9, borderRadius: 999, backgroundColor: desfeedColor.borderSoft, overflow: 'hidden' },
-  fill: { height: 9, borderRadius: 999, backgroundColor: desfeedColor.primary },
-  subjectDelta: { fontFamily: desfeedFont.extrabold, fontSize: 12 },
+  subjectName: { fontFamily: memfeedFont.bold, fontSize: 14, color: memfeedColor.text },
+  subjectMeta: { fontFamily: memfeedFont.medium, fontSize: 12, color: memfeedColor.textMuted },
+  track: { height: 9, borderRadius: 999, backgroundColor: memfeedColor.borderSoft, overflow: 'hidden' },
+  fill: { height: 9, borderRadius: 999, backgroundColor: memfeedColor.primary },
+  subjectDelta: { fontFamily: memfeedFont.extrabold, fontSize: 12 },
 
   riskRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   riskBody: { flex: 1, gap: 2 },
-  riskConcept: { fontFamily: desfeedFont.bold, fontSize: 14, color: desfeedColor.text },
-  riskSubject: { fontFamily: desfeedFont.medium, fontSize: 12, color: desfeedColor.textMuted },
+  riskConcept: { fontFamily: memfeedFont.bold, fontSize: 14, color: memfeedColor.text },
+  riskSubject: { fontFamily: memfeedFont.medium, fontSize: 12, color: memfeedColor.textMuted },
   riskDays: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11.5,
     color: '#b45309',
     backgroundColor: '#fef3c7',
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
   },
 
   classRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  className: { fontFamily: desfeedFont.extrabold, fontSize: 15, color: desfeedColor.text },
-  classCount: { fontFamily: desfeedFont.extrabold, fontSize: 15, color: desfeedColor.primaryDeep },
+  className: { fontFamily: memfeedFont.extrabold, fontSize: 15, color: memfeedColor.text },
+  classCount: { fontFamily: memfeedFont.extrabold, fontSize: 15, color: memfeedColor.primaryDeep },
   centered: { paddingVertical: 50, alignItems: 'center', gap: 10 },
 })
 
@@ -106,7 +106,7 @@ const SubjectRow = ({ item }: { item: SubjectProgress }) => {
         <Text
           style={[
             styles.subjectDelta,
-            { color: rising ? desfeedColor.primaryDeep : '#b45309' },
+            { color: rising ? memfeedColor.primaryDeep : '#b45309' },
           ]}
         >
           {`${rising ? '+' : ''}${item.delta} pts`}
@@ -142,7 +142,7 @@ export default function EvolucaoScreen() {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <View style={styles.centered}>
-          <ActivityIndicator color={desfeedColor.primary} />
+          <ActivityIndicator color={memfeedColor.primary} />
         </View>
       </SafeAreaView>
     )
@@ -152,7 +152,7 @@ export default function EvolucaoScreen() {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <Result
-          img={<IconOutline name="close-circle" size={50} color={desfeedColor.error} />}
+          img={<IconOutline name="close-circle" size={50} color={memfeedColor.error} />}
           title="Não deu para carregar sua evolução"
           buttonText="Tentar novamente"
           buttonType="primary"
@@ -180,7 +180,7 @@ export default function EvolucaoScreen() {
             <Text style={styles.heroValue}>{data.retentionD7}</Text>
             <Text style={styles.heroUnit}>%</Text>
             <View style={styles.delta}>
-              <IconOutline name="arrow-up" size={12} color={desfeedColor.primaryDeep} />
+              <IconOutline name="arrow-up" size={12} color={memfeedColor.primaryDeep} />
               <Text style={styles.deltaText}>{`${gain} pts`}</Text>
             </View>
           </View>

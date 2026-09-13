@@ -8,37 +8,37 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useGenerateSessionMutation, useStudyThemesQuery } from '../../src/entities/study/queries'
 import type { StudyTheme } from '../../src/entities/study/schema'
 import { useDailySessionStore } from '../../src/features/daily-session/store'
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 
 const CARDS_PER_SESSION = 12
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: desfeedColor.surfaceSoft },
+  screen: { flex: 1, backgroundColor: memfeedColor.surfaceSoft },
   content: { padding: 14, gap: 14, paddingBottom: 30 },
-  title: { fontFamily: desfeedFont.extrabold, fontSize: 22, color: desfeedColor.text },
+  title: { fontFamily: memfeedFont.extrabold, fontSize: 22, color: memfeedColor.text },
   lede: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 13,
     lineHeight: 19,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
-  card: { backgroundColor: desfeedColor.surface, borderRadius: 18, padding: 16, gap: 12 },
+  card: { backgroundColor: memfeedColor.surface, borderRadius: 18, padding: 16, gap: 12 },
   sectionLabel: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.7,
     textTransform: 'uppercase',
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   // 16px é o mínimo: abaixo disso o iOS dá zoom sozinho ao focar o campo.
   input: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 16,
-    color: desfeedColor.text,
-    backgroundColor: desfeedColor.surfaceSoft,
+    color: memfeedColor.text,
+    backgroundColor: memfeedColor.surfaceSoft,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: desfeedColor.borderSoft,
+    borderColor: memfeedColor.borderSoft,
     paddingHorizontal: 14,
     paddingVertical: 13,
   },
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 13,
     paddingVertical: 8,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
     borderWidth: 1,
-    borderColor: desfeedColor.borderSoft,
+    borderColor: memfeedColor.borderSoft,
   },
-  chipOn: { backgroundColor: desfeedColor.primarySoft, borderColor: desfeedColor.primary },
-  chipText: { fontFamily: desfeedFont.bold, fontSize: 13, color: desfeedColor.textMuted },
-  chipTextOn: { color: desfeedColor.primaryDeep },
+  chipOn: { backgroundColor: memfeedColor.primarySoft, borderColor: memfeedColor.primary },
+  chipText: { fontFamily: memfeedFont.bold, fontSize: 13, color: memfeedColor.textMuted },
+  chipTextOn: { color: memfeedColor.primaryDeep },
   cta: {
     minHeight: 52,
     borderRadius: 14,
@@ -61,40 +61,40 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 8,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
     borderBottomWidth: 4,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
   },
-  ctaOff: { backgroundColor: desfeedColor.border, borderBottomColor: '#94a3b8' },
-  ctaText: { fontFamily: desfeedFont.extrabold, fontSize: 16, color: desfeedColor.surface },
+  ctaOff: { backgroundColor: memfeedColor.border, borderBottomColor: '#94a3b8' },
+  ctaText: { fontFamily: memfeedFont.extrabold, fontSize: 16, color: memfeedColor.surface },
   suggestion: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderRadius: 16,
     padding: 14,
   },
   suggestionBody: { flex: 1, gap: 3 },
   suggestionSubject: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 10.5,
     letterSpacing: 0.6,
     textTransform: 'uppercase',
-    color: desfeedColor.accent,
+    color: memfeedColor.accent,
   },
-  suggestionTitle: { fontFamily: desfeedFont.bold, fontSize: 15, color: desfeedColor.text },
+  suggestionTitle: { fontFamily: memfeedFont.bold, fontSize: 15, color: memfeedColor.text },
   suggestionReason: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 12,
     lineHeight: 17,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   count: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 12,
-    color: desfeedColor.primaryDeep,
-    backgroundColor: desfeedColor.primarySoft,
+    color: memfeedColor.primaryDeep,
+    backgroundColor: memfeedColor.primarySoft,
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -111,7 +111,7 @@ const SuggestionRow = ({ theme, onPick }: { theme: StudyTheme; onPick: () => voi
       <Text style={styles.suggestionReason}>{theme.reason}</Text>
     </View>
     <Text style={styles.count}>{`${theme.cardCount}`}</Text>
-    <IconOutline name="right" size={16} color={desfeedColor.textMuted} />
+    <IconOutline name="right" size={16} color={memfeedColor.textMuted} />
   </Pressable>
 )
 
@@ -144,7 +144,7 @@ export default function EstudarScreen() {
         <View>
           <Text style={styles.title}>Estudar agora</Text>
           <Text style={styles.lede}>
-            Diga o assunto que você quer treinar. O Desfeed escreve as perguntas e agenda a
+            Diga o assunto que você quer treinar. O Memfeed escreve as perguntas e agenda a
             volta de cada uma.
           </Text>
         </View>
@@ -172,7 +172,7 @@ export default function EstudarScreen() {
             value={topic}
             onChangeText={setTopic}
             placeholder="Ex.: entropia em processos irreversíveis"
-            placeholderTextColor={desfeedColor.textMuted}
+            placeholderTextColor={memfeedColor.textMuted}
             style={styles.input}
             returnKeyType="go"
             onSubmitEditing={() => canGenerate && subject && runGeneration(subject, topic.trim())}
@@ -185,9 +185,9 @@ export default function EstudarScreen() {
             accessibilityRole="button"
           >
             {generate.isPending ? (
-              <ActivityIndicator color={desfeedColor.surface} />
+              <ActivityIndicator color={memfeedColor.surface} />
             ) : (
-              <IconOutline name="thunderbolt" size={19} color={desfeedColor.surface} />
+              <IconOutline name="thunderbolt" size={19} color={memfeedColor.surface} />
             )}
             <Text style={styles.ctaText}>
               {generate.isPending ? 'Escrevendo as perguntas…' : 'Gerar minha sessão'}
@@ -199,13 +199,13 @@ export default function EstudarScreen() {
 
         {themesQuery.isLoading ? (
           <View style={styles.centered}>
-            <ActivityIndicator color={desfeedColor.primary} />
+            <ActivityIndicator color={memfeedColor.primary} />
           </View>
         ) : null}
 
         {themesQuery.isError ? (
           <Result
-            img={<IconOutline name="close-circle" size={48} color={desfeedColor.error} />}
+            img={<IconOutline name="close-circle" size={48} color={memfeedColor.error} />}
             title="Não deu para buscar as sugestões"
             buttonText="Tentar novamente"
             buttonType="primary"

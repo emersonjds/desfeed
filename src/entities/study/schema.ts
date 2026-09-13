@@ -6,7 +6,7 @@ export const studyThemeSchema = z.object({
   id: z.string(),
   subject: z.string(),
   title: z.string(),
-  /** Por que o Desfeed está sugerindo justo este tema agora. */
+  /** Por que o Memfeed está sugerindo justo este tema agora. */
   reason: z.string(),
   cardCount: z.number().int().positive(),
 });

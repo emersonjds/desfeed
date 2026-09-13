@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { previewSelfEvalIntervals, type SelfEvalRating } from '../../entities/card/fsrs'
 import type { CardFsrsData } from '../../entities/card/schema'
-import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { memfeedColor, memfeedFont } from '../../shared/theme'
 
 type SelfEvaluationProps = {
   fsrsData: CardFsrsData
@@ -25,13 +25,13 @@ const ratingLabel: Record<SelfEvalRating, string> = {
 
 const styles = StyleSheet.create({
   block: {
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderRadius: 18,
     paddingHorizontal: 10,
     paddingTop: 8,
     paddingBottom: 9,
     borderWidth: 1,
-    borderColor: desfeedColor.borderSoft,
+    borderColor: memfeedColor.borderSoft,
   },
   headerRow: {
     flexDirection: 'row',
@@ -46,22 +46,22 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   headerTitle: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.6,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
     textTransform: 'uppercase',
   },
   xpBadge: {
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
     borderRadius: 999,
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
   xpText: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
   },
   ratingRow: {
     gap: 6,
@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 12,
     borderWidth: 0,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.borderSoft,
+    borderBottomColor: memfeedColor.borderSoft,
     paddingHorizontal: 2,
   },
   ratingButtonPrimary: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 0,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
     paddingHorizontal: 2,
   },
   ratingInner: {
@@ -95,12 +95,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 3,
   },
-  labelAgain: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: desfeedColor.error },
-  labelHard: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: desfeedColor.warning },
-  labelGood: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: '#2563eb' },
-  labelEasy: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: desfeedColor.surface },
-  interval: { fontFamily: desfeedFont.bold, fontSize: 11, color: desfeedColor.textMuted },
-  intervalPrimary: { fontFamily: desfeedFont.bold, fontSize: 11, color: desfeedColor.surface },
+  labelAgain: { fontFamily: memfeedFont.extrabold, fontSize: 13, color: memfeedColor.error },
+  labelHard: { fontFamily: memfeedFont.extrabold, fontSize: 13, color: memfeedColor.warning },
+  labelGood: { fontFamily: memfeedFont.extrabold, fontSize: 13, color: '#2563eb' },
+  labelEasy: { fontFamily: memfeedFont.extrabold, fontSize: 13, color: memfeedColor.surface },
+  interval: { fontFamily: memfeedFont.bold, fontSize: 11, color: memfeedColor.textMuted },
+  intervalPrimary: { fontFamily: memfeedFont.bold, fontSize: 11, color: memfeedColor.surface },
 })
 
 const ratingLabelStyle = {
@@ -122,7 +122,7 @@ export const SelfEvaluation = ({
     <View style={styles.block}>
       <View style={styles.headerRow}>
         <View style={styles.headerLeft}>
-          <IconOutline name="bulb" size={14} color={desfeedColor.primary} />
+          <IconOutline name="bulb" size={14} color={memfeedColor.primary} />
           <Text style={styles.headerTitle} numberOfLines={1}>
             Autoavaliação da lembrança
           </Text>
@@ -146,7 +146,7 @@ export const SelfEvaluation = ({
               <View style={styles.ratingInner}>
                 <View style={styles.ratingLabelRow}>
                   {isPrimary ? (
-                    <IconOutline name="thunderbolt" size={12} color={desfeedColor.surface} />
+                    <IconOutline name="thunderbolt" size={12} color={memfeedColor.surface} />
                   ) : null}
                   <Text style={ratingLabelStyle[rating]}>{ratingLabel[rating]}</Text>
                 </View>

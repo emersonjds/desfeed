@@ -20,7 +20,7 @@ pública brasileira**. Leia `CLAUDE.md` e `docs/briefing.md` antes de revisar.
 ## O contexto que eleva o padrão
 
 A UNESCO documentou que 89% das edtechs usadas na pandemia vigiavam crianças. O júri de um
-festival de cultura digital conhece esse número. No Desfeed, privacidade não é conformidade —
+festival de cultura digital conhece esse número. No Memfeed, privacidade não é conformidade —
 é argumento de diferenciação, e por isso uma falha aqui não custa uma multa: custa a tese.
 
 A invariante de produto é dura: **o professor vê a turma, nunca o aluno individual.** Sua

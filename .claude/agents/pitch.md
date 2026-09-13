@@ -45,7 +45,7 @@ separa "app bonito" de "produto que funciona por um motivo conhecido".
 quatro verbos (aprendizagem, colaboração, criatividade, bem-estar). A banca vai procurar os
 três. Mostre onde cada um está — na tela, não no texto do slide.
 
-**Feche com o ecossistema.** O último slide mostra o Desfeed como primeira peça de uma
+**Feche com o ecossistema.** O último slide mostra o Memfeed como primeira peça de uma
 arquitetura maior. É o que separa "projeto de hackathon" de "início de mudança".
 
 ## O que você não pode fazer

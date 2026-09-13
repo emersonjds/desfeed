@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/logo.png" width="120" alt="Desfeed" />
+<img src="assets/logo.png" width="120" alt="Memfeed" />
 
-# Desfeed
+# Memfeed
 
 **O feed que devolve em vez de tomar.**
 
@@ -24,7 +24,7 @@ mesmo estudou, e a sessão acaba de propósito.
 
 <br />
 
-**[▶ Abrir a demo](https://desfeed-app.expo.app)** — roda no navegador do celular, sem instalar nada.
+**[▶ Abrir a demo](https://memfeed-app.expo.app)** — roda no navegador do celular, sem instalar nada.
 
 </div>
 
@@ -34,7 +34,7 @@ mesmo estudou, e a sessão acaba de propósito.
 
 | Caminho | Como | Para quem |
 |---|---|---|
-| **Navegador** | [desfeed-app.expo.app](https://desfeed-app.expo.app) | Qualquer pessoa. Abre e usa. |
+| **Navegador** | [memfeed-app.expo.app](https://memfeed-app.expo.app) | Qualquer pessoa. Abre e usa. |
 | **Expo Go** | `npx expo start` e aponte a câmera no QR code | Quem quer o app nativo, com háptico e gesto de verdade |
 
 A demo responde pelas rotas mockadas, com o mesmo contrato que a API vai expor. O háptico e
@@ -52,7 +52,7 @@ O aluno de 2026 estuda do jeito que não funciona — print do quadro, PDF que n
 pedido à IA na véspera da prova — usando um celular desenhado para capturar atenção e
 eliminar esforço. Justamente os dois ingredientes que a memória precisa.
 
-O Desfeed não tenta tirar o celular da mão dele. Usa o mesmo formato, com a função-objetivo
+O Memfeed não tenta tirar o celular da mão dele. Usa o mesmo formato, com a função-objetivo
 trocada: em vez de otimizar tempo de tela, otimiza retenção.
 
 <br />
@@ -153,7 +153,7 @@ o resto do sistema confia.
 ## Estrutura de pastas
 
 ```
-desfeed-app/
+memfeed-app/
 ├── app/                          rotas do expo-router
 │   ├── _layout.tsx               layout raiz, providers
 │   ├── sessao-concluida.tsx      tela de fim de sessão
@@ -236,8 +236,8 @@ Não é preciso Xcode nem Android Studio para rodar no aparelho.
 ### Instalação
 
 ```bash
-git clone https://github.com/emersonjds/desfeed.git
-cd desfeed
+git clone https://github.com/emersonjds/memfeed.git
+cd memfeed
 npm install
 npm start
 ```

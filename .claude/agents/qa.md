@@ -1,7 +1,7 @@
 ---
 name: qa
 description: >-
-  Engenheiro de qualidade com 20+ anos, dono da suíte de testes do Desfeed
+  Engenheiro de qualidade com 20+ anos, dono da suíte de testes do Memfeed
   (Vitest nas duas pontas, Playwright quando houver web). Use para escrever teste
   de regra de negócio, cobrir caminho de erro, travar o limiar de cobertura,
   montar teste de integração do ciclo da sala ao vivo, testar reconciliação

@@ -1,4 +1,4 @@
-# Desfeed
+# Memfeed
 
 Feed vertical de recuperação ativa. A interface do TikTok, o algoritmo do Ebbinghaus.
 Projeto do HACKTUDO 2026. Leia `docs/briefing.md` antes de qualquer trabalho — ele tem o
@@ -7,9 +7,10 @@ tem só o que é operacional para escrever código.
 
 ## O que o produto é, em uma frase
 
-Cada card do feed é uma pergunta de 15 segundos sobre o que o próprio aluno estudou —
-o conteúdo entra por foto do caderno, a IA gera as perguntas, o FSRS decide quando cada
-uma volta, e a sessão **acaba de propósito**.
+Cada card do feed é uma pergunta de 15 segundos sobre o que o aluno acabou de estudar. O
+conteúdo tem duas origens e nenhuma é a câmera: **o professor publica** a aula que deu, ou
+**o aluno escolhe** o assunto. As duas caem no mesmo FSRS, que decide quando cada pergunta
+volta, e a sessão **acaba de propósito**.
 
 Três invariantes de produto que nenhum código pode quebrar:
 
@@ -20,13 +21,13 @@ Três invariantes de produto que nenhum código pode quebrar:
 ## Estrutura
 
 Este repositório **é o app**. Ele se basta: código, agents, configuração e documentação
-moram todos aqui. Abrir `desfeed-app/` no editor já carrega os agents.
+moram todos aqui. Abrir `memfeed-app/` no editor já carrega os agents.
 
 ```
 hackathons/hackatudo/
-  desfeed-app/                ← este repo — Expo / React Native, o app do aluno
-  desfeed-api/                repo irmão, ainda não existe (stack em definição)
-  desfeed-web/                repo irmão, painel do professor — fase 2
+  memfeed-app/                ← este repo — Expo / React Native, o app do aluno
+  memfeed-api/                repo irmão — Fastify + PostgreSQL, no ar e à frente deste doc
+  memfeed-web/                repo irmão — landing pública e painel do professor
 ```
 
 Dentro daqui:
@@ -47,18 +48,17 @@ docs/
   design/render/              as mesmas telas renderizadas em alta resolução
   design/app/                 screenshots do app de verdade rodando
   pitch/                      build_deck.py e o deck gerado
-  agents-outros-repos/        agents que pertencem a desfeed-api / desfeed-web
+  agents-outros-repos/        agents que pertencem a memfeed-api / memfeed-web
 ```
 
 ### Repos irmãos, cada um se bastando
 
-`desfeed-api` e `desfeed-web` nascerão como repositórios próprios ao lado deste, cada um com
-seu `.claude/agents/` e sua documentação — mesmo padrão do `calledit`. O agent `back` já está
-escrito e guardado em `docs/agents-outros-repos/back.md`; ele muda de casa no dia em que a
-API existir.
+`memfeed-api` e `memfeed-web` são repositórios próprios ao lado deste, cada um com seu
+`.claude/agents/` e sua documentação. O contrato entre eles é o **OpenAPI da API**, nunca um
+import compartilhado.
 
-Quando isso acontecer, o contrato entre os repos é o **OpenAPI da API**, não um import
-compartilhado.
+**Confira o repo irmão antes de acreditar neste arquivo.** Ele já esteve atrás da realidade da
+API e isso produziu decisão de arquitetura errada.
 
 ### Regra de isolamento — leia antes de rodar qualquer scaffolder
 
@@ -92,8 +92,9 @@ polyfills de stream, e esses pacotes chamam módulo nativo — o que derruba o b
 `__fbBatchedBridgeConfig is not set`. A demo publicada vale mais que a fidelidade da
 interceptação.
 
-**`EXPO_PUBLIC_USE_MOCKS=true` é obrigatório no build de demo.** `__DEV__` é falso em
-produção; sem a flag, toda tela publicada cai no estado de erro.
+**`EXPO_PUBLIC_USE_MOCKS` decide nos dois sentidos.** `false` explícito força o app a falar
+com a `memfeed-api` mesmo em desenvolvimento; `true` é obrigatório no build de demo publicado,
+porque `__DEV__` é falso em produção e sem a flag toda tela cairia no estado de erro.
 
 **Backend** · Node · Fastify · `fastify-type-provider-zod` · `@fastify/swagger` · socket.io · PostgreSQL
 
@@ -190,9 +191,9 @@ evento de socket. Nada entra sem parse.
 ## Verificação
 
 ```bash
-# desfeed-app
+# memfeed-app
 npm run typecheck && npm run lint && npm test
-# desfeed-api
+# memfeed-api
 npm run type-check && npm run lint && npm test
 ```
 

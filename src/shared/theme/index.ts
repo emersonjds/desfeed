@@ -1,6 +1,6 @@
 import type antdDefaultTheme from '@ant-design/react-native/lib/style/themes/default'
 
-export const desfeedTheme: Partial<typeof antdDefaultTheme> = {
+export const memfeedTheme: Partial<typeof antdDefaultTheme> = {
   brand_primary: '#10b981',
   brand_primary_tap: '#059669',
   brand_success: '#10b981',
@@ -18,7 +18,7 @@ export const desfeedTheme: Partial<typeof antdDefaultTheme> = {
 
 // O tema do Ant Design não tem token de família de fonte: cada componente herda a fonte do
 // sistema. Estes nomes são os mesmos registrados no `useFonts` de app/_layout.tsx.
-export const desfeedFont = {
+export const memfeedFont = {
   regular: 'PlusJakartaSans_400Regular',
   medium: 'PlusJakartaSans_500Medium',
   semibold: 'PlusJakartaSans_600SemiBold',
@@ -26,7 +26,7 @@ export const desfeedFont = {
   extrabold: 'PlusJakartaSans_800ExtraBold',
 } as const
 
-export const desfeedColor = {
+export const memfeedColor = {
   primary: '#10b981',
   primaryDeep: '#059669',
   primarySoft: '#e7f8f1',
