@@ -113,7 +113,9 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
             tone="accent"
           />
         </View>
-        <CircularTimer secondsLeft={secondsLeft} totalSeconds={CARD_TIMER_SECONDS} />
+        <View className="shrink-0">
+          <CircularTimer secondsLeft={secondsLeft} totalSeconds={CARD_TIMER_SECONDS} />
+        </View>
       </View>
 
       <View className="h-36 w-full overflow-hidden rounded-2xl bg-surface-soft">
@@ -133,7 +135,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
       </Text>
 
       <View className="flex-row gap-3">
-        <View className="flex-1 gap-2.5">
+        <View className="min-w-0 flex-1 gap-2.5">
           {card.options.map((option) => (
             <OptionRow
               key={option.id}
@@ -145,7 +147,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
             />
           ))}
         </View>
-        <View className="w-11 items-center justify-end gap-3.5 pb-1">
+        <View className="w-11 shrink-0 items-center justify-end gap-3.5 pb-1">
           <View className="items-center gap-0.5">
             <Text className="text-lg">🧠</Text>
             <Text className="text-xs font-bold text-text-muted">{card.masteryPercent}%</Text>
