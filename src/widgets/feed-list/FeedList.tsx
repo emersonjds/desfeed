@@ -26,6 +26,7 @@ export const FeedList = ({ data, activeIndex, contentHeight, onRate }: FeedListP
   return (
     <FlatList
       ref={listRef}
+      style={{ width: '100%' }}
       data={data}
       keyExtractor={(card, index) => `${card.id}-${index}`}
       pagingEnabled

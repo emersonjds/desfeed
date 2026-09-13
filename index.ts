@@ -1,4 +1,7 @@
-import 'react-native-url-polyfill/auto';
-import './src/shared/api/mocks/server';
+import 'react-native-url-polyfill/auto'
 
-import 'expo-router/entry';
+import { startMockServer } from './src/shared/api/mocks/server'
+
+startMockServer()
+
+import 'expo-router/entry'
