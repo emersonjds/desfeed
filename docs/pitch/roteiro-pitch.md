@@ -198,6 +198,8 @@ Diga "aponta a câmera" olhando para a plateia, não para o slide — e **pare d
 
 ## Slide 10 · Modelo de negócio e fecho · 20s
 
+**Se perguntarem de número:** não há projeção de receita em nenhum slide, e é de propósito — não há tração, não há usuário real, não há depoimento; o produto nasceu esta semana e o pedido é um piloto, não um contrato. Os preços citados (Quizlet Plus US$ 2,99/mês; cursinho ENEM do Descomplica 12× R$ 49,90) são referência de mercado verificada em 13/09/2026, usada como âncora e nunca como nosso preço. O contexto de mercado vem de PISA 2022 (INEP/OCDE) e do Censo Escolar 2025 (Inep).
+
 **O ponto deste slide:** Fechar mostrando que a conta fecha **por causa** da arquitetura, não apesar dela. A aula do professor é gerada uma vez e consumida por 34 alunos; a geração que o aluno pede é 1:1. Por isso a escola pública sai de graça sem quebrar o modelo. Termine no lema e segure o silêncio.
 
 **No slide:** três portas + a unidade econômica + "O problema nunca foi o formato."
