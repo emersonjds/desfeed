@@ -188,7 +188,7 @@ Aponte fisicamente os quatro cantos enquanto fala. Citar o Seneca como o mais pe
 
 **Fala:** "E eu não vim mostrar maquete. (pausa)
 >
-> Isso aí é o painel rodando, com a turma de trinta e quatro alunos. Isso aqui é o app, com card gerado por IA. Os três estão no ar agora: app, painel e API.
+> Isso aí é o painel rodando, com a turma de trinta e quatro alunos. Isso aqui é o app. São **trinta e nove cards gerados por IA em seis matérias**, e vinte e sete alunos já responderam. Os três estão no ar agora: app, painel e API.
 >
 > Se vocês quiserem conferir enquanto eu falo — **aponta a câmera no QR**. Abre no navegador do celular de vocês, sem loja, sem instalar, sem cadastro. Um botão entra como aluno, outro como professor. (pausa)
 >

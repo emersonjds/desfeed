@@ -243,29 +243,18 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 .tri-card.hl .tri-p { color:#3a3f4e; }
 
 /* ---- slide 9: prova viva ---- */
-.prova { display:grid; grid-template-columns:1.45fr 1fr; gap:7mm; margin-top:1mm;
-         margin-bottom:auto; align-items:start; }
-.prova-esq { display:flex; flex-direction:column; gap:5mm; }
-.qr { display:flex; gap:5mm; align-items:center; background:var(--card-dark); border-radius:12px;
-      padding:4.5mm 5mm; }
-.qr img { width:26mm; height:26mm; display:block; border-radius:6px; background:#fff; padding:1.5mm; }
-.qr-txt b { display:block; font-size:14px; font-weight:800; color:var(--green-light); margin-bottom:2mm; }
-.qr-txt p { font-size:11px; line-height:1.5; color:var(--muted-d); }
-.shot-web { display:flex; flex-direction:column; }
-/* A altura é travada porque o print do painel é mais alto que a lâmina: sem isto a legenda
-   sobe por cima da imagem e o rodapé de fonte cai fora do slide. */
-.shot-web img { width:100%; height:64mm; object-fit:cover; object-position:top left;
+.prova { display:grid; grid-template-columns:1.32fr 1fr; gap:7mm; margin-top:1mm; align-items:end; }
+.shot-web img { width:100%; height:86mm; object-fit:cover; object-position:top left;
                 display:block; border-radius:10px; }
-.shot-web figcaption { font-size:10px; font-weight:700; color:var(--muted-d); padding-top:2.5mm; }
-.prova-side { display:flex; flex-direction:column; gap:4mm; }
-.shots-app { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
-.shots-app img { width:100%; height:60mm; object-fit:cover; object-position:top;
-                 display:block; border-radius:9px; border:1px solid #2a3446; }
-.prova-list { list-style:none; }
-.prova-list li { border-left:3px solid var(--green); padding-left:3.5mm; margin-bottom:3mm;
-                 font-size:11px; line-height:1.45; color:var(--muted-d); }
-.prova-list li:last-child { margin-bottom:0; }
-.prova-list b { color:var(--body-d); }
+.shots-app > div { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.shots-app img { width:100%; height:86mm; object-fit:cover; object-position:top;
+                 display:block; border-radius:10px; border:1px solid #2a3446; }
+.prova figcaption { font-size:10px; font-weight:700; color:var(--muted-d); padding-top:3mm; }
+.qr { display:flex; gap:6mm; align-items:center; background:var(--card-dark); border-radius:12px;
+      padding:5mm 6mm; margin-top:6mm; margin-bottom:auto; }
+.qr img { width:29mm; height:29mm; display:block; border-radius:6px; background:#fff; padding:2mm; }
+.qr-txt b { display:block; font-size:15px; font-weight:800; color:var(--green-light); margin-bottom:2mm; }
+.qr-txt p { font-size:11.5px; line-height:1.5; color:var(--muted-d); max-width:120mm; }
 </style>
 </head>
 <body>
@@ -579,33 +568,26 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
   <div class="eyebrow" style="color:var(--green-light)">Prova viva</div>
   <h1 class="title">Não é maquete. Está rodando agora.</h1>
   <div class="prova">
-    <div class="prova-esq">
-      <figure class="shot-web">
-        <img src="img/painel.png" alt="Painel do professor com retenção D+7 e D+30" />
-        <figcaption>O painel do professor — a queda de retenção e os conceitos que a turma está esquecendo</figcaption>
-      </figure>
-      <div class="qr">
-        <img src="img/qr-demo.png" alt="QR code para abrir a demonstração" />
-        <div class="qr-txt">
-          <b>Aponte a câmera e teste agora</b>
-          <p>Abre no navegador do seu celular. Sem loja, sem instalar, sem cadastro — um botão
-          para entrar como aluno, outro como professor.</p>
-        </div>
-      </div>
-    </div>
-    <div class="prova-side">
-      <div class="shots-app">
-        <img src="img/app-hoje.png" alt="Feed do aluno" />
+    <figure class="shot-web">
+      <img src="img/painel.png" alt="Painel do professor com retenção D+7 e D+30" />
+      <figcaption>Painel do professor — a queda de retenção e os conceitos que a turma está esquecendo</figcaption>
+    </figure>
+    <figure class="shots-app">
+      <div>
+        <img src="img/app-hoje.png" alt="Feed do aluno com card gerado por IA" />
         <img src="img/app-evolucao.png" alt="Tela de evolução do aluno" />
       </div>
-      <ul class="prova-list">
-        <li><b>Os três no ar:</b> app do aluno, painel do professor e API.</li>
-        <li><b>39 cards gerados por IA</b> em 6 matérias, turma de 34 alunos — 27 responderam.</li>
-        <li><b>A figura vem do acervo da Wikipédia</b>, nunca de modelo de imagem: diagrama gerado por IA ensina errado.</li>
-      </ul>
+      <figcaption>App do aluno — o card da aula do professor e a própria curva de retenção</figcaption>
+    </figure>
+  </div>
+  <div class="qr">
+    <img src="img/qr-demo.png" alt="QR code para abrir a demonstração" />
+    <div class="qr-txt">
+      <b>Aponte a câmera e teste agora</b>
+      <p>Abre no navegador do seu celular. Sem loja, sem instalar, sem cadastro — um botão para
+      entrar como aluno, outro como professor.</p>
     </div>
   </div>
-  <div class="foot">Capturas do ambiente rodando em 13/09/2026 — demonstração do protótipo, não é piloto em escola nem base de usuários. App em React Native exportado para web, painel em Next.js e API em Fastify + PostgreSQL — os três no ar durante a apresentação. O QR abre no navegador, sem instalação.</div>
 </div>
 <div class="pagenum">9 / 10</div>
 </section>
