@@ -1,4 +1,5 @@
 import { cardSchema, type Card } from '../../../entities/card/schema';
+import type { Profile } from '../../../entities/profile/schema';
 import type { SessionToday } from '../../../entities/session/schema';
 
 const now = () => new Date();
@@ -100,4 +101,39 @@ export const emptySession: SessionToday = {
   goal: 20,
   streak: 14,
   xp: 820,
+};
+
+export const mockProfile: Profile = {
+  name: 'Lucas Rocha',
+  handle: '@lucas.med',
+  headline: 'Estudante de Medicina · UFRJ · 4º período',
+  levelLabel: 'Nível 18 · Neurônio Mestre',
+  leagueLabel: 'Liga Diamante',
+  retentionPercent: 93.8,
+  retentionTarget: 90,
+  stabilizedFacts: 482,
+  cardsReviewed: 1064,
+  activeDaysLast30: 26,
+  dailyGoal: 20,
+  reminderTime: '09:30',
+  badges: [
+    {
+      id: 'badge-cacador-de-sinapses',
+      title: 'Caçador de sinapses',
+      description: 'Mais de 1.000 cards reativados com sucesso',
+      tier: 'ouro',
+    },
+    {
+      id: 'badge-foco-inabalavel',
+      title: 'Foco inabalável',
+      description: '14 sessões seguidas sem sair do app no meio',
+      tier: 'prata',
+    },
+    {
+      id: 'badge-muralha-de-ebbinghaus',
+      title: 'Muralha de Ebbinghaus',
+      description: 'Nenhum esquecimento em revisão agendada',
+      tier: 'bronze',
+    },
+  ],
 };
