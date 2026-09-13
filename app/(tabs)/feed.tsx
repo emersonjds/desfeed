@@ -12,6 +12,7 @@ import { useSubmitReviewMutation } from '../../src/entities/review/mutations'
 import { useSessionTodayQuery } from '../../src/entities/session/queries'
 import { currentSessionCard, useDailySessionStore } from '../../src/features/daily-session/store'
 import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { InfinityMark } from '../../src/shared/ui/InfinityMark'
 import { QuestionCard } from '../../src/widgets/question-card/QuestionCard'
 
 const XP_PER_CARD = 30
@@ -195,7 +196,7 @@ export default function FeedScreen() {
     <SafeAreaView style={styles.screen} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.brand}>
-          <IconOutline name="retweet" size={26} color={desfeedColor.primary} />
+          <InfinityMark size={26} color={desfeedColor.primary} />
           <Text style={styles.brandName}>Desfeed</Text>
         </View>
         <View style={styles.headerStats}>
