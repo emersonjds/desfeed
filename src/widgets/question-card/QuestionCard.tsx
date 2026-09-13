@@ -14,6 +14,8 @@ import { TimerRing } from './TimerRing'
 type QuestionCardProps = {
   card: Card
   xpReward: number
+  /** Só o card em tela conta o tempo — ver o efeito da contagem. */
+  isActive: boolean
   onRate: (rating: SelfEvalRating) => void
 }
 
@@ -323,7 +325,7 @@ const RailItem = ({
   </View>
 )
 
-export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
+export const QuestionCard = ({ card, xpReward, isActive, onRate }: QuestionCardProps) => {
   const [selectedOptionId, setSelectedOptionId] = useState<OptionId | null>(null)
   const [secondsLeft, setSecondsLeft] = useState(CARD_TIMER_SECONDS)
   const question = useMemo(
@@ -334,11 +336,21 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
   useEffect(() => {
     setSelectedOptionId(null)
     setSecondsLeft(CARD_TIMER_SECONDS)
+  }, [card.id])
+
+  // A lista monta os cards vizinhos antes de o usuário chegar neles. Contar a partir da
+  // montagem queimava os 15 segundos do próximo card enquanto ele ainda estava fora da tela,
+  // e ele aparecia zerado. O relógio também para na resposta: o tempo de ler o feedback não
+  // é tempo de recuperação.
+  const isCountingDown = isActive && selectedOptionId === null && secondsLeft > 0
+
+  useEffect(() => {
+    if (!isCountingDown) return
     const timer = setInterval(() => {
       setSecondsLeft((seconds) => Math.max(0, seconds - 1))
     }, 1000)
     return () => clearInterval(timer)
-  }, [card.id])
+  }, [isCountingDown])
 
   const pickOption = (optionId: OptionId) => {
     if (selectedOptionId) return
@@ -389,6 +401,8 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
       </View>
 
       <View style={styles.media}>
+        {/* `cover` preenche a faixa e corta a borda rotulada da figura — o rótulo costuma
+            nomear a resposta, e o card existe para o aluno recuperá-la sozinho. */}
         <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
         <View style={styles.mediaOverlay}>
           <View style={styles.mediaBadge}>
