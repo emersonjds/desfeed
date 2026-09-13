@@ -1,6 +1,8 @@
 import { cardSchema, type Card } from '../../../entities/card/schema';
 import type { Profile } from '../../../entities/profile/schema';
 import type { SessionToday } from '../../../entities/session/schema';
+import { notebookLibrarySchema, type NotebookLibrary } from '../../../entities/notebook/library-schema'
+import { rankingSchema, type Ranking } from '../../../entities/ranking/schema'
 
 const now = () => new Date();
 
@@ -137,3 +139,171 @@ export const mockProfile: Profile = {
     },
   ],
 };
+
+export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse({
+  globalRetentionPercent: 92,
+  consolidatedConcepts: 168,
+  totalConcepts: 182,
+  stabilityDays: 24.8,
+  notebooks: [
+    {
+      id: 'nb-biologia-celular',
+      title: 'Biologia Celular',
+      subject: 'Bioquímica Médica',
+      coverUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400&q=70',
+      status: 'revisao-hoje',
+      cardCount: 48,
+      retentionPercent: 96,
+      nextReviewLabel: 'Revisão hoje',
+      sourceLabel: 'Escaneado há 2 dias',
+    },
+    {
+      id: 'nb-direito-constitucional',
+      title: 'Direito Constitucional',
+      subject: 'Direitos Fundamentais',
+      coverUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&q=70',
+      status: 'estavel',
+      cardCount: 72,
+      retentionPercent: 91,
+      nextReviewLabel: 'Próxima em 3 dias',
+      sourceLabel: 'Apostila em PDF condensada',
+    },
+    {
+      id: 'nb-calculo-derivadas',
+      title: 'Cálculo I — Derivadas',
+      subject: 'Regra da cadeia e quociente',
+      coverUrl: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=400&q=70',
+      status: 'reforco',
+      cardCount: 30,
+      retentionPercent: 68,
+      nextReviewLabel: 'Decaimento em 48h',
+      sourceLabel: 'Foto de quadro-negro',
+    },
+    {
+      id: 'nb-termodinamica',
+      title: 'Física II — Termodinâmica',
+      subject: 'Ciclo de Carnot e entropia',
+      coverUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=70',
+      status: 'estavel',
+      cardCount: 41,
+      retentionPercent: 89,
+      nextReviewLabel: 'Próxima em 5 dias',
+      sourceLabel: 'Caderno fotografado',
+    },
+  ],
+  peaks: [
+    {
+      id: 'peak-krebs',
+      title: 'Ciclo de Krebs e fosforilação',
+      whenLabel: 'Hoje às 19:30',
+      urgency: 'alta',
+      cardCount: 12,
+      detail: 'A retenção cai para 68% se você adiar.',
+    },
+    {
+      id: 'peak-cadeia',
+      title: 'Regra da cadeia e quociente',
+      whenLabel: 'Amanhã de manhã',
+      urgency: 'media',
+      cardCount: 8,
+      detail: 'Sessão rápida sugerida: 4 minutos.',
+    },
+    {
+      id: 'peak-direitos',
+      title: 'Direitos fundamentais — Art. 5º',
+      whenLabel: 'Em 3 dias',
+      urgency: 'baixa',
+      cardCount: 15,
+      detail: 'Traço de memória sólido, 94% de recordação prevista.',
+    },
+  ],
+})
+
+export const mockRanking: Ranking = rankingSchema.parse({
+  leagueName: 'Liga Sinapse Diamante',
+  leagueRankLabel: 'Top 7% entre todos os estudantes',
+  endsInLabel: 'Termina em 2d 14h',
+  promotionCutoff: 5,
+  relegationCutoff: 8,
+  podium: [
+    {
+      id: 'rk-bia',
+      position: 1,
+      name: 'Bia Medeiros',
+      headline: 'Bioquímica Celular',
+      xp: 2150,
+      trend: 'estavel',
+      isCurrentUser: false,
+    },
+    {
+      id: 'rk-rodrigo',
+      position: 2,
+      name: 'Rodrigo Ferraz',
+      headline: 'Direito Constitucional',
+      xp: 1890,
+      trend: 'subindo',
+      isCurrentUser: false,
+    },
+    {
+      id: 'rk-camila',
+      position: 3,
+      name: 'Camila Sato',
+      headline: 'Física II',
+      xp: 1620,
+      trend: 'caindo',
+      isCurrentUser: false,
+    },
+  ],
+  entries: [
+    {
+      id: 'rk-lucas',
+      position: 4,
+      name: 'Lucas Rocha',
+      headline: 'Você · 3 sessões hoje',
+      xp: 1420,
+      trend: 'subindo',
+      isCurrentUser: true,
+    },
+    {
+      id: 'rk-matheus',
+      position: 5,
+      name: 'Matheus Silva',
+      headline: 'Revisou há 1 hora',
+      xp: 1380,
+      trend: 'estavel',
+      isCurrentUser: false,
+    },
+    {
+      id: 'rk-ana',
+      position: 6,
+      name: 'Ana Paula Vieira',
+      headline: 'Em sessão de FSRS ativa',
+      xp: 1210,
+      trend: 'subindo',
+      isCurrentUser: false,
+    },
+    {
+      id: 'rk-gabriel',
+      position: 7,
+      name: 'Gabriel Lima',
+      headline: 'Último na zona segura',
+      xp: 1150,
+      trend: 'caindo',
+      isCurrentUser: false,
+    },
+    {
+      id: 'rk-mariana',
+      position: 8,
+      name: 'Mariana Costa',
+      headline: 'Precisa de 170 XP para sair',
+      xp: 980,
+      trend: 'caindo',
+      isCurrentUser: false,
+    },
+  ],
+  duel: {
+    title: 'Micro-duelo de flashcards',
+    description: 'Desafie um amigo no mesmo caderno e veja quem recupera mais rápido.',
+    rewardLabel: 'Recompensa dobrada',
+  },
+})
