@@ -365,7 +365,7 @@ export default function PerfilScreen() {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.card}>
           <View style={styles.identityRow}>
             <View style={styles.avatar}>
