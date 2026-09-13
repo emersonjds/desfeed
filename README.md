@@ -15,15 +15,30 @@ mesmo estudou, e a sessão acaba de propósito.
 ![Expo SDK](https://img.shields.io/badge/Expo_SDK-57-000020?style=flat-square&logo=expo&logoColor=white)
 ![React Native](https://img.shields.io/badge/React_Native-0.86-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![NativeWind](https://img.shields.io/badge/NativeWind-4.2.6-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
+![Ant Design Mobile](https://img.shields.io/badge/Ant_Design_Mobile-5.4.3-0170FE?style=flat-square&logo=antdesign&logoColor=white)
 
 ![FSRS](https://img.shields.io/badge/ts--fsrs-5.4.2-10B981?style=flat-square)
-![MSW](https://img.shields.io/badge/MSW-2.15-FF6A33?style=flat-square)
 ![Arquitetura](https://img.shields.io/badge/arquitetura-Feature--Sliced_Design-4F46E5?style=flat-square)
 ![Expo Go](https://img.shields.io/badge/roda_no-Expo_Go-000020?style=flat-square&logo=expo&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
 
+<br />
+
+**[▶ Abrir a demo](https://desfeed-app.expo.app)** — roda no navegador do celular, sem instalar nada.
+
 </div>
+
+<br />
+
+## Testar sem instalar
+
+| Caminho | Como | Para quem |
+|---|---|---|
+| **Navegador** | [desfeed-app.expo.app](https://desfeed-app.expo.app) | Qualquer pessoa. Abre e usa. |
+| **Expo Go** | `npx expo start` e aponte a câmera no QR code | Quem quer o app nativo, com háptico e gesto de verdade |
+
+A demo responde pelas rotas mockadas, com o mesmo contrato que a API vai expor. O háptico e
+a paginação por gesto só existem no caminho nativo — o navegador não os tem.
 
 <br />
 
@@ -88,12 +103,12 @@ falha se for quebrada.
 |---|---|---|
 | Runtime | **Expo SDK 57** · React Native 0.86 | Distribuição: QR code no Expo Go, APK por link, atualização OTA |
 | Navegação | **expo-router** | Roteamento por arquivo, deep link nativo |
-| Estilo | **NativeWind 4.2.6** | Tailwind no React Native — as mesmas classes, sem CSS-in-JS |
+| Interface | **Ant Design Mobile 5.4.3** | Componente nativo pronto e acessível; `antd-mobile` ficou fora por ser React DOM |
 | Dados remotos | **TanStack Query** | Cache, revalidação e estados de carregamento sem boilerplate |
 | Estado local | **Zustand** | A sessão do dia e a fila de cards |
 | Validação | **Zod** | Um schema por entidade, servindo de tipo e de parser |
 | Repetição espaçada | **ts-fsrs 5.4.2** | Implementação de referência do FSRS, em TypeScript puro |
-| Mock de API | **MSW 2** | Intercepta a rede em desenvolvimento, com o contrato real |
+| Mock de API | **Rotas em `mocks/routes.ts`** | Mesma resposta no celular e na web, com latência simulada |
 | Testes | **node:test** | Runner nativo, sem framework a manter |
 
 ### A restrição que governa as outras
@@ -158,7 +173,7 @@ desfeed-app/
 │   │       ├── client.ts         fetch tipado com parse Zod na resposta
 │   │       ├── config.ts         base URL por ambiente
 │   │       ├── query-client.ts   configuração do TanStack Query
-│   │       └── mocks/            handlers do MSW — caminho feliz, erro e vazio
+│   │       └── mocks/            rotas mockadas — caminho feliz, erro e vazio
 │   │
 │   ├── entities/
 │   │   ├── card/                 schema, queries e o mapeamento para o FSRS
@@ -238,9 +253,17 @@ npx expo start --tunnel
 
 ### Sem backend
 
-Não há nada para subir. O **MSW** intercepta as chamadas de rede em desenvolvimento e
-responde com o mesmo contrato que a API vai expor — incluindo os caminhos de erro e de lista
-vazia. Os handlers ficam em `src/shared/api/mocks/`.
+Não há nada para subir. O cliente HTTP resolve pelas rotas de `src/shared/api/mocks/routes.ts`,
+com o mesmo contrato que a API vai expor e latência simulada — incluindo os caminhos de erro e
+de lista vazia.
+
+Para publicar a demo web, a flag é obrigatória: `__DEV__` é falso em produção e sem ela toda
+tela cai no estado de erro.
+
+```bash
+EXPO_PUBLIC_USE_MOCKS=true npx expo export -p web --output-dir dist
+npx eas-cli deploy --prod
+```
 
 <br />
 
