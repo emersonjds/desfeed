@@ -18,6 +18,7 @@ dentro de uma sessão que **acaba de propósito**.
 ![Arquitetura](https://img.shields.io/badge/arquitetura-Feature--Sliced_Design-4F46E5?style=flat-square)
 ![Expo Go](https://img.shields.io/badge/roda_no-Expo_Go-000020?style=flat-square&logo=expo&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
+![Gemini](https://img.shields.io/badge/IA-Google_Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
 
 [![App no ar](https://img.shields.io/badge/app-memfeed--app.netlify.app-10B981?style=flat-square&logo=netlify&logoColor=white)](https://memfeed-app.netlify.app)
 [![Landing](https://img.shields.io/badge/landing-memfeed--web.netlify.app-4F46E5?style=flat-square)](https://memfeed-web.netlify.app)
@@ -56,7 +57,8 @@ trocada: em vez de otimizar tempo de tela, otimiza **retenção**.
 
 **1. O conteúdo tem duas origens, e nenhuma é a câmera.** O professor termina a aula, abre o
 painel, digita o assunto, revisa uma vez e publica para a turma. Ou o aluno escolhe o que quer
-treinar e a IA gera para ele. Cada card mostra de onde veio:
+treinar e o **Gemini** gera para ele — LLM integrado de verdade, via `memfeed-api`, com a
+saída validada por schema antes de virar card. Cada card mostra de onde veio:
 
 ```
 Prof. Marcos • Respiração celular        ← a turma inteira recebeu
