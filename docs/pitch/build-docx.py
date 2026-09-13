@@ -10,6 +10,8 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
 from docx.shared import Pt, RGBColor
 
 AQUI = Path(__file__).parent
@@ -38,6 +40,14 @@ def criar_estilo(doc: Document, nome: str, tamanho: float, *, cor=TINTA,
     return estilo
 
 
+def sombrear(paragrafo):
+    """Fundo de cor no parágrafo — python-docx não expõe isso, então vai no XML."""
+    sombra = OxmlElement('w:shd')
+    sombra.set(qn('w:val'), 'clear')
+    sombra.set(qn('w:fill'), 'ECFDF5')
+    paragrafo._p.get_or_add_pPr().append(sombra)
+
+
 def escrever_com_negrito(paragrafo, texto: str, prefixo: str = ''):
     """`**assim**` no markdown vira negrito de verdade no Word."""
     if prefixo:
@@ -61,6 +71,7 @@ def montar() -> Path:
     criar_estilo(doc, 'Abertura', 11, cor=APOIO, espaco_depois=8)
     criar_estilo(doc, 'CabecalhoSlide', 13.5, cor=VERDE, negrito=True,
                  espaco_antes=16, espaco_depois=4)
+    criar_estilo(doc, 'Ponto', 11, cor=TINTA, espaco_antes=2, espaco_depois=7)
     criar_estilo(doc, 'Fala', 12.5, espaco_depois=5)
     criar_estilo(doc, 'Palco', 10, cor=APOIO, italico=True, espaco_depois=4)
     criar_estilo(doc, 'RodapeDoc', 8.5, cor=APOIO, espaco_antes=18)
@@ -93,7 +104,12 @@ def montar() -> Path:
             texto = linha.strip()
             if not texto or texto.startswith('---'):
                 continue
-            if texto.startswith('> '):
+            if texto.startswith('**O ponto deste slide:**'):
+                paragrafo = doc.add_paragraph(style='Ponto')
+                escrever_com_negrito(paragrafo, texto.split(':**', 1)[1].strip(),
+                                     prefixo='O ponto deste slide: ')
+                sombrear(paragrafo)
+            elif texto.startswith('> '):
                 escrever_com_negrito(doc.add_paragraph(style='Fala'), texto[2:])
             elif texto != '>':
                 texto = texto.replace('[TROCA]', '→ AVANÇA O SLIDE')

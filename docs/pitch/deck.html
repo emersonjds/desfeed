@@ -191,6 +191,52 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 .qa-i{ border-left:3px solid var(--indigo); padding-left:4.5mm; }
 .qa-q{ font-size:10px; font-weight:800; color:var(--body-l); margin-bottom:1mm; }
 .qa-a{ font-size:8.6px; font-weight:600; line-height:1.4; color:#3a3f4e; }
+
+/* ---- slide 7: a curva e o explicador do FSRS ---- */
+.fsrs { display:grid; grid-template-columns:1.15fr 1fr; gap:9mm; align-items:center; margin-top:2mm; }
+.curve { background:var(--card-dark); border-radius:14px; padding:6mm 6mm 4mm 6mm; }
+.curve svg { width:100%; height:auto; display:block; }
+.curve-key { display:flex; gap:7mm; margin-top:3mm; font-size:10.5px; font-weight:700; }
+.curve-key i { display:inline-block; width:14px; height:3px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+.fsrs-def { font-size:14.5px; line-height:1.55; }
+.fsrs-def h3 { font-size:20px; font-weight:800; margin-bottom:3mm; line-height:1.25; }
+.fsrs-def p { margin-bottom:3.5mm; }
+.fsrs-def .sigla { color:var(--green-light); font-weight:800; }
+.fsrs-def .nota { font-size:12px; color:var(--muted-d); }
+.studies { margin-bottom:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:5mm; margin-top:5mm; }
+.study { border-left:2px solid var(--green); padding-left:4mm; }
+.study b { display:block; font-size:11px; font-weight:800; color:var(--green-light); margin-bottom:1.5mm; }
+.study span { font-size:12.5px; line-height:1.45; }
+
+/* ---- slide 8: quadrante competitivo ---- */
+.quad-wrap { margin-bottom:auto; display:grid; grid-template-columns:1fr 62mm; gap:8mm; margin-top:2mm; align-items:center; }
+.quad { position:relative; height:105mm; border-left:2px solid var(--border); border-bottom:2px solid var(--border); }
+.quad-fill { position:absolute; right:0; top:0; width:46%; height:46%; background:#ecfdf5; border-radius:8px 8px 0 0; }
+.quad-y { position:absolute; left:-7mm; bottom:0; writing-mode:vertical-rl; transform:rotate(180deg);
+          font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+          color:var(--muted-l); white-space:nowrap; }
+.quad-x { position:absolute; right:0; bottom:-7mm; font-size:10.5px; font-weight:800; letter-spacing:.08em;
+          text-transform:uppercase; color:var(--muted-l); }
+.dot { position:absolute; transform:translate(-50%,50%); text-align:center; }
+.dot i { display:block; width:11px; height:11px; border-radius:50%; background:var(--muted-l); margin:0 auto 2mm auto; }
+.dot span { font-size:12px; font-weight:700; color:#3a3f4e; white-space:nowrap; }
+.dot.us i { width:17px; height:17px; background:var(--green); box-shadow:0 0 0 5px rgba(16,185,129,.18); }
+.dot.us span { font-size:14px; font-weight:800; color:var(--accent-l); }
+.quad-note { font-size:13px; line-height:1.5; }
+.quad-note b { display:block; font-size:15px; font-weight:800; margin-bottom:3mm; color:var(--body-l); }
+.quad-note p { color:#3a3f4e; margin-bottom:3mm; }
+.quad-note .vazio { background:#ecfdf5; border-left:3px solid var(--green); padding:3.5mm 4mm; border-radius:0 8px 8px 0;
+                    font-weight:700; color:var(--accent-l); }
+
+/* ---- slide 9: tres fatos ---- */
+.tri { margin-top:auto; margin-bottom:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:7mm; margin-top:4mm; }
+.tri-card { background:var(--card-dark); border-radius:14px; padding:7mm 6mm; }
+.tri-card.hl { background:#ecfdf5; color:var(--body-l); }
+.tri-k { font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--green-light); margin-bottom:3mm; }
+.tri-card.hl .tri-k { color:var(--accent-l); }
+.tri-t { font-size:18px; font-weight:800; line-height:1.3; margin-bottom:3mm; }
+.tri-p { font-size:13.5px; line-height:1.55; color:var(--muted-d); }
+.tri-card.hl .tri-p { color:#3a3f4e; }
 </style>
 </head>
 <body>
@@ -416,43 +462,47 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 <!-- ══════════════════════════════════════════════════ 7 · MECANISMO -->
 <section class="slide dark">
 <div class="content">
-  <div class="eyebrow">O mecanismo científico</div>
-  <h1 class="title">Cada decisão tem um estudo atrás</h1>
-  <table class="tbl">
-    <tr>
-      <th style="width:23%">Estudo</th>
-      <th style="width:43%">Achado</th>
-      <th class="k" style="width:34%">O que decide no produto</th>
-    </tr>
-    <tr>
-      <td class="study">Roediger &amp; Karpicke (2006)</td>
-      <td>Auto-testar: 61% de retenção após 1 semana. Reler: 40%.</td>
-      <td class="dec">O card é sempre recuperação ativa, nunca releitura</td>
-    </tr>
-    <tr>
-      <td class="study">Cepeda et al. (2006)</td>
-      <td>Prática distribuída vence estudo maciço — 839 comparações.</td>
-      <td class="dec">Agendamento por FSRS, não revisão de véspera</td>
-    </tr>
-    <tr>
-      <td class="study">Murre &amp; Dros (2015)</td>
-      <td>Sem revisão, retenção cai a ~34% em 1 dia e ~21% em 1 mês.</td>
-      <td class="dec">O card volta antes de você esquecer</td>
-    </tr>
-    <tr>
-      <td class="study">Freeman et al. (2014)</td>
-      <td>Aprendizagem ativa: +0,47 DP. Aula passiva: 1,5× mais reprovação.</td>
-      <td class="dec">O conteúdo nasce da aula do professor, não de um banco genérico</td>
-    </tr>
-    <tr>
-      <td class="study">Meta-análise 2025 (N=98.299)</td>
-      <td>Vídeo curto associado a pior atenção sustentada.</td>
-      <td class="dec">A sessão tem fim. Sem infinito, por design</td>
-    </tr>
-  </table>
-  <div class="closing" style="border-left-color:var(--green-light);">
-    O FSRS é aberto e é o scheduler padrão do Anki desde 31/10/2023. <strong>Usamos o commodity de propósito</strong> —
-    o motor nunca foi o diferencial, e dizer o contrário não sobreviveria a uma única pergunta.
+  <div class="eyebrow" style="color:var(--green-light)">O mecanismo</div>
+  <h1 class="title">O card volta um dia antes de você esquecer</h1>
+  <div class="fsrs">
+    <div class="curve">
+      <svg viewBox="0 0 620 250" role="img" aria-label="Curva de esquecimento com e sem revisão">
+        <line x1="30" y1="215" x2="600" y2="215" stroke="#3a4457" stroke-width="1.5"/>
+        <line x1="30" y1="18" x2="30" y2="215" stroke="#3a4457" stroke-width="1.5"/>
+        <path d="M32,26 C110,140 260,190 600,205" fill="none" stroke="#6b7280" stroke-width="3"
+              stroke-dasharray="7 6" stroke-linecap="round"/>
+        <path d="M32,26 Q68,96 96,124 L96,30 Q150,88 196,110 L196,28 Q280,74 352,96 L352,26
+                 Q460,58 560,78 L560,24 Q585,32 600,38"
+              fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#34d399">
+          <circle cx="96" cy="30" r="6"/><circle cx="196" cy="28" r="6"/>
+          <circle cx="352" cy="26" r="6"/><circle cx="560" cy="24" r="6"/>
+        </g>
+        <g fill="#9ca3af" font-size="15" font-weight="700" text-anchor="middle">
+          <text x="96" y="236">dia 1</text><text x="196" y="236">dia 3</text>
+          <text x="352" y="236">dia 7</text><text x="560" y="236">dia 16</text>
+        </g>
+      </svg>
+      <div class="curve-key">
+        <span style="color:#9ca3af"><i style="background:#6b7280"></i>sem revisão</span>
+        <span style="color:#34d399"><i style="background:#34d399"></i>com o card voltando na hora certa</span>
+      </div>
+    </div>
+    <div class="fsrs-def">
+      <h3>O que é o FSRS</h3>
+      <p><span class="sigla">Free Spaced Repetition Scheduler.</span> A cada resposta ele estima
+      <strong>quanto tempo aquela memória dura em você</strong> — e marca o retorno do card para
+      pouco antes da queda.</p>
+      <p>Errou, volta em minutos. Acertou sem esforço, volta só daqui a semanas. O intervalo
+      aparece na tela do aluno.</p>
+      <p class="nota">Aberto, é o agendador padrão do Anki desde out/2023. Usamos o commodity de
+      propósito: o motor nunca foi o nosso diferencial.</p>
+    </div>
+  </div>
+  <div class="studies">
+    <div class="study"><b>Roediger &amp; Karpicke, 2006</b><span>Auto-testar retém 61% em uma semana. Reler, 40%.</span></div>
+    <div class="study"><b>Cepeda et al., 2006</b><span>Prática distribuída vence estudo maciço — 839 comparações.</span></div>
+    <div class="study"><b>Murre &amp; Dros, 2015</b><span>Sem revisão, sobra ~34% em um dia e ~21% em um mês.</span></div>
   </div>
   <div class="foot">
     Roediger &amp; Karpicke (2006), <em>Psychological Science</em> 17(3):249–255 · Cepeda et al. (2006) ·
@@ -462,58 +512,29 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 </div>
 <div class="pagenum">7 / 10</div>
 </section>
-
-<!-- ══════════════════════════════════════════════════ 8 · COMPETITIVO -->
 <section class="slide">
 <div class="content">
   <div class="eyebrow">Cenário competitivo</div>
-  <h1 class="title">Todos são melhores que nós em alguma coisa. Um eixo está vazio.</h1>
-  <table class="tbl">
-    <tr>
-      <th style="width:17%">Produto</th>
-      <th style="width:28%">Mede retenção no tempo — mesmo conceito, D+7 / D+30?</th>
-      <th style="width:30%">Devolve <em>esquecimento</em> ao professor?</th>
-      <th style="width:25%">IA gera questão de assunto digitado?</th>
-    </tr>
-    <tr>
-      <td style="font-weight:800;color:var(--body-l)">Kahoot!</td>
-      <td><span class="no">Não.</span> O espaçamento é receita manual: abrir Reports e “rodar de novo uma ou duas semanas depois”</td>
-      <td><span class="no">Não</span> — a própria central de ajuda confirma que estudo solo não gera relatório</td>
-      <td><span class="yes">Sim</span> — Generator, de tópico, PDF, URL ou Wikipédia</td>
-    </tr>
-    <tr>
-      <td style="font-weight:800;color:var(--body-l)">Quizizz / Wayground</td>
-      <td><span class="part">Quase</span> — growth graphs plotam uma atividade diferente a cada ponto</td>
-      <td><span class="part">Parcial</span> — domínio por habilidade, não queda contra o dia do ensino</td>
-      <td><span class="yes">Sim</span></td>
-    </tr>
-    <tr>
-      <td style="font-weight:800;color:var(--body-l)">Seneca Learning (UK)</td>
-      <td><span class="yes">Sim, para o aluno</span> — usa a curva de Ebbinghaus para agendar a revisão</td>
-      <td><span class="no">Não.</span> O painel entrega conclusão, nota e tempo de estudo. <strong>A curva morre no motor</strong></td>
-      <td><span class="part">Quase</span> — gera dos recursos enviados pelo professor</td>
-    </tr>
-    <tr>
-      <td style="font-weight:800;color:var(--body-l)">Anki (FSRS)</td>
-      <td><span class="yes">Sim, para o aluno</span></td>
-      <td><span class="no">Não existe</span> turma nem professor no produto</td>
-      <td><span class="no">Não</span> — alguém escreve cada card</td>
-    </tr>
-    <tr>
-      <td style="font-weight:800;color:var(--body-l)">Plurall (SOMOS)</td>
-      <td><span class="no">Não confirmado</span></td>
-      <td><span class="part">Por habilidade</span>; de esquecimento no tempo, não confirmado</td>
-      <td><span class="yes">Sim</span> — 260 mil questões no 1T2025 <em>(dado de imprensa)</em></td>
-    </tr>
-    <tr class="us">
-      <td>Memfeed</td>
-      <td>Sim — o mesmo conceito reaplicado pela fila FSRS</td>
-      <td>Sim — é a tela principal do painel</td>
-      <td>Sim — o professor digita o assunto ao fim da aula</td>
-    </tr>
-  </table>
-  <div class="closing">
-    O mais perigoso não é o Kahoot: é o <strong>Seneca</strong>, que já usa a curva de esquecimento — e mesmo assim nunca a devolve ao professor.
+  <h1 class="title">Um canto do mapa está vazio</h1>
+  <div class="quad-wrap">
+    <div class="quad">
+      <div class="quad-fill"></div>
+      <div class="quad-y">devolve ao professor →</div>
+      <div class="quad-x">mede o esquecimento no tempo →</div>
+      <div class="dot" style="left:14%;bottom:52%"><i></i><span>Kahoot!</span></div>
+      <div class="dot" style="left:31%;bottom:70%"><i></i><span>Quizizz / Wayground</span></div>
+      <div class="dot" style="left:15%;bottom:30%"><i></i><span>Plurall</span></div>
+      <div class="dot" style="left:67%;bottom:24%"><i></i><span>Seneca Learning</span></div>
+      <div class="dot" style="left:84%;bottom:8%"><i></i><span>Anki (FSRS)</span></div>
+      <div class="dot us" style="left:82%;bottom:84%"><i></i><span>Memfeed</span></div>
+    </div>
+    <div class="quad-note">
+      <b>Todos são melhores que nós em alguma coisa.</b>
+      <p>O Kahoot e o Wayground têm relatório — do dia da atividade. O Anki e o Seneca medem
+      esquecimento — e entregam só ao aluno.</p>
+      <div class="vazio">O mais perigoso não é o Kahoot: é o Seneca, que já usa a curva de
+      esquecimento. E mesmo ele nunca a devolve ao professor.</div>
+    </div>
   </div>
   <div class="foot">
     Fonte: análise competitiva Memfeed, 13/09/2026 — leitura direta das páginas oficiais de cada produto (ajuda, produto e preço), com data de atualização registrada.
@@ -522,41 +543,30 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 </div>
 <div class="pagenum">8 / 10</div>
 </section>
-
-<!-- ══════════════════════════════════════════════════ 9 · TECNOLOGIA -->
 <section class="slide dark">
 <div class="content">
-  <div class="eyebrow">Tecnologia</div>
+  <div class="eyebrow" style="color:var(--green-light)">Tecnologia</div>
   <h1 class="title">Nada aqui prende a gente a um fornecedor</h1>
-  <div class="subtitle">Nem de modelo, nem de licença, nem de imagem. Foi decisão de arquitetura, não sorte.</div>
-
-  <div class="cardrow" style="flex:1; min-height:0;">
-    <div class="gcard dark">
-      <div class="g-k">Geração agnóstica de provedor</div>
-      <div class="g-t">Trocar de LLM não toca em nenhuma tela</div>
-      <ul class="g-l">
-        <li>Uma interface <code>CardGenerator</code>, duas implementações hoje: Anthropic e Gemini, escolhidas pela chave presente no ambiente</li>
-        <li>A saída do modelo é validada por <strong>JSON schema</strong> antes de virar card — nada malformado chega ao aluno</li>
-        <li>Hoje roda no <strong>tier gratuito do Gemini</strong>: o custo de inferência é substituível, não estrutural</li>
-      </ul>
+  <div class="tri">
+    <div class="tri-card">
+      <div class="tri-k">Modelo</div>
+      <div class="tri-t">Trocar de LLM é mudar uma variável de ambiente</div>
+      <div class="tri-p">Duas implementações da mesma interface. A saída é validada por schema
+      antes de virar card. Hoje roda no tier gratuito do Gemini.</div>
     </div>
-    <div class="gcard hl">
-      <div class="g-k" style="color:var(--accent-l)">A decisão que nos separa</div>
-      <div class="g-t">A figura de cada card vem do acervo da Wikipédia. Nunca de modelo de imagem.</div>
-      <div class="g-p">Diagrama gerado por IA sai com a seta trocada. A IA escolhe o verbete; a imagem vem do acervo.</div>
+    <div class="tri-card hl">
+      <div class="tri-k">A decisão que nos separa</div>
+      <div class="tri-t">A figura vem do acervo da Wikipédia. Nunca de modelo de imagem.</div>
+      <div class="tri-p">Diagrama científico gerado por IA sai com a seta trocada. Num app de
+      educação, isso ensina errado.</div>
     </div>
-    <div class="gcard dark">
-      <div class="g-k">A stack</div>
-      <ul class="g-l">
-        <li><strong>Aluno:</strong> Expo / React Native — roda no celular que ele já tem</li>
-        <li><strong>Professor:</strong> Next.js, mobile first — ele usa em pé, na sala</li>
-        <li><strong>API:</strong> Fastify + PostgreSQL, OpenAPI servindo as duas pontas</li>
-        <li><strong>FSRS:</strong> <code>ts-fsrs</code>, licença MIT</li>
-        <li><strong>zod</strong> em toda fronteira de confiança: saída do LLM, payload de API, resposta externa</li>
-      </ul>
+    <div class="tri-card">
+      <div class="tri-k">Stack</div>
+      <div class="tri-t">Aberta das duas pontas</div>
+      <div class="tri-p">Expo no aluno, Next.js no professor, Fastify e PostgreSQL servindo as
+      duas por OpenAPI. FSRS sob licença MIT.</div>
     </div>
   </div>
-
   <div class="foot">
     Estado conferido no código em 13/09/2026: <code>memfeed-api/src/modules/ingestion/card-generator.ts</code> (interface e as duas implementações) e
     <code>src/shared/media/wikimedia.ts</code> (imagem principal do verbete). Números do ambiente de demonstração — não são base de usuários nem tração.
@@ -564,8 +574,6 @@ h1.brand{ font-size:64px; font-weight:800; letter-spacing:-.025em; line-height:1
 </div>
 <div class="pagenum">9 / 10</div>
 </section>
-
-<!-- ══════════════════════════════════════════════════ 10 · NEGÓCIO + FECHO -->
 <section class="slide">
 <div class="content">
   <div class="eyebrow">Modelo de negócio</div>

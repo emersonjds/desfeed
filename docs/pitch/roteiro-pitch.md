@@ -14,6 +14,8 @@ Convenções deste documento:
 
 ## Slide 1 · Capa — Memfeed · 20s
 
+**O ponto deste slide:** Abrir com a lacuna, não com o produto. O júri precisa sentir a pergunta sem resposta — *quanto sobrou daquela aula?* — antes de ver qualquer tela. Se ele sair do slide 1 com essa pergunta na cabeça, o resto do pitch é a resposta.
+
 **No slide:** "Memfeed" grande. "A interface do TikTok, o algoritmo do Ebbinghaus." O parágrafo de abertura. Fundo escuro.
 
 > Bom dia. Meu nome é Emerson, e isso aqui é o Memfeed.
@@ -32,6 +34,8 @@ Convenções deste documento:
 
 ## Slide 2 · O dado que nos move — 83% · 25s
 
+**O ponto deste slide:** Provar que a IA, do jeito que o aluno usa hoje, **piora** a memória. Os 83% não são um dado sobre tecnologia: são a evidência de que atalho cognitivo cobra juros. É o que justifica um produto que devolve esforço em vez de poupá-lo.
+
 **No slide:** 83% gigante. Caixa escura à direita com 7 em 10 · 32% · 73%.
 
 > Oitenta e três por cento das pessoas que escrevem com ajuda de um LLM não conseguem citar **uma frase** do texto que acabaram de escrever.
@@ -47,6 +51,8 @@ Convenções deste documento:
 ---
 
 ## Slide 3 · O problema — três falhas · 25s
+
+**O ponto deste slide:** Mostrar que as três falhas se alimentam: atenção curta, IA como atalho e estudo por releitura. E fechar apontando para o professor — ele é quem fica no escuro, e é a dor que o nosso painel resolve. Este slide monta a persona do slide seguinte.
 
 **No slide:** 01 / 02 / 03 em três colunas. Faixa escura embaixo: "E o professor está no escuro."
 
@@ -65,6 +71,8 @@ Convenções deste documento:
 ---
 
 ## Slide 4 · Duas pontas, um mesmo celular · 35s
+
+**O ponto deste slide:** Ancorar na Lei 15.100. O celular está proibido na escola **exceto para fim pedagógico sob orientação do professor** — e como quem publica o conteúdo é o professor, usar o Memfeed **é** essa exceção, não uma brecha nela. Esse é o argumento que abre porta de escola pública.
 
 **No slide:** Júlia e Prof. Marcos. Rodapé com a Lei 15.100 e os 92%.
 
@@ -85,6 +93,8 @@ Convenções deste documento:
 ---
 
 ## Slide 5 · A solução — duas origens, uma fila · 45s
+
+**O ponto deste slide:** Explicar a arquitetura do produto em uma imagem: duas origens, uma fila. O ponto que não pode escapar é que as duas caem no **mesmo** FSRS — é isso que faz ser um produto só, e não um quiz do professor colado num app de estudo.
 
 **No slide:** diagrama — duas caixas → "Mesma fila FSRS". À direita, as três mecânicas.
 
@@ -110,6 +120,8 @@ Convenções deste documento:
 
 ## Slide 6 · O diferencial — quanto sobrou · 55s
 
+**O ponto deste slide:** O coração do pitch. Todo mundo sabe o acerto no dia da atividade. Ninguém devolve ao professor quanto sobrou uma semana depois. Fale o número devagar: 96% no dia, 77% em D+7. A queda de 19 pontos é o que dispara a ação — não é relatório para arquivar, é gatilho de intervenção.
+
 **No slide:** painel do professor. Ciclo de Krebs, 96% no dia, 77% no D+7, −19 pontos. Estados firme/em risco/esquecido. A frase do Wayground na caixa escura.
 
 > Essa é a tela que nenhum concorrente entrega.
@@ -132,51 +144,60 @@ Convenções deste documento:
 
 ## Slide 7 · O mecanismo científico · 25s
 
-**No slide:** tabela — estudo · achado · o que decide no produto.
+**O ponto deste slide:** Aqui o júri precisa entender **o que é FSRS**, senão o resto vira jargão. Explique como se fosse para a sua mãe: é um algoritmo que, a cada resposta, estima quanto tempo aquela memória dura em você, e traz o card de volta pouco antes de você esquecer. Mostre a curva. E seja honesto: o algoritmo é aberto e comum — o diferencial nunca foi o motor.
 
-> Nada disso é invenção nossa. Cada decisão tem um estudo atrás.
+**No slide:** à esquerda, a curva de esquecimento — pontilhada cinza sem revisão, verde com o card voltando nos dias 1, 3, 7 e 16. À direita, o que é o FSRS em três parágrafos. Embaixo, os três estudos.
+
+**Fala:** "Uma palavra que vocês vão ouvir de novo: **FSRS**. (pausa)
 >
-> Roediger e Karpicke definem que o card é pergunta, nunca releitura. Cepeda define que o espaçamento é o núcleo. Murre e Dros dizem quando o card precisa voltar.
+> Free Spaced Repetition Scheduler. É um algoritmo aberto — o mesmo que o Anki adotou como padrão desde 2023.
 >
-> E seja honesto comigo sobre uma coisa: (pausa) o **FSRS é aberto**. É o algoritmo padrão do Anki desde 2023. Qualquer time aqui copia o motor numa semana.
+> O que ele faz, em uma frase: a cada resposta, ele estima **quanto tempo aquela memória dura em você** — e marca o card para voltar pouco antes da queda.
 >
-> A gente usa o commodity **de propósito**. O motor nunca foi o diferencial — e dizer o contrário não sobreviveria à primeira pergunta de vocês.
+> Errou, volta em minutos. Acertou sem esforço, volta daqui a semanas. (pausa)
+>
+> Essa é a linha pontilhada: o que acontece sem revisão. E essa é a verde: o mesmo conteúdo, com o card voltando na hora certa.
+>
+> E eu quero ser honesto com vocês: o algoritmo é commodity. **O motor nunca foi o nosso diferencial** — o diferencial é o que a gente faz com o que ele mede."
 
-`[TROCA]`
-
----
-
+Aponte a curva pontilhada ao dizer "sem revisão" e a verde ao dizer "na hora certa". A frase sobre commodity é desarme preventivo: não deixe um jurado dizer isso antes de você. Deixa: "Então por que ninguém já fez?"
 ## Slide 8 · Cenário competitivo · 30s
 
-**No slide:** tabela com Kahoot, Wayground, Seneca, Anki, Plurall e Memfeed.
+**O ponto deste slide:** Desarmar o jurado que conhece o mercado, admitindo antes dele. Todos são melhores que nós em alguma coisa. O que ninguém ocupa é o canto onde as duas coisas acontecem juntas: medir o esquecimento **e** devolver ao professor. Cite o Seneca de propósito — mostra que você pesquisou de verdade e que não está atacando o alvo fácil.
 
-> Então o que é o diferencial? Olha a tabela.
+**No slide:** quadrante. Eixo horizontal *mede o esquecimento no tempo*, vertical *devolve ao professor*. Seis produtos plotados; o canto superior direito destacado, com o Memfeed sozinho nele.
+
+**Fala:** "Esse é o mapa da concorrência, e ele tem dois eixos. (pausa)
 >
-> Kahoot gera questão de um assunto, melhor que a gente. Mas a própria central de ajuda dele diz: **estudo solo não gera relatório**. E o post oficial de março instrui o professor a criar um novo kahoot e lembrar de rodar "uma ou duas semanas depois". Esse "lembrar" é trabalho manual.
+> Horizontal: o produto mede o esquecimento ao longo do tempo? Vertical: ele devolve isso **ao professor**?
 >
-> E o mais perigoso não é o Kahoot. É o **Seneca**. Ele já usa a curva de esquecimento de Ebbinghaus para agendar a revisão do aluno. (pausa) E mesmo assim, o painel do professor entrega conclusão de tarefa, nota e tempo de estudo. **A curva morre no motor. Ela nunca vira relatório.**
+> O Kahoot e o Wayground estão aqui em cima à esquerda — têm relatório bom, mas do dia da atividade.
 >
-> É essa coluna que está vazia no mercado. Não o algoritmo — a **tradução** do algoritmo para quem deu a aula.
+> O Anki e o Seneca estão à direita embaixo — medem esquecimento de verdade, e entregam só ao aluno.
+>
+> E o mais perigoso não é o Kahoot. É o **Seneca**, que já usa a curva de Ebbinghaus para agendar a revisão. Mesmo ele nunca devolve a curva ao professor — o painel dele mostra conclusão, nota e tempo de estudo. (pausa)
+>
+> O canto superior direito está vazio. É onde a gente está."
 
-`[TROCA]`
-
----
-
+Aponte fisicamente os quatro cantos enquanto fala. Citar o Seneca como o mais perigoso mostra pesquisa real e tira do jurado a chance de te pegar. Deixa: "E a tecnologia por trás disso não prende a gente a ninguém."
 ## Slide 9 · Tecnologia · 20s
 
-**No slide:** três cartões — geração agnóstica de provedor · a Wikipédia · a stack. Faixa embaixo: no ar hoje × o que vem depois.
+**O ponto deste slide:** Tirar o risco de fornecedor da mesa em vinte segundos. Trocar de LLM é variável de ambiente, não reescrita. E a decisão que vale repetir: a figura do card vem do acervo da Wikipédia, nunca de modelo de imagem — porque diagrama científico gerado por IA sai errado, e num app de educação erro se propaga pela fila de revisão.
 
-> Rápido sobre a técnica, porque tem uma decisão aqui que eu quero que fique.
+**No slide:** três cartões — modelo trocável, a figura vinda do acervo (destacado), e a stack.
+
+**Fala:** "Três coisas, rápido. (pausa)
 >
-> A geração é **agnóstica de provedor**. Uma interface, duas implementações — Anthropic e Gemini — escolhidas pela chave que está no ambiente. A saída passa por JSON schema antes de virar card. Hoje roda no **tier gratuito do Gemini**: o custo de inferência é substituível, não estrutural.
+> Um: trocar de modelo de IA aqui é mudar uma variável de ambiente. Duas implementações da mesma interface, e a saída passa por validação de schema antes de virar card. Hoje roda no **tier gratuito** do Gemini — o custo de inferência é substituível, não estrutural.
 >
-> E a figura de cada card vem do **acervo da Wikipédia**. Nunca de modelo de imagem. (pausa) Porque diagrama científico gerado por IA sai com a seta trocada — e num app de educação, isso ensina errado.
+> Dois, e essa é a decisão que nos separa: **a figura de cada card vem do acervo da Wikipédia. Nunca de modelo de imagem.** Diagrama científico gerado por IA sai com a seta trocada e a molécula inventada. Num app de educação isso ensina errado — e o erro se propaga justamente pela fila de revisão, que é o que fixa memória.
+>
+> Três: a stack é aberta das duas pontas, com a mesma API servindo o aluno e o professor."
 
-`[TROCA]`
-
----
-
+O item dois é o que fica na cabeça do jurado — diga devagar. Deixa: "E como isso se sustenta?"
 ## Slide 10 · Modelo de negócio e fecho · 20s
+
+**O ponto deste slide:** Fechar mostrando que a conta fecha **por causa** da arquitetura, não apesar dela. A aula do professor é gerada uma vez e consumida por 34 alunos; a geração que o aluno pede é 1:1. Por isso a escola pública sai de graça sem quebrar o modelo. Termine no lema e segure o silêncio.
 
 **No slide:** três portas + a unidade econômica + "O problema nunca foi o formato."
 
