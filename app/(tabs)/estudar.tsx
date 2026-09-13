@@ -206,7 +206,7 @@ export default function EstudarScreen() {
               <IconOutline name="thunderbolt" size={19} color={memfeedColor.surface} />
             )}
             <Text style={styles.ctaText}>
-              {generate.isPending ? 'Gerando os cards…' : 'Gerar feed'}
+              {generate.isPending ? 'Gerando com Gemini…' : 'Gerar feed'}
             </Text>
           </Pressable>
         </View>
