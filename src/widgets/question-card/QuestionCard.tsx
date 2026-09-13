@@ -111,7 +111,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
   };
 
   return (
-    <View style={{ height, width: '100%' }} className="gap-3 px-4 pt-2">
+    <View style={{ height, width: '100%' }} className="gap-2 overflow-hidden px-4 pt-2 pb-1">
       <View className="flex-row items-center justify-between gap-2">
         <View
           style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
@@ -129,7 +129,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
         </View>
       </View>
 
-      <View className="h-36 w-full overflow-hidden rounded-2xl bg-surface-soft">
+      <View className="min-h-0 w-full flex-[2] overflow-hidden rounded-2xl bg-surface-soft">
         <Image source={{ uri: card.imageUrl }} className="h-full w-full" resizeMode="cover" />
         <View className="absolute inset-x-2.5 bottom-2.5 flex-row items-center justify-between">
           <Pill icon="brilho" label="Recall Flashcard Hook" tone="neutral" />
@@ -137,7 +137,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
         </View>
       </View>
 
-      <Text className="text-lg font-jk-bold leading-snug text-text">
+      <Text className="shrink-0 text-base font-jk-bold leading-snug text-text">
         {question.before}
         {question.match ? (
           <Text className="text-primary-deep underline font-jk">{question.match}</Text>
@@ -145,7 +145,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
         {question.after}
       </Text>
 
-      <View className="flex-row gap-3">
+      <View className="min-h-0 flex-[3] flex-row gap-3">
         <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }} className="gap-2.5">
           {card.options.map((option) => (
             <OptionRow
@@ -181,7 +181,9 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
         </View>
       </View>
 
-      <SelfEvaluation fsrsData={card.fsrs} onRate={onRate} disabled={selectedOptionId === null} />
+      <View className="shrink-0">
+        <SelfEvaluation fsrsData={card.fsrs} onRate={onRate} disabled={selectedOptionId === null} />
+      </View>
 
       <Text className="text-center text-xs text-text-muted opacity-60 font-jk">
         Avalie sua lembrança para avançar automaticamente
