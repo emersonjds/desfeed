@@ -18,7 +18,7 @@ Convenções deste documento:
 
 **No slide:** "Memfeed" grande. "A interface do TikTok, o algoritmo do Ebbinghaus." O parágrafo de abertura. Fundo escuro.
 
-> Bom dia. Meu nome é Emerson, e isso aqui é o Memfeed.
+> Bom dia. Meu nome é Thiago, e isso aqui é o Memfeed.
 >
 > Um professor dá uma aula de biologia numa terça-feira. (pausa) A turma entendeu. Todo mundo entendeu.
 >
