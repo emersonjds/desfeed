@@ -1,10 +1,12 @@
 import { IconFill, IconOutline } from '@ant-design/icons-react-native'
+import * as Haptics from 'expo-haptics'
 import { List, Tag } from '@ant-design/react-native'
 import { useEffect, useMemo, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
 import { formatReviewLabel, type SelfEvalRating } from '../../entities/card/fsrs'
 import type { Card, OptionId } from '../../entities/card/schema'
+import { AnswerFeedback } from '../../features/answer-card/AnswerFeedback'
 import { SelfEvaluation } from '../../features/answer-card/SelfEvaluation'
 import { desfeedColor, desfeedFont } from '../../shared/theme'
 import { TimerRing } from './TimerRing'
@@ -338,6 +340,17 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
     return () => clearInterval(timer)
   }, [card.id])
 
+  const pickOption = (optionId: OptionId) => {
+    if (selectedOptionId) return
+    setSelectedOptionId(optionId)
+    // Vibração diferente para acerto e erro: o corpo entende antes dos olhos lerem.
+    void Haptics.notificationAsync(
+      optionId === card.correctOptionId
+        ? Haptics.NotificationFeedbackType.Success
+        : Haptics.NotificationFeedbackType.Error,
+    )
+  }
+
   const optionStateFor = (optionId: OptionId): OptionState => {
     if (!selectedOptionId) {
       return 'idle'
@@ -407,7 +420,7 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
                 styles={{ Line: styles.optionLine, Content: styles.optionContent }}
                 underlayColor={desfeedColor.surfaceSoft}
                 disabled={selectedOptionId !== null}
-                onPress={() => setSelectedOptionId(option.id)}
+                onPress={() => pickOption(option.id)}
                 thumb={<OptionBadge letter={option.id} state={state} />}
                 extra={<OptionMark state={state} />}
               >
@@ -426,6 +439,16 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
           <RailItem icon="share-alt" value={compactCount(card.shareCount)} />
         </View>
       </View>
+
+      {selectedOptionId ? (
+        <AnswerFeedback
+          isCorrect={selectedOptionId === card.correctOptionId}
+          correctLabel={
+            card.options.find((option) => option.id === card.correctOptionId)?.label ?? ''
+          }
+          xpGained={xpReward}
+        />
+      ) : null}
 
       <SelfEvaluation
         fsrsData={card.fsrs}
