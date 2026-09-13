@@ -72,20 +72,28 @@ limpe, não mova, não force.
 ## Stack (travada — não reabra sem falar com o Emerson)
 
 **Mobile** · Expo SDK 57 · React Native 0.86 · expo-router · TypeScript estrito
-NativeWind **4.2.6** (GA — *não* a v5, ainda preview) · react-native-reusables (shadcn portado)
+`@ant-design/react-native` **5.4.3** + `@ant-design/icons-react-native` — *não* `antd-mobile`,
+que é React DOM e devolve página web dentro do celular
 TanStack Query · Zustand · Zod · `ts-fsrs@5.4.2` · `expo-sqlite` + `drizzle-orm`
-**MSW** (`msw@2` via `msw/native` + `react-native-url-polyfill`) — mocka a API enquanto o
-backend não existe
+Mock de API em `src/shared/api/mocks/routes.ts` enquanto o backend não existe
 
-### Enquanto não há backend: MSW, não dado hardcoded
+### Enquanto não há backend: rota mockada, não dado hardcoded
 
-O app fala com a API de verdade desde o primeiro dia — `fetch` real, hook de query real,
-`zod.parse` real na resposta. O que muda é só quem responde: em desenvolvimento, o MSW
-intercepta. Handlers em `src/shared/api/mocks/`, ligados apenas em `__DEV__`.
+O app fala com a API de verdade desde o primeiro dia — hook de query real, estado de
+carregamento e de erro reais, `zod.parse` real na resposta. O que muda é só quem responde:
+`src/shared/api/client.ts` resolve pelo `mocks/routes.ts`, com latência simulada.
 
 Isso não é preferência de teste: componente que recebe dado hardcoded nunca exercita estado
 de carregamento, de erro nem de lista vazia — e esses três são metade do trabalho. Quando o
-backend subir, some o `setupServer` e nada mais muda.
+backend subir, `shouldUseDirectMock` vira `false` e nada mais muda.
+
+O MSW saiu: interceptar a rede de verdade no Hermes exigia `react-native-fetch-api` e
+polyfills de stream, e esses pacotes chamam módulo nativo — o que derruba o build web com
+`__fbBatchedBridgeConfig is not set`. A demo publicada vale mais que a fidelidade da
+interceptação.
+
+**`EXPO_PUBLIC_USE_MOCKS=true` é obrigatório no build de demo.** `__DEV__` é falso em
+produção; sem a flag, toda tela publicada cai no estado de erro.
 
 **Backend** · Node · Fastify · `fastify-type-provider-zod` · `@fastify/swagger` · socket.io · PostgreSQL
 
@@ -93,8 +101,8 @@ backend subir, some o `setupServer` e nada mais muda.
 
 ### A restrição que governa as outras
 
-O app **precisa rodar no Expo Go**. É assim que o Emerson distribui para testadores: QR code,
-sem instalação. Se uma dependência exige módulo nativo customizado, ela está fora.
+O app **precisa rodar no Expo Go** e **exportar para web**. São os dois caminhos de teste sem
+instalação: QR code para quem tem o Expo Go, link para todo o resto. Se uma dependência exige módulo nativo customizado, ela está fora.
 
 Quebram o Expo Go: `react-native-mmkv`, `react-native-skia`.
 Rodam: `@shopify/flash-list`, `react-native-svg`, `expo-sqlite`, `expo-camera`,
@@ -130,16 +138,25 @@ text-muted     #131b2e
 accent         #4f46e5   índigo — arcos do ícone, dado secundário
 ```
 
-Raio: `rounded-full` em pílula e badge · `rounded-xl` / `rounded-2xl` em card.
-**Sombra estilo Duolingo — sólida, sem blur**: `shadow-[0_4px_0_0_#059669]` no botão
-primário, `shadow-[0_2px_0_0_#cbd5e1]` no neutro.
+Raio: `999` em pílula e badge · `16` / `20` em card.
+**Sombra estilo Duolingo — sólida, sem blur**: `borderBottomWidth: 4` com
+`borderBottomColor: primaryDeep` no botão primário, `2` com `border` no neutro.
 
-### Convertendo tela do Stitch
+Os tokens vivem em `src/shared/theme.ts`. Cor literal em `StyleSheet` de tela é bug.
 
-O Stitch exporta HTML + Tailwind e NativeWind usa as mesmas classes, então o trabalho
-não é reescrever estilo — é trocar a árvore: `div`→`View`, `p`/`span`→`Text`,
-`img`→`Image`, `button`→`Pressable`. Derrube o que só existe na web: `hover:`, `grid`,
-`position: fixed`, pseudo-elementos. Todo texto vive dentro de `<Text>`, sem exceção.
+### O Stitch é referência visual, nunca código-fonte
+
+`docs/design/stitch/html/` existe para ser **olhado**, não importado. Traduzir aquele HTML
+em árvore de `View` foi exatamente o que produziu uma página web dentro do celular, e o app
+inteiro precisou ser refeito por causa disso.
+
+O caminho certo: abra o PNG, entenda a intenção — hierarquia, ritmo, peso — e construa com
+componente do Ant Design Mobile. Só adapte um componente quando ele realmente não cobre o
+caso; componente adaptado é dívida, componente reescrito é dívida com juros.
+
+**Nunca meça tela para posicionar elemento.** O React Native tem flex, `SafeAreaView` e
+`useSafeAreaInsets` para isso. `onLayout` só se presta ao que depende de fato da altura do
+viewport — a paginação do feed, e nada além.
 
 ## Regras de código
 

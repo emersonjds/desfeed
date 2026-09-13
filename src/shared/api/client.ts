@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import type { z } from 'zod'
 
 import { API_BASE_URL } from './config'
@@ -20,11 +19,14 @@ const MOCK_LATENCY_MS = 280
 
 const delay = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms))
 
-// No web o MSW intercepta a rede de verdade e é o caminho mais fiel. No nativo a
-// interceptação depende de `Response` com corpo em stream, que o Hermes não entrega — o
-// corpo chegava vazio. Aqui o transporte resolve pela MESMA definição de rota que os
-// handlers do MSW usam, então web e celular nunca respondem coisas diferentes.
-const shouldUseDirectMock = __DEV__ && Platform.OS !== 'web'
+// `__DEV__` é falso em build de produção, então uma demo publicada ficaria sem dado
+// nenhum. `EXPO_PUBLIC_USE_MOCKS` é inlinado no bundle e liga os mocks também no build.
+const mocksEnabled = process.env.EXPO_PUBLIC_USE_MOCKS === 'true' || __DEV__
+
+// O transporte resolve pela mesma definição de rota que os handlers do MSW usam
+// (`mocks/routes.ts`), em todas as plataformas. Interceptar a rede de verdade exigia
+// polyfills nativos que quebram no build web, e o ganho de fidelidade não pagava isso.
+const shouldUseDirectMock = mocksEnabled
 
 export const fetchJson = async <Schema extends z.ZodType>(
   path: string,
