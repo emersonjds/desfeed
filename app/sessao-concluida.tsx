@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useSessionTodayQuery } from '../src/entities/session/queries'
 import { useDailySessionStore } from '../src/features/daily-session/store'
-import { desfeedColor, desfeedFont } from '../src/shared/theme'
+import { memfeedColor, memfeedFont } from '../src/shared/theme'
 
 const formatFocusTime = (startedAt: Date | null): string => {
   if (!startedAt) {
@@ -32,7 +32,7 @@ const formatNextReview = (nextDue: Date | null): string => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   body: {
     flex: 1,
@@ -50,34 +50,34 @@ const styles = StyleSheet.create({
     borderRadius: 39,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   heroTag: {
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 5,
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
   },
   heroTagText: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.6,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
     textTransform: 'uppercase',
   },
   heroTitle: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 25,
     letterSpacing: -0.5,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
     textAlign: 'center',
     marginTop: 4,
   },
   heroText: {
-    fontFamily: desfeedFont.regular,
+    fontFamily: memfeedFont.regular,
     fontSize: 14,
     lineHeight: 20,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
     textAlign: 'center',
   },
   quote: {
@@ -85,20 +85,20 @@ const styles = StyleSheet.create({
     gap: 12,
     borderRadius: 18,
     padding: 14,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   quoteBar: {
     width: 5,
     borderRadius: 999,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
   },
   quoteText: {
     flex: 1,
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 14,
     lineHeight: 21,
     fontStyle: 'italic',
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   statRow: {
     gap: 12,
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     gap: 8,
     borderRadius: 18,
     padding: 14,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   statHeader: {
     flexDirection: 'row',
@@ -116,22 +116,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   statLabel: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 10,
     letterSpacing: 0.6,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
     textTransform: 'uppercase',
     flexShrink: 1,
   },
   statValue: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 20,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   statHelper: {
-    fontFamily: desfeedFont.regular,
+    fontFamily: memfeedFont.regular,
     fontSize: 12,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
     marginTop: 2,
   },
   footer: {
@@ -143,27 +143,27 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     height: 54,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
   },
   neutralAction: {
     borderRadius: 16,
     height: 54,
     borderWidth: 0,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.borderSoft,
+    borderBottomColor: memfeedColor.borderSoft,
   },
   restedBlock: {
     height: 54,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
   },
   restedText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 15,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
   },
 })
 
@@ -183,7 +183,7 @@ const StatCard = ({
       <Text style={styles.statLabel} numberOfLines={1}>
         {label}
       </Text>
-      <IconOutline name={icon} size={17} color={desfeedColor.primaryDeep} />
+      <IconOutline name={icon} size={17} color={memfeedColor.primaryDeep} />
     </View>
     <View>
       <Text style={styles.statValue}>{value}</Text>
@@ -209,7 +209,7 @@ export default function SessaoConcluidaScreen() {
       <View style={styles.body}>
         <View style={styles.hero}>
           <View style={styles.heroMark}>
-            <IconOutline name="experiment" size={40} color={desfeedColor.primary} />
+            <IconOutline name="experiment" size={40} color={memfeedColor.primary} />
           </View>
           <View style={styles.heroTag}>
             <Text style={styles.heroTagText}>Modo repouso consciente</Text>
@@ -268,7 +268,7 @@ export default function SessaoConcluidaScreen() {
               Fechar app e descansar
             </Button>
           )}
-          <Button style={styles.neutralAction} onPress={() => router.push('/cadernos')}>
+          <Button style={styles.neutralAction} onPress={() => router.push('/materias')}>
             Ver meus cadernos e estatísticas
           </Button>
         </View>

@@ -32,7 +32,7 @@ type TabIconSlotProps = {
   focused: boolean
   children: ReactNode
   haloColor?: string
-  /** O botão de escanear já é um círculo elevado; ele salta menos que os glifos comuns. */
+  /** O botão de estudar já é um círculo elevado; ele salta menos que os glifos comuns. */
   lift?: number
 }
 

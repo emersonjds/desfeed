@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import Svg, { Circle, Path } from 'react-native-svg'
 
-import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { memfeedColor, memfeedFont } from '../../shared/theme'
 
 const HORIZON_DAYS = 30
 const CHART_HEIGHT = 110
@@ -18,7 +18,7 @@ type ForgettingCurveProps = {
 const retentionAt = (day: number, stabilityDays: number): number =>
   Math.exp(-day / stabilityDays)
 
-// A curva do Desfeed é a mesma exponencial do esquecimento com a estabilidade que o FSRS
+// A curva do Memfeed é a mesma exponencial do esquecimento com a estabilidade que o FSRS
 // alcançou: dado que o aluno retém `retentionPercent` no dia 30, S = -30 / ln(retenção).
 const stabilityFromRetention = (retentionPercent: number): number => {
   const retention = Math.min(Math.max(retentionPercent, 1), 99.9) / 100
@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   axisLabel: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 10,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   axisLabelStrong: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 10,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
   },
   legend: {
     flexDirection: 'row',
@@ -68,32 +68,32 @@ const styles = StyleSheet.create({
     width: 14,
     height: 3,
     borderRadius: 2,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
   },
   legendDashed: {
     width: 14,
     height: 3,
     borderRadius: 2,
-    backgroundColor: desfeedColor.border,
+    backgroundColor: memfeedColor.border,
   },
   legendText: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 11,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   plot: {
     borderRadius: 14,
     overflow: 'hidden',
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
 })
 
 export const ForgettingCurve = ({ retentionPercent, chartWidth }: ForgettingCurveProps) => {
   const stability = stabilityFromRetention(retentionPercent)
-  const desfeedPath = buildPath(stability, chartWidth)
+  const memfeedPath = buildPath(stability, chartWidth)
   const naturalPath = buildPath(NATURAL_STABILITY_DAYS, chartWidth)
   // A área preenchida é a distância entre as duas curvas: o que a revisão espaçada segurou.
-  const gapPath = `${desfeedPath} L ${curvePoints(NATURAL_STABILITY_DAYS, chartWidth)
+  const gapPath = `${memfeedPath} L ${curvePoints(NATURAL_STABILITY_DAYS, chartWidth)
     .slice()
     .reverse()
     .join(' L ')} Z`
@@ -102,17 +102,17 @@ export const ForgettingCurve = ({ retentionPercent, chartWidth }: ForgettingCurv
     <View>
       <View style={styles.plot}>
         <Svg width={chartWidth} height={CHART_HEIGHT}>
-          <Path d={gapPath} fill={desfeedColor.primary} fillOpacity={0.14} />
+          <Path d={gapPath} fill={memfeedColor.primary} fillOpacity={0.14} />
           <Path
             d={naturalPath}
-            stroke={desfeedColor.border}
+            stroke={memfeedColor.border}
             strokeWidth={2}
             strokeDasharray="5 5"
             fill="none"
           />
           <Path
-            d={desfeedPath}
-            stroke={desfeedColor.primary}
+            d={memfeedPath}
+            stroke={memfeedColor.primary}
             strokeWidth={3}
             strokeLinecap="round"
             fill="none"
@@ -123,8 +123,8 @@ export const ForgettingCurve = ({ retentionPercent, chartWidth }: ForgettingCurv
               cx={(day / HORIZON_DAYS) * chartWidth}
               cy={plotY(retentionAt(day, stability))}
               r={3.5}
-              fill={desfeedColor.surface}
-              stroke={desfeedColor.primary}
+              fill={memfeedColor.surface}
+              stroke={memfeedColor.primary}
               strokeWidth={2}
             />
           ))}
@@ -144,7 +144,7 @@ export const ForgettingCurve = ({ retentionPercent, chartWidth }: ForgettingCurv
       <View style={styles.legend}>
         <View style={styles.legendItem}>
           <View style={styles.legendSolid} />
-          <Text style={styles.legendText}>Com revisão do Desfeed</Text>
+          <Text style={styles.legendText}>Com revisão do Memfeed</Text>
         </View>
         <View style={styles.legendItem}>
           <View style={styles.legendDashed} />

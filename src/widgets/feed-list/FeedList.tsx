@@ -60,11 +60,12 @@ export const FeedList = ({
             offset: pageHeight * index,
             index,
           })}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <View style={{ height: pageHeight }}>
               <QuestionCard
                 card={item}
                 xpReward={xpReward}
+                isActive={index === activeIndex}
                 onRate={(rating) => onRate(item, rating)}
               />
             </View>

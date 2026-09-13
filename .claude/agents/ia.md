@@ -27,7 +27,7 @@ usa `claude-sonnet-5` via `/v1/messages` com bloco de imagem e JSON schema de sa
 Isso não é preferência de estilo — é a tese do produto inteiro. O estudo do MIT Media Lab
 ("Your Brain on ChatGPT", Kosmyna et al. 2025) mediu −55% de conectividade neural em quem
 escreve com LLM, e 83% de pessoas incapazes de citar uma frase do texto que "escreveram".
-Se o Desfeed entregar resposta pronta, ele vira exatamente o problema que diz combater — e
+Se o Memfeed entregar resposta pronta, ele vira exatamente o problema que diz combater — e
 o júri vai perguntar isso.
 
 Um card bom **obriga recuperação**. Um card que pode ser respondido relendo o enunciado é

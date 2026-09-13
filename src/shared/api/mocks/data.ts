@@ -2,7 +2,6 @@ import { cardSchema, type Card } from '../../../entities/card/schema';
 import type { Profile } from '../../../entities/profile/schema';
 import type { SessionToday } from '../../../entities/session/schema';
 import { notebookLibrarySchema, type NotebookLibrary } from '../../../entities/notebook/library-schema'
-import { rankingSchema, type Ranking } from '../../../entities/ranking/schema'
 
 const now = () => new Date();
 
@@ -25,10 +24,11 @@ const buildFsrs = (overrides: Partial<Card['fsrs']>): Card['fsrs'] => ({
 const rawCards: Card[] = [
   {
     id: 'card-atp-synthetase',
+    origin: { kind: 'turma', teacher: 'Prof. Marcos', lesson: 'Respiração celular' },
     subject: 'Bioquímica Médica',
     chapter: 'Cap. 4',
     reviewNumber: 3,
-    imageUrl: 'https://picsum.photos/seed/mitochondria/800/600',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Atp_synthase_pt.png/960px-Atp_synthase_pt.png',
     keyTerm: 'ATP Synthetase',
     question:
       'Qual organela realiza a fosforilação oxidativa gerando a maior fração de ATP durante a respiração celular?',
@@ -47,10 +47,11 @@ const rawCards: Card[] = [
   },
   {
     id: 'card-carnot',
+    origin: { kind: 'turma', teacher: 'Profa. Helena', lesson: 'Máquinas térmicas' },
     subject: 'Física II',
     chapter: 'Termodinâmica',
     reviewNumber: 1,
-    imageUrl: 'https://picsum.photos/seed/carnot/800/600',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Carnot-cycle-p-V-diagram.svg/langpt-960px-Carnot-cycle-p-V-diagram.svg.png',
     keyTerm: 'Ciclo de Carnot',
     question: 'Qual é o rendimento máximo teórico de uma máquina térmica operando entre duas fontes de calor?',
     highlightTerm: 'rendimento máximo teórico',
@@ -68,10 +69,11 @@ const rawCards: Card[] = [
   },
   {
     id: 'card-entropia',
+    origin: { kind: 'proprio', theme: 'Entropia para a prova de sexta' },
     subject: 'Física II',
     chapter: 'Termodinâmica',
     reviewNumber: 2,
-    imageUrl: 'https://picsum.photos/seed/entropia/800/600',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Carnot_Cycle_T-S_diagram.svg/960px-Carnot_Cycle_T-S_diagram.svg.png',
     keyTerm: 'Entropia',
     question: 'Em um sistema isolado, o que acontece com a entropia durante um processo espontâneo?',
     highlightTerm: 'processo espontâneo',
@@ -150,7 +152,7 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
       id: 'nb-biologia-celular',
       title: 'Biologia Celular',
       subject: 'Bioquímica Médica',
-      coverUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400&q=70',
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Protein_folding_figure.png/960px-Protein_folding_figure.png',
       status: 'revisao-hoje',
       cardCount: 48,
       retentionPercent: 96,
@@ -161,7 +163,7 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
       id: 'nb-direito-constitucional',
       title: 'Direito Constitucional',
       subject: 'Direitos Fundamentais',
-      coverUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&q=70',
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Declaration_of_the_Rights_of_Man_and_of_the_Citizen_in_1789.jpg/960px-Declaration_of_the_Rights_of_Man_and_of_the_Citizen_in_1789.jpg',
       status: 'estavel',
       cardCount: 72,
       retentionPercent: 91,
@@ -172,7 +174,7 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
       id: 'nb-calculo-derivadas',
       title: 'Cálculo I — Derivadas',
       subject: 'Regra da cadeia e quociente',
-      coverUrl: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=400&q=70',
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Newton_iteration.png/960px-Newton_iteration.png',
       status: 'reforco',
       cardCount: 30,
       retentionPercent: 68,
@@ -183,7 +185,7 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
       id: 'nb-termodinamica',
       title: 'Física II — Termodinâmica',
       subject: 'Ciclo de Carnot e entropia',
-      coverUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=70',
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Carnot_heat_engine_2.svg/langpt-960px-Carnot_heat_engine_2.svg.png',
       status: 'estavel',
       cardCount: 41,
       retentionPercent: 89,
@@ -219,91 +221,3 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
   ],
 })
 
-export const mockRanking: Ranking = rankingSchema.parse({
-  leagueName: 'Liga Sinapse Diamante',
-  leagueRankLabel: 'Top 7% entre todos os estudantes',
-  endsInLabel: 'Termina em 2d 14h',
-  promotionCutoff: 5,
-  relegationCutoff: 8,
-  podium: [
-    {
-      id: 'rk-bia',
-      position: 1,
-      name: 'Bia Medeiros',
-      headline: 'Bioquímica Celular',
-      xp: 2150,
-      trend: 'estavel',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-rodrigo',
-      position: 2,
-      name: 'Rodrigo Ferraz',
-      headline: 'Direito Constitucional',
-      xp: 1890,
-      trend: 'subindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-camila',
-      position: 3,
-      name: 'Camila Sato',
-      headline: 'Física II',
-      xp: 1620,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-  ],
-  entries: [
-    {
-      id: 'rk-lucas',
-      position: 4,
-      name: 'Lucas Rocha',
-      headline: 'Você · 3 sessões hoje',
-      xp: 1420,
-      trend: 'subindo',
-      isCurrentUser: true,
-    },
-    {
-      id: 'rk-matheus',
-      position: 5,
-      name: 'Matheus Silva',
-      headline: 'Revisou há 1 hora',
-      xp: 1380,
-      trend: 'estavel',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-ana',
-      position: 6,
-      name: 'Ana Paula Vieira',
-      headline: 'Em sessão de FSRS ativa',
-      xp: 1210,
-      trend: 'subindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-gabriel',
-      position: 7,
-      name: 'Gabriel Lima',
-      headline: 'Último na zona segura',
-      xp: 1150,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-mariana',
-      position: 8,
-      name: 'Mariana Costa',
-      headline: 'Precisa de 170 XP para sair',
-      xp: 980,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-  ],
-  duel: {
-    title: 'Micro-duelo de flashcards',
-    description: 'Desafie um amigo no mesmo caderno e veja quem recupera mais rápido.',
-    rewardLabel: 'Recompensa dobrada',
-  },
-})

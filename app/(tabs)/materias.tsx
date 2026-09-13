@@ -10,80 +10,80 @@ import {
   type NotebookSummary,
 } from '../../src/entities/notebook/library-schema'
 import { useNotebookLibraryQuery } from '../../src/entities/notebook/library-queries'
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 
 const RING_SIZE = 84
 const RING_STROKE = 8
 
 const statusStyle: Record<NotebookStatus, { label: string; color: string; background: string }> = {
-  'revisao-hoje': { label: 'Revisão hoje', color: desfeedColor.primaryDeep, background: desfeedColor.primarySoft },
-  estavel: { label: 'Retenção estável', color: desfeedColor.accent, background: desfeedColor.accentSoft },
-  reforco: { label: 'Reforço necessário', color: desfeedColor.warning, background: '#fef3c7' },
+  'revisao-hoje': { label: 'Revisão hoje', color: memfeedColor.primaryDeep, background: memfeedColor.primarySoft },
+  estavel: { label: 'Retenção estável', color: memfeedColor.accent, background: memfeedColor.accentSoft },
+  reforco: { label: 'Reforço necessário', color: memfeedColor.warning, background: '#fef3c7' },
 }
 
 const urgencyColor: Record<ForgettingPeak['urgency'], string> = {
-  alta: desfeedColor.error,
-  media: desfeedColor.warning,
-  baixa: desfeedColor.primary,
+  alta: memfeedColor.error,
+  media: memfeedColor.warning,
+  baixa: memfeedColor.primary,
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: desfeedColor.surfaceSoft },
+  screen: { flex: 1, backgroundColor: memfeedColor.surfaceSoft },
   content: { padding: 14, gap: 12, paddingBottom: 28 },
-  title: { fontFamily: desfeedFont.extrabold, fontSize: 22, color: desfeedColor.text },
-  card: { backgroundColor: desfeedColor.surface, borderRadius: 18, padding: 16 },
+  title: { fontFamily: memfeedFont.extrabold, fontSize: 22, color: memfeedColor.text },
+  card: { backgroundColor: memfeedColor.surface, borderRadius: 18, padding: 16 },
   healthRow: { flexDirection: 'row', alignItems: 'center', gap: 16 },
   healthInfo: { flex: 1, gap: 4 },
   eyebrow: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.6,
     textTransform: 'uppercase',
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
   },
-  healthTitle: { fontFamily: desfeedFont.extrabold, fontSize: 19, color: desfeedColor.text },
-  muted: { fontFamily: desfeedFont.medium, fontSize: 13, color: desfeedColor.textMuted, lineHeight: 18 },
+  healthTitle: { fontFamily: memfeedFont.extrabold, fontSize: 19, color: memfeedColor.text },
+  muted: { fontFamily: memfeedFont.medium, fontSize: 13, color: memfeedColor.textMuted, lineHeight: 18 },
   ringWrap: { width: RING_SIZE, height: RING_SIZE, alignItems: 'center', justifyContent: 'center' },
   ringLabel: { position: 'absolute', alignItems: 'center' },
-  ringValue: { fontFamily: desfeedFont.extrabold, fontSize: 19, color: desfeedColor.primaryDeep },
-  ringCaption: { fontFamily: desfeedFont.bold, fontSize: 9, color: desfeedColor.textMuted },
+  ringValue: { fontFamily: memfeedFont.extrabold, fontSize: 19, color: memfeedColor.primaryDeep },
+  ringCaption: { fontFamily: memfeedFont.bold, fontSize: 9, color: memfeedColor.textMuted },
   stabilityRow: {
     marginTop: 12,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },
-  stabilityText: { flex: 1, fontFamily: desfeedFont.semibold, fontSize: 13, color: desfeedColor.text },
-  stabilityValue: { fontFamily: desfeedFont.extrabold, fontSize: 13, color: desfeedColor.primaryDeep },
+  stabilityText: { flex: 1, fontFamily: memfeedFont.semibold, fontSize: 13, color: memfeedColor.text },
+  stabilityValue: { fontFamily: memfeedFont.extrabold, fontSize: 13, color: memfeedColor.primaryDeep },
   sectionTitle: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 12,
     letterSpacing: 0.6,
     textTransform: 'uppercase',
-    color: desfeedColor.text,
+    color: memfeedColor.text,
     marginTop: 4,
   },
   notebook: { flexDirection: 'row', gap: 12, alignItems: 'center' },
-  cover: { width: 60, height: 60, borderRadius: 14, backgroundColor: desfeedColor.surfaceSoft },
+  cover: { width: 60, height: 60, borderRadius: 14, backgroundColor: memfeedColor.surfaceSoft },
   notebookInfo: { flex: 1, gap: 3 },
-  notebookTitle: { fontFamily: desfeedFont.bold, fontSize: 15, color: desfeedColor.text },
+  notebookTitle: { fontFamily: memfeedFont.bold, fontSize: 15, color: memfeedColor.text },
   badge: { alignSelf: 'flex-start', borderRadius: 999, paddingHorizontal: 9, paddingVertical: 3 },
-  badgeText: { fontFamily: desfeedFont.bold, fontSize: 10 },
-  notebookMeta: { fontFamily: desfeedFont.medium, fontSize: 12, color: desfeedColor.textMuted },
+  badgeText: { fontFamily: memfeedFont.bold, fontSize: 10 },
+  notebookMeta: { fontFamily: memfeedFont.medium, fontSize: 12, color: memfeedColor.textMuted },
   peak: { flexDirection: 'row', gap: 10 },
   peakDot: { width: 9, height: 9, borderRadius: 5, marginTop: 5 },
   peakInfo: { flex: 1, gap: 2 },
   peakWhen: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 10,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
-  peakTitle: { fontFamily: desfeedFont.bold, fontSize: 14, color: desfeedColor.text },
+  peakTitle: { fontFamily: memfeedFont.bold, fontSize: 14, color: memfeedColor.text },
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 10, padding: 24 },
 })
 
@@ -99,7 +99,7 @@ const HealthRing = ({ percent }: { percent: number }) => {
           cx={RING_SIZE / 2}
           cy={RING_SIZE / 2}
           r={radius}
-          stroke={desfeedColor.borderSoft}
+          stroke={memfeedColor.borderSoft}
           strokeWidth={RING_STROKE}
           fill="none"
         />
@@ -107,7 +107,7 @@ const HealthRing = ({ percent }: { percent: number }) => {
           cx={RING_SIZE / 2}
           cy={RING_SIZE / 2}
           r={radius}
-          stroke={desfeedColor.primary}
+          stroke={memfeedColor.primary}
           strokeWidth={RING_STROKE}
           strokeLinecap="round"
           strokeDasharray={`${filled} ${circumference}`}
@@ -139,20 +139,20 @@ const NotebookRow = ({ notebook }: { notebook: NotebookSummary }) => {
         </Text>
         <Text style={styles.notebookMeta}>{notebook.nextReviewLabel}</Text>
       </View>
-      <IconOutline name="right" size={18} color={desfeedColor.textMuted} />
+      <IconOutline name="right" size={18} color={memfeedColor.textMuted} />
     </Pressable>
   )
 }
 
-export default function CadernosScreen() {
+export default function MateriasScreen() {
   const libraryQuery = useNotebookLibraryQuery()
 
   if (libraryQuery.isLoading) {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <View style={styles.centered}>
-          <ActivityIndicator color={desfeedColor.primary} />
-          <Text style={styles.muted}>Carregando seus cadernos…</Text>
+          <ActivityIndicator color={memfeedColor.primary} />
+          <Text style={styles.muted}>Carregando suas matérias…</Text>
         </View>
       </SafeAreaView>
     )
@@ -162,7 +162,7 @@ export default function CadernosScreen() {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <Result
-          title="Não deu para carregar seus cadernos"
+          title="Não deu para carregar suas matérias"
           message="Confira sua conexão e tente de novo."
           buttonText="Tentar novamente"
           onButtonClick={() => libraryQuery.refetch()}
@@ -176,7 +176,7 @@ export default function CadernosScreen() {
   return (
     <SafeAreaView style={styles.screen} edges={['top']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Cadernos</Text>
+        <Text style={styles.title}>Matérias</Text>
 
         <View style={styles.card}>
           <View style={styles.healthRow}>
@@ -190,14 +190,14 @@ export default function CadernosScreen() {
             <HealthRing percent={library.globalRetentionPercent} />
           </View>
           <View style={styles.stabilityRow}>
-            <IconOutline name="line-chart" size={17} color={desfeedColor.primaryDeep} />
+            <IconOutline name="line-chart" size={17} color={memfeedColor.primaryDeep} />
             <Text style={styles.stabilityText}>Índice de estabilidade</Text>
             <Text style={styles.stabilityValue}>{`S = ${library.stabilityDays} dias`}</Text>
           </View>
         </View>
 
         <Text style={styles.sectionTitle}>
-          {`Cadernos ativos · ${library.notebooks.length}`}
+          {`Matérias ativas · ${library.notebooks.length}`}
         </Text>
 
         {library.notebooks.length === 0 ? (

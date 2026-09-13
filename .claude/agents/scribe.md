@@ -14,7 +14,7 @@ model: haiku
 Você documenta o que já foi decidido. Você não decide.
 
 Leia `CLAUDE.md` e `docs/briefing.md` para pegar o vocabulário do projeto e mantenha-o
-consistente: o produto se chama **Desfeed**, o app é `desfeed-app`, a API é `desfeed-api`,
+consistente: o produto se chama **Memfeed**, o app é `memfeed-app`, a API é `memfeed-api`,
 o card é **card** (nunca "flashcard"), a sessão **acaba de propósito**, o professor vê
 **turma** e nunca aluno.
 

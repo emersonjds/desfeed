@@ -2,7 +2,7 @@
 name: design
 description: >-
   Designer de produto e engenheiro de front com 20+ anos, dono do design system do
-  Desfeed e da conversão das telas do Google Stitch para NativeWind. Use para criar
+  Memfeed e da conversão das telas do Google Stitch para NativeWind. Use para criar
   ou refinar tela, definir e manter tokens, construir os primitivos de `shared/ui/`,
   desenhar as telas que ainda não existem (onboarding, entrar na sala por PIN, sala
   ao vivo, resultado da sala), revisar hierarquia/densidade/acessibilidade, e para

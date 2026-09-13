@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useProfileQuery } from '../../src/entities/profile/queries'
 import type { Badge, BadgeTier } from '../../src/entities/profile/schema'
 import { useSessionTodayQuery } from '../../src/entities/session/queries'
-import { desfeedColor, desfeedFont } from '../../src/shared/theme'
+import { memfeedColor, memfeedFont } from '../../src/shared/theme'
 import { ForgettingCurve, useChartWidth } from '../../src/widgets/profile/ForgettingCurve'
 
 const SCREEN_PADDING = 12
@@ -26,7 +26,7 @@ const badgeTone: Record<BadgeTier, { background: string; icon: string; label: st
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   centered: {
     flex: 1,
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   headerTitle: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 19,
     letterSpacing: -0.4,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   headerStats: {
     flexDirection: 'row',
@@ -64,17 +64,17 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 11,
     paddingVertical: 6,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   statPillText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 13,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   card: {
     borderRadius: 18,
     padding: CARD_PADDING,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     gap: 10,
   },
   identityRow: {
@@ -88,27 +88,27 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
   },
   identityText: {
     flex: 1,
     gap: 2,
   },
   name: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 19,
     letterSpacing: -0.3,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   handle: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 13,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   headline: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 13,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   tagRow: {
     flexDirection: 'row',
@@ -116,27 +116,27 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   sectionTitle: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 11,
     letterSpacing: 0.7,
     textTransform: 'uppercase',
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   sectionHint: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 12,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   heroValue: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 40,
     letterSpacing: -1.4,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
   },
   heroUnit: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 15,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   heroRow: {
     flexDirection: 'row',
@@ -147,12 +147,12 @@ const styles = StyleSheet.create({
     height: 9,
     borderRadius: 999,
     overflow: 'hidden',
-    backgroundColor: desfeedColor.borderSoft,
+    backgroundColor: memfeedColor.borderSoft,
   },
   progressBar: {
     borderBottomWidth: 9,
     borderRadius: 999,
-    borderColor: desfeedColor.primary,
+    borderColor: memfeedColor.primary,
   },
   statGrid: {
     flexDirection: 'row',
@@ -162,19 +162,19 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 18,
     padding: CARD_PADDING,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     gap: 4,
   },
   statValue: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 26,
     letterSpacing: -0.8,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   statCaption: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 12,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   row: {
     flexDirection: 'row',
@@ -186,18 +186,18 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   rowTitle: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 15,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   rowBrief: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 12,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   divider: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: desfeedColor.borderSoft,
+    backgroundColor: memfeedColor.borderSoft,
   },
   badgeThumb: {
     width: 40,
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     gap: 4,
     borderRadius: 999,
     paddingHorizontal: 4,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   stepperButton: {
     width: 44,
@@ -227,26 +227,26 @@ const styles = StyleSheet.create({
   stepperValue: {
     minWidth: 32,
     textAlign: 'center',
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 17,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   timePill: {
     borderRadius: 999,
     paddingHorizontal: 14,
     paddingVertical: 10,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   timeText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 15,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   cta: {
     height: 52,
     borderRadius: 16,
     borderBottomWidth: 4,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
   },
 })
 
@@ -277,7 +277,7 @@ const SettingRow = ({
   control: React.ReactNode
 }) => (
   <View style={styles.row}>
-    <IconOutline name={icon} size={20} color={desfeedColor.primaryDeep} />
+    <IconOutline name={icon} size={20} color={memfeedColor.primaryDeep} />
     <View style={styles.rowText}>
       <Text style={styles.rowTitle}>{title}</Text>
       <Text style={styles.rowBrief}>{brief}</Text>
@@ -318,7 +318,7 @@ export default function PerfilScreen() {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <View style={styles.centered}>
-          <ActivityIndicator color={desfeedColor.primary} />
+          <ActivityIndicator color={memfeedColor.primary} />
           <Text style={styles.sectionHint}>Carregando seu perfil…</Text>
         </View>
       </SafeAreaView>
@@ -330,7 +330,7 @@ export default function PerfilScreen() {
       <SafeAreaView style={styles.screen} edges={['top']}>
         <View style={styles.centered}>
           <Result
-            img={<IconOutline name="close-circle" size={54} color={desfeedColor.error} />}
+            img={<IconOutline name="close-circle" size={54} color={memfeedColor.error} />}
             title="Não deu para carregar seu perfil"
             message="Confira sua conexão e tente de novo."
             buttonText="Tentar novamente"
@@ -361,7 +361,7 @@ export default function PerfilScreen() {
         <Text style={styles.headerTitle}>Perfil</Text>
         <View style={styles.headerStats}>
           <HeaderStat icon="fire" value={`${streak}d`} color="#ea580c" />
-          <HeaderStat icon="thunderbolt" value={`${xp} XP`} color={desfeedColor.warning} />
+          <HeaderStat icon="thunderbolt" value={`${xp} XP`} color={memfeedColor.warning} />
         </View>
       </View>
 
@@ -369,7 +369,7 @@ export default function PerfilScreen() {
         <View style={styles.card}>
           <View style={styles.identityRow}>
             <View style={styles.avatar}>
-              <IconOutline name="user" size={28} color={desfeedColor.primaryDeep} />
+              <IconOutline name="user" size={28} color={memfeedColor.primaryDeep} />
             </View>
             <View style={styles.identityText}>
               <Text style={styles.name}>{profile.name}</Text>
@@ -477,7 +477,7 @@ export default function PerfilScreen() {
               <Switch
                 checked={isAlgorithmOn}
                 onChange={setAlgorithmOn}
-                color={desfeedColor.primary}
+                color={memfeedColor.primary}
               />
             }
           />
@@ -490,7 +490,7 @@ export default function PerfilScreen() {
               <Switch
                 checked={isQuietNightOn}
                 onChange={setQuietNightOn}
-                color={desfeedColor.primary}
+                color={memfeedColor.primary}
               />
             }
           />
@@ -507,7 +507,7 @@ export default function PerfilScreen() {
           />
         </View>
 
-        <Button type="primary" style={styles.cta} onPress={() => router.push('/feed')}>
+        <Button type="primary" style={styles.cta} onPress={() => router.push('/hoje')}>
           {remainingToday > 0
             ? `Revisar os ${remainingToday} cards de hoje`
             : 'Meta de hoje concluída'}

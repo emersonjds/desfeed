@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import Svg, { Circle } from 'react-native-svg'
 
-import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { memfeedColor, memfeedFont } from '../../shared/theme'
 
 type TimerRingProps = {
   secondsLeft: number
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   label: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 10,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
 })
 
@@ -43,15 +43,15 @@ export const TimerRing = ({ secondsLeft, totalSeconds }: TimerRingProps) => {
           cx={RING_SIZE / 2}
           cy={RING_SIZE / 2}
           r={RADIUS}
-          stroke={desfeedColor.borderSoft}
+          stroke={memfeedColor.borderSoft}
           strokeWidth={STROKE}
-          fill={desfeedColor.surface}
+          fill={memfeedColor.surface}
         />
         <Circle
           cx={RING_SIZE / 2}
           cy={RING_SIZE / 2}
           r={RADIUS}
-          stroke={desfeedColor.primary}
+          stroke={memfeedColor.primary}
           strokeWidth={STROKE}
           strokeLinecap="round"
           fill="none"

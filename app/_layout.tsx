@@ -14,7 +14,7 @@ import { useEffect } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { queryClient } from '../src/shared/api/query-client'
-import { desfeedTheme } from '../src/shared/theme'
+import { memfeedTheme } from '../src/shared/theme'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -39,7 +39,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <Provider theme={desfeedTheme}>
+      <Provider theme={memfeedTheme}>
         <QueryClientProvider client={queryClient}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />

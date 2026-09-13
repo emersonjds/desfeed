@@ -2,7 +2,7 @@ import { IconOutline } from '@ant-design/icons-react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 
-import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { memfeedColor, memfeedFont } from '../../shared/theme'
 
 type AnswerFeedbackProps = {
   isCorrect: boolean
@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
-  correct: { backgroundColor: desfeedColor.primarySoft },
+  correct: { backgroundColor: memfeedColor.primarySoft },
   wrong: { backgroundColor: '#fee2e2' },
   info: { flex: 1, gap: 2 },
-  title: { fontFamily: desfeedFont.extrabold, fontSize: 15 },
-  detail: { fontFamily: desfeedFont.medium, fontSize: 12.5, lineHeight: 17 },
+  title: { fontFamily: memfeedFont.extrabold, fontSize: 15 },
+  detail: { fontFamily: memfeedFont.medium, fontSize: 12.5, lineHeight: 17 },
   xp: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 13,
-    color: desfeedColor.primaryDeep,
-    backgroundColor: desfeedColor.surface,
+    color: memfeedColor.primaryDeep,
+    backgroundColor: memfeedColor.surface,
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 })
 
 export const AnswerFeedback = ({ isCorrect, correctLabel, xpGained }: AnswerFeedbackProps) => {
-  const tone = isCorrect ? desfeedColor.primaryDeep : desfeedColor.error
+  const tone = isCorrect ? memfeedColor.primaryDeep : memfeedColor.error
 
   return (
     <Animated.View

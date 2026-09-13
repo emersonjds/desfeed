@@ -6,6 +6,7 @@ import { advanceSession, currentCard, type SessionProgress } from './session.ts'
 
 const buildCard = (id: string): Card => ({
   id,
+  origin: { kind: 'proprio', theme: 'Teste' },
   subject: 'Bioquímica Médica',
   chapter: 'Cap. 4',
   reviewNumber: 1,

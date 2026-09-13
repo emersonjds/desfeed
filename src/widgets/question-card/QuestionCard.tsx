@@ -8,12 +8,14 @@ import { formatReviewLabel, type SelfEvalRating } from '../../entities/card/fsrs
 import type { Card, OptionId } from '../../entities/card/schema'
 import { AnswerFeedback } from '../../features/answer-card/AnswerFeedback'
 import { SelfEvaluation } from '../../features/answer-card/SelfEvaluation'
-import { desfeedColor, desfeedFont } from '../../shared/theme'
+import { memfeedColor, memfeedFont } from '../../shared/theme'
 import { TimerRing } from './TimerRing'
 
 type QuestionCardProps = {
   card: Card
   xpReward: number
+  /** Só o card em tela conta o tempo — ver o efeito da contagem. */
+  isActive: boolean
   onRate: (rating: SelfEvalRating) => void
 }
 
@@ -73,26 +75,26 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     borderRadius: 999,
     paddingHorizontal: 10,
-    backgroundColor: desfeedColor.surface,
-    borderColor: desfeedColor.borderSoft,
+    backgroundColor: memfeedColor.surface,
+    borderColor: memfeedColor.borderSoft,
   },
   tagWrapAccent: {
     height: 28,
     borderRadius: 999,
     paddingHorizontal: 10,
-    backgroundColor: desfeedColor.accentSoft,
-    borderColor: desfeedColor.accentSoft,
+    backgroundColor: memfeedColor.accentSoft,
+    borderColor: memfeedColor.accentSoft,
   },
   tagText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 12,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
     flexShrink: 1,
   },
   tagTextAccent: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 12,
-    color: desfeedColor.accent,
+    color: memfeedColor.accent,
   },
   media: {
     flexGrow: 1,
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   mediaImage: {
     width: '100%',
@@ -123,35 +125,35 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 9,
     paddingVertical: 5,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
   },
   mediaBadgeText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 11,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   mediaBadgePrimary: {
     borderRadius: 999,
     paddingHorizontal: 9,
     paddingVertical: 5,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
   },
   mediaBadgePrimaryText: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 11,
-    color: desfeedColor.surface,
+    color: memfeedColor.surface,
   },
   question: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 15,
     lineHeight: 20,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   questionHighlight: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 15,
     lineHeight: 20,
-    color: desfeedColor.primaryDeep,
+    color: memfeedColor.primaryDeep,
     textDecorationLine: 'underline',
   },
   answerRow: {
@@ -166,29 +168,29 @@ const styles = StyleSheet.create({
   },
   optionItem: {
     borderRadius: 14,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderWidth: 1,
-    borderColor: desfeedColor.borderSoft,
+    borderColor: memfeedColor.borderSoft,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.border,
+    borderBottomColor: memfeedColor.border,
     paddingLeft: 10,
   },
   optionItemCorrect: {
     borderRadius: 14,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderWidth: 1,
-    borderColor: desfeedColor.primary,
+    borderColor: memfeedColor.primary,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.primaryDeep,
+    borderBottomColor: memfeedColor.primaryDeep,
     paddingLeft: 10,
   },
   optionItemWrong: {
     borderRadius: 14,
-    backgroundColor: desfeedColor.surface,
+    backgroundColor: memfeedColor.surface,
     borderWidth: 1,
-    borderColor: desfeedColor.error,
+    borderColor: memfeedColor.error,
     borderBottomWidth: 3,
-    borderBottomColor: desfeedColor.error,
+    borderBottomColor: memfeedColor.error,
     paddingLeft: 10,
   },
   optionLine: {
@@ -198,9 +200,9 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   optionContent: {
-    fontFamily: desfeedFont.semibold,
+    fontFamily: memfeedFont.semibold,
     fontSize: 14,
-    color: desfeedColor.text,
+    color: memfeedColor.text,
   },
   optionBadge: {
     width: 28,
@@ -209,7 +211,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
-    backgroundColor: desfeedColor.surfaceSoft,
+    backgroundColor: memfeedColor.surfaceSoft,
   },
   optionBadgeCorrect: {
     width: 28,
@@ -218,7 +220,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
-    backgroundColor: desfeedColor.primary,
+    backgroundColor: memfeedColor.primary,
   },
   optionBadgeWrong: {
     width: 28,
@@ -227,24 +229,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
-    backgroundColor: desfeedColor.error,
+    backgroundColor: memfeedColor.error,
   },
   optionBadgeText: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 13,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   optionMarkEmpty: {
     width: 19,
     height: 19,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: desfeedColor.borderSoft,
+    borderColor: memfeedColor.borderSoft,
   },
   optionBadgeTextActive: {
-    fontFamily: desfeedFont.extrabold,
+    fontFamily: memfeedFont.extrabold,
     fontSize: 13,
-    color: desfeedColor.surface,
+    color: memfeedColor.surface,
   },
   rail: {
     width: 46,
@@ -259,24 +261,24 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: desfeedColor.primarySoft,
+    backgroundColor: memfeedColor.primarySoft,
     borderWidth: 2,
-    borderColor: desfeedColor.surface,
+    borderColor: memfeedColor.surface,
   },
   railItem: {
     alignItems: 'center',
     gap: 2,
   },
   railValue: {
-    fontFamily: desfeedFont.bold,
+    fontFamily: memfeedFont.bold,
     fontSize: 11,
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
   hint: {
-    fontFamily: desfeedFont.medium,
+    fontFamily: memfeedFont.medium,
     fontSize: 11,
     textAlign: 'center',
-    color: desfeedColor.textMuted,
+    color: memfeedColor.textMuted,
   },
 })
 
@@ -302,10 +304,10 @@ const OptionBadge = ({ letter, state }: { letter: OptionId; state: OptionState }
 
 const OptionMark = ({ state }: { state: OptionState }) => {
   if (state === 'correct') {
-    return <IconFill name="check-circle" size={20} color={desfeedColor.primary} />
+    return <IconFill name="check-circle" size={20} color={memfeedColor.primary} />
   }
   if (state === 'wrong') {
-    return <IconFill name="close-circle" size={20} color={desfeedColor.error} />
+    return <IconFill name="close-circle" size={20} color={memfeedColor.error} />
   }
   return <View style={styles.optionMarkEmpty} />
 }
@@ -318,12 +320,12 @@ const RailItem = ({
   value: string
 }) => (
   <View style={styles.railItem}>
-    <IconOutline name={icon} size={21} color={desfeedColor.text} />
+    <IconOutline name={icon} size={21} color={memfeedColor.text} />
     <Text style={styles.railValue}>{value}</Text>
   </View>
 )
 
-export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
+export const QuestionCard = ({ card, xpReward, isActive, onRate }: QuestionCardProps) => {
   const [selectedOptionId, setSelectedOptionId] = useState<OptionId | null>(null)
   const [secondsLeft, setSecondsLeft] = useState(CARD_TIMER_SECONDS)
   const question = useMemo(
@@ -334,11 +336,21 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
   useEffect(() => {
     setSelectedOptionId(null)
     setSecondsLeft(CARD_TIMER_SECONDS)
+  }, [card.id])
+
+  // A lista monta os cards vizinhos antes de o usuário chegar neles. Contar a partir da
+  // montagem queimava os 15 segundos do próximo card enquanto ele ainda estava fora da tela,
+  // e ele aparecia zerado. O relógio também para na resposta: o tempo de ler o feedback não
+  // é tempo de recuperação.
+  const isCountingDown = isActive && selectedOptionId === null && secondsLeft > 0
+
+  useEffect(() => {
+    if (!isCountingDown) return
     const timer = setInterval(() => {
       setSecondsLeft((seconds) => Math.max(0, seconds - 1))
     }, 1000)
     return () => clearInterval(timer)
-  }, [card.id])
+  }, [isCountingDown])
 
   const pickOption = (optionId: OptionId) => {
     if (selectedOptionId) return
@@ -370,15 +382,21 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
         <View style={styles.contextTags}>
           <Tag small style={styles.tagOuter} styles={{ wrapSmall: styles.tagWrap }}>
             <View style={styles.tagContent}>
-              <IconOutline name="book" size={13} color={desfeedColor.primaryDeep} />
+              <IconOutline
+                name={card.origin.kind === 'turma' ? 'team' : 'thunderbolt'}
+                size={13}
+                color={memfeedColor.primaryDeep}
+              />
               <Text style={styles.tagText} numberOfLines={1}>
-                {`${card.subject} • ${card.chapter}`}
+                {card.origin.kind === 'turma'
+                  ? `${card.origin.teacher} • ${card.origin.lesson}`
+                  : `Você escolheu • ${card.origin.theme}`}
               </Text>
             </View>
           </Tag>
           <Tag small style={styles.tagOuterFixed} styles={{ wrapSmall: styles.tagWrapAccent }}>
             <View style={styles.tagContent}>
-              <IconOutline name="clock-circle" size={13} color={desfeedColor.accent} />
+              <IconOutline name="clock-circle" size={13} color={memfeedColor.accent} />
               <Text style={styles.tagTextAccent} numberOfLines={1}>
                 {formatReviewLabel(card.reviewNumber, card.fsrs.scheduled_days)}
               </Text>
@@ -389,10 +407,12 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
       </View>
 
       <View style={styles.media}>
+        {/* `cover` preenche a faixa e corta a borda rotulada da figura — o rótulo costuma
+            nomear a resposta, e o card existe para o aluno recuperá-la sozinho. */}
         <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
         <View style={styles.mediaOverlay}>
           <View style={styles.mediaBadge}>
-            <IconOutline name="bulb" size={12} color={desfeedColor.primaryDeep} />
+            <IconOutline name="bulb" size={12} color={memfeedColor.primaryDeep} />
             <Text style={styles.mediaBadgeText}>Recall Flashcard Hook</Text>
           </View>
           <View style={styles.mediaBadgePrimary}>
@@ -418,7 +438,7 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
                 key={option.id}
                 style={optionItemStyle[state]}
                 styles={{ Line: styles.optionLine, Content: styles.optionContent }}
-                underlayColor={desfeedColor.surfaceSoft}
+                underlayColor={memfeedColor.surfaceSoft}
                 disabled={selectedOptionId !== null}
                 onPress={() => pickOption(option.id)}
                 thumb={<OptionBadge letter={option.id} state={state} />}
@@ -432,7 +452,7 @@ export const QuestionCard = ({ card, xpReward, onRate }: QuestionCardProps) => {
 
         <View style={styles.rail}>
           <View style={styles.railAvatar}>
-            <IconOutline name="user" size={18} color={desfeedColor.primaryDeep} />
+            <IconOutline name="user" size={18} color={memfeedColor.primaryDeep} />
           </View>
           <RailItem icon="experiment" value={`${card.masteryPercent}%`} />
           <RailItem icon="star" value={compactCount(card.bookmarkCount)} />

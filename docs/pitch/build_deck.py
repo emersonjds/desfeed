@@ -235,7 +235,7 @@ items = [
     ("02", "A sessão que acaba de propósito",
      "A meta diária tem fim visível. Quando acaba, acaba — sem scroll infinito, sem “mais um "
      "card”, sem notificação fora da janela que o aluno escolheu."),
-    ("03", "A sala ao vivo do professor",
+    ("03", "A sala ao vivo do professor  ·  próxima fase",
      "Ele escolhe os temas, a IA gera as perguntas, abre uma sala com PIN. E o que a turma "
      "responde em aula entra na revisão individual de cada aluno."),
 ]
@@ -272,9 +272,9 @@ for i, (num, title, body) in enumerate(steps):
     text(s, x + 0.85, y + 0.08, 2.7, 0.5, title, 14.5, ACCENT_L, bold=True, spacing=1.1)
     text(s, x + 0.1, y + 0.72, 3.3, 0.9, body, 11.5, MUTED_L, spacing=1.3)
 text(s, MARGIN, 6.85, CONTENT_W, 0.45,
-     [[("Demo ao vivo: ", True, ACCENT_L, 13),
-       ("o jurado fotografa uma página de caderno e, 30 segundos depois, está deslizando "
-        "perguntas sobre ela.", False, BODY_L, 13)]],
+     [[("No app de hoje: ", True, ACCENT_L, 13),
+       ("passos 1, 4, 5 e 6 rodam de ponta a ponta — câmera, feed, auto-avaliação e "
+        "agendamento FSRS com intervalo na tela.", False, BODY_L, 13)]],
      13, BODY_L)
 
 # ------------------------------------------------------------ 7. mecanismo
