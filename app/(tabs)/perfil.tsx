@@ -507,7 +507,7 @@ export default function PerfilScreen() {
           />
         </View>
 
-        <Button type="primary" style={styles.cta} onPress={() => router.push('/feed')}>
+        <Button type="primary" style={styles.cta} onPress={() => router.push('/hoje')}>
           {remainingToday > 0
             ? `Revisar os ${remainingToday} cards de hoje`
             : 'Meta de hoje concluída'}

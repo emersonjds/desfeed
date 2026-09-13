@@ -33,8 +33,18 @@ export const cardFsrsSchema = z.object({
 
 export type CardFsrsData = z.infer<typeof cardFsrsSchema>;
 
+// De onde o card veio. É o que o aluno lê no topo do card e o que separa
+// "o professor passou" de "eu pedi" — as duas únicas origens que existem.
+export const cardOriginSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('turma'), teacher: z.string(), lesson: z.string() }),
+  z.object({ kind: z.literal('proprio'), theme: z.string() }),
+]);
+
+export type CardOrigin = z.infer<typeof cardOriginSchema>;
+
 export const cardSchema = z.object({
   id: z.string(),
+  origin: cardOriginSchema,
   subject: z.string(),
   chapter: z.string(),
   reviewNumber: z.number().int().nonnegative(),

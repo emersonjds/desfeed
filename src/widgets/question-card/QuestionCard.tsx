@@ -382,9 +382,15 @@ export const QuestionCard = ({ card, xpReward, isActive, onRate }: QuestionCardP
         <View style={styles.contextTags}>
           <Tag small style={styles.tagOuter} styles={{ wrapSmall: styles.tagWrap }}>
             <View style={styles.tagContent}>
-              <IconOutline name="book" size={13} color={desfeedColor.primaryDeep} />
+              <IconOutline
+                name={card.origin.kind === 'turma' ? 'team' : 'thunderbolt'}
+                size={13}
+                color={desfeedColor.primaryDeep}
+              />
               <Text style={styles.tagText} numberOfLines={1}>
-                {`${card.subject} • ${card.chapter}`}
+                {card.origin.kind === 'turma'
+                  ? `${card.origin.teacher} • ${card.origin.lesson}`
+                  : `Você escolheu • ${card.origin.theme}`}
               </Text>
             </View>
           </Tag>

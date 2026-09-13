@@ -249,10 +249,10 @@ export default function FeedScreen() {
           <Result
             img={<IconOutline name="book" size={54} color={desfeedColor.primary} />}
             title="Nada para revisar agora"
-            message="Escaneie um caderno para gerar novos cards de recuperação ativa."
-            buttonText="Escanear um caderno"
+            message="Escolha um assunto e o Desfeed escreve as perguntas para você."
+            buttonText="Escolher um assunto"
             buttonType="primary"
-            onButtonClick={() => router.push('/escanear')}
+            onButtonClick={() => router.push('/estudar')}
           />
         ) : null}
 

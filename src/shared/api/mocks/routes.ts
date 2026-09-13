@@ -1,13 +1,10 @@
-import { cardSchema, type Card } from '../../../entities/card/schema'
+import { generateSessionRequestSchema } from '../../../entities/study/schema'
 import { submitReviewRequestSchema } from '../../../entities/review/schema'
-import {
-  emptySession,
-  mockCards,
-  mockNotebookLibrary,
-  mockProfile,
-  mockRanking,
-  mockSession,
-} from './data'
+import { generateLessonRequestSchema } from '../../../entities/teacher/schema'
+import { emptySession, mockCards, mockNotebookLibrary, mockProfile, mockSession } from './data'
+import { emptyProgress, mockProgress } from './progress'
+import { generateCardsForTheme, mockStudyThemes } from './study'
+import { generateLesson, mockClassReport } from './teacher'
 
 export type MockScenario = 'happy' | 'empty' | 'error'
 
@@ -15,40 +12,6 @@ export const readScenario = (): MockScenario => {
   const raw = process.env.EXPO_PUBLIC_MOCK_SCENARIO
   return raw === 'empty' || raw === 'error' ? raw : 'happy'
 }
-
-export const scannedCards: Card[] = [
-  cardSchema.parse({
-    id: 'card-scanned-carnot-rendimento',
-    subject: 'Física II',
-    chapter: 'Termodinâmica',
-    reviewNumber: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=70',
-    keyTerm: 'Ciclo de Carnot',
-    question: 'Qual o rendimento máximo teórico de uma máquina de Carnot?',
-    highlightTerm: 'rendimento máximo teórico',
-    options: [
-      { id: 'A', label: 'η = 1 - T₂/T₁' },
-      { id: 'B', label: 'η = T₁ + T₂' },
-      { id: 'C', label: 'η = Q₁ / Q₂' },
-      { id: 'D', label: 'η = 0' },
-    ],
-    correctOptionId: 'A',
-    masteryPercent: 0,
-    bookmarkCount: 0,
-    shareCount: 0,
-    fsrs: {
-      due: new Date().toISOString(),
-      stability: 0,
-      difficulty: 0,
-      elapsed_days: 0,
-      scheduled_days: 0,
-      learning_steps: 0,
-      reps: 0,
-      lapses: 0,
-      state: 0,
-    },
-  }),
-]
 
 export type MockJsonBody = Record<string, unknown> | unknown[]
 
@@ -104,12 +67,38 @@ export const resolveMockRoute = (
     return { status: 200, body: mockNotebookLibrary }
   }
 
-  if (verb === 'GET' && path === '/api/ranking') {
-    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar o ranking' } }
-    if (scenario === 'empty') {
-      return { status: 200, body: { ...mockRanking, entries: [] } }
+  if (verb === 'GET' && path === '/api/progress') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar sua evolução' } }
+    return { status: 200, body: scenario === 'empty' ? emptyProgress : mockProgress }
+  }
+
+  if (verb === 'GET' && path === '/api/study/themes') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar os temas' } }
+    if (scenario === 'empty') return { status: 200, body: { ...mockStudyThemes, suggested: [] } }
+    return { status: 200, body: mockStudyThemes }
+  }
+
+  if (verb === 'POST' && path === '/api/study/sessions') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao gerar as perguntas' } }
+    const input = generateSessionRequestSchema.parse(body)
+    return {
+      status: 200,
+      body: {
+        theme: input.theme,
+        cards: generateCardsForTheme(input.subject, input.theme, input.cardCount),
+      },
     }
-    return { status: 200, body: mockRanking }
+  }
+
+  if (verb === 'GET' && path === '/api/teacher/class') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao buscar a turma' } }
+    return { status: 200, body: mockClassReport }
+  }
+
+  if (verb === 'POST' && path === '/api/teacher/lessons') {
+    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao gerar a aula' } }
+    const input = generateLessonRequestSchema.parse(body)
+    return { status: 200, body: generateLesson(input.topic, input.questionCount) }
   }
 
   if (verb === 'POST' && path === '/api/reviews') {
@@ -117,11 +106,6 @@ export const resolveMockRoute = (
     return reviewResponse(body)
   }
 
-  if (verb === 'POST' && /^\/api\/notebooks\/[^/]+\/ingest$/.test(path)) {
-    if (scenario === 'error') return { status: 500, body: { message: 'Falha ao processar o caderno' } }
-    if (scenario === 'empty') return { status: 200, body: { cards: [], confidence: 'baixa' } }
-    return { status: 200, body: { cards: scannedCards, confidence: 'alta' } }
-  }
 
   return null
 }

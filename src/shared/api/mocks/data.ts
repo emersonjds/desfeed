@@ -2,7 +2,6 @@ import { cardSchema, type Card } from '../../../entities/card/schema';
 import type { Profile } from '../../../entities/profile/schema';
 import type { SessionToday } from '../../../entities/session/schema';
 import { notebookLibrarySchema, type NotebookLibrary } from '../../../entities/notebook/library-schema'
-import { rankingSchema, type Ranking } from '../../../entities/ranking/schema'
 
 const now = () => new Date();
 
@@ -25,6 +24,7 @@ const buildFsrs = (overrides: Partial<Card['fsrs']>): Card['fsrs'] => ({
 const rawCards: Card[] = [
   {
     id: 'card-atp-synthetase',
+    origin: { kind: 'turma', teacher: 'Prof. Marcos', lesson: 'Respiração celular' },
     subject: 'Bioquímica Médica',
     chapter: 'Cap. 4',
     reviewNumber: 3,
@@ -47,6 +47,7 @@ const rawCards: Card[] = [
   },
   {
     id: 'card-carnot',
+    origin: { kind: 'turma', teacher: 'Profa. Helena', lesson: 'Máquinas térmicas' },
     subject: 'Física II',
     chapter: 'Termodinâmica',
     reviewNumber: 1,
@@ -68,6 +69,7 @@ const rawCards: Card[] = [
   },
   {
     id: 'card-entropia',
+    origin: { kind: 'proprio', theme: 'Entropia para a prova de sexta' },
     subject: 'Física II',
     chapter: 'Termodinâmica',
     reviewNumber: 2,
@@ -219,91 +221,3 @@ export const mockNotebookLibrary: NotebookLibrary = notebookLibrarySchema.parse(
   ],
 })
 
-export const mockRanking: Ranking = rankingSchema.parse({
-  leagueName: 'Liga Sinapse Diamante',
-  leagueRankLabel: 'Top 7% entre todos os estudantes',
-  endsInLabel: 'Termina em 2d 14h',
-  promotionCutoff: 5,
-  relegationCutoff: 8,
-  podium: [
-    {
-      id: 'rk-bia',
-      position: 1,
-      name: 'Bia Medeiros',
-      headline: 'Bioquímica Celular',
-      xp: 2150,
-      trend: 'estavel',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-rodrigo',
-      position: 2,
-      name: 'Rodrigo Ferraz',
-      headline: 'Direito Constitucional',
-      xp: 1890,
-      trend: 'subindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-camila',
-      position: 3,
-      name: 'Camila Sato',
-      headline: 'Física II',
-      xp: 1620,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-  ],
-  entries: [
-    {
-      id: 'rk-lucas',
-      position: 4,
-      name: 'Lucas Rocha',
-      headline: 'Você · 3 sessões hoje',
-      xp: 1420,
-      trend: 'subindo',
-      isCurrentUser: true,
-    },
-    {
-      id: 'rk-matheus',
-      position: 5,
-      name: 'Matheus Silva',
-      headline: 'Revisou há 1 hora',
-      xp: 1380,
-      trend: 'estavel',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-ana',
-      position: 6,
-      name: 'Ana Paula Vieira',
-      headline: 'Em sessão de FSRS ativa',
-      xp: 1210,
-      trend: 'subindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-gabriel',
-      position: 7,
-      name: 'Gabriel Lima',
-      headline: 'Último na zona segura',
-      xp: 1150,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-    {
-      id: 'rk-mariana',
-      position: 8,
-      name: 'Mariana Costa',
-      headline: 'Precisa de 170 XP para sair',
-      xp: 980,
-      trend: 'caindo',
-      isCurrentUser: false,
-    },
-  ],
-  duel: {
-    title: 'Micro-duelo de flashcards',
-    description: 'Desafie um amigo no mesmo caderno e veja quem recupera mais rápido.',
-    rewardLabel: 'Recompensa dobrada',
-  },
-})

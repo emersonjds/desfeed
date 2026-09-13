@@ -144,7 +144,7 @@ const NotebookRow = ({ notebook }: { notebook: NotebookSummary }) => {
   )
 }
 
-export default function CadernosScreen() {
+export default function MateriasScreen() {
   const libraryQuery = useNotebookLibraryQuery()
 
   if (libraryQuery.isLoading) {
@@ -152,7 +152,7 @@ export default function CadernosScreen() {
       <SafeAreaView style={styles.screen} edges={['top']}>
         <View style={styles.centered}>
           <ActivityIndicator color={desfeedColor.primary} />
-          <Text style={styles.muted}>Carregando seus cadernos…</Text>
+          <Text style={styles.muted}>Carregando suas matérias…</Text>
         </View>
       </SafeAreaView>
     )
@@ -162,7 +162,7 @@ export default function CadernosScreen() {
     return (
       <SafeAreaView style={styles.screen} edges={['top']}>
         <Result
-          title="Não deu para carregar seus cadernos"
+          title="Não deu para carregar suas matérias"
           message="Confira sua conexão e tente de novo."
           buttonText="Tentar novamente"
           onButtonClick={() => libraryQuery.refetch()}
@@ -176,7 +176,7 @@ export default function CadernosScreen() {
   return (
     <SafeAreaView style={styles.screen} edges={['top']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Cadernos</Text>
+        <Text style={styles.title}>Matérias</Text>
 
         <View style={styles.card}>
           <View style={styles.healthRow}>
@@ -197,7 +197,7 @@ export default function CadernosScreen() {
         </View>
 
         <Text style={styles.sectionTitle}>
-          {`Cadernos ativos · ${library.notebooks.length}`}
+          {`Matérias ativas · ${library.notebooks.length}`}
         </Text>
 
         {library.notebooks.length === 0 ? (

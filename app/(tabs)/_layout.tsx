@@ -9,7 +9,7 @@ import { ICON_SLOT_HEIGHT, TabIconSlot } from '../../src/shared/ui/TabIconSlot'
 
 const INACTIVE = '#94a3b8'
 const BAR_CONTENT_HEIGHT = 76
-const SCAN_SIZE = 44
+const STUDY_SIZE = 44
 
 const styles = StyleSheet.create({
   bar: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   item: {
     maxWidth: 92,
   },
-  // Sem altura explícita a barra encolhe o slot do ícone e o círculo do escaneamento
+  // Sem altura explícita a barra encolhe o slot do ícone e o círculo central
   // invade o rótulo — foi assim que o rótulo vazava da barra no Android.
   iconStyle: {
     height: ICON_SLOT_HEIGHT,
@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     fontFamily: desfeedFont.bold,
     marginTop: 2,
   },
-  scanButton: {
-    width: SCAN_SIZE,
-    height: SCAN_SIZE,
-    borderRadius: SCAN_SIZE / 2,
+  studyButton: {
+    width: STUDY_SIZE,
+    height: STUDY_SIZE,
+    borderRadius: STUDY_SIZE / 2,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: desfeedColor.primary,
@@ -52,21 +52,22 @@ const TabIcon = ({ name, focused }: { name: OutlineGlyphMapType; focused: boolea
   </TabIconSlot>
 )
 
-const FeedIcon = ({ focused }: { focused: boolean }) => (
+const TodayIcon = ({ focused }: { focused: boolean }) => (
   <TabIconSlot focused={focused} haloColor={desfeedColor.primarySoft}>
     <InfinityMark size={25} color={focused ? desfeedColor.primary : INACTIVE} />
   </TabIconSlot>
 )
 
-const ScanIcon = ({ focused }: { focused: boolean }) => (
+// O botão central é a ação que o aluno mais quer: dizer o que quer estudar agora.
+const StudyIcon = ({ focused }: { focused: boolean }) => (
   <TabIconSlot focused={focused} lift={3}>
     <View
       style={[
-        styles.scanButton,
+        styles.studyButton,
         focused ? { backgroundColor: desfeedColor.primaryDeep } : null,
       ]}
     >
-      <IconOutline name="scan" size={24} color={desfeedColor.surface} />
+      <IconOutline name="thunderbolt" size={24} color={desfeedColor.surface} />
     </View>
   </TabIconSlot>
 )
@@ -95,31 +96,31 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
-        name="feed"
+        name="hoje"
         options={{
-          title: 'Feed',
-          tabBarIcon: ({ focused }) => <FeedIcon focused={focused} />,
+          title: 'Hoje',
+          tabBarIcon: ({ focused }) => <TodayIcon focused={focused} />,
         }}
       />
       <Tabs.Screen
-        name="cadernos"
+        name="materias"
         options={{
-          title: 'Cadernos',
+          title: 'Matérias',
           tabBarIcon: ({ focused }) => <TabIcon name="book" focused={focused} />,
         }}
       />
       <Tabs.Screen
-        name="escanear"
+        name="estudar"
         options={{
-          title: 'Escanear',
-          tabBarIcon: ({ focused }) => <ScanIcon focused={focused} />,
+          title: 'Estudar',
+          tabBarIcon: ({ focused }) => <StudyIcon focused={focused} />,
         }}
       />
       <Tabs.Screen
-        name="ranking"
+        name="evolucao"
         options={{
-          title: 'Ranking',
-          tabBarIcon: ({ focused }) => <TabIcon name="bar-chart" focused={focused} />,
+          title: 'Evolução',
+          tabBarIcon: ({ focused }) => <TabIcon name="line-chart" focused={focused} />,
         }}
       />
       <Tabs.Screen

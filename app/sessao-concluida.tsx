@@ -268,7 +268,7 @@ export default function SessaoConcluidaScreen() {
               Fechar app e descansar
             </Button>
           )}
-          <Button style={styles.neutralAction} onPress={() => router.push('/cadernos')}>
+          <Button style={styles.neutralAction} onPress={() => router.push('/materias')}>
             Ver meus cadernos e estatísticas
           </Button>
         </View>
