@@ -409,17 +409,25 @@ export const QuestionCard = ({ card, xpReward, isActive, onRate }: QuestionCardP
       <View style={styles.media}>
         {/* `cover` preenche a faixa e corta a borda rotulada da figura — o rótulo costuma
             nomear a resposta, e o card existe para o aluno recuperá-la sozinho. */}
-        <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
+        {card.imageUrl ? (
+          <Image source={{ uri: card.imageUrl }} style={styles.mediaImage} resizeMode="cover" />
+        ) : null}
         <View style={styles.mediaOverlay}>
           <View style={styles.mediaBadge}>
-            <IconOutline name="bulb" size={12} color={memfeedColor.primaryDeep} />
-            <Text style={styles.mediaBadgeText}>Recall Flashcard Hook</Text>
-          </View>
-          <View style={styles.mediaBadgePrimary}>
-            <Text style={styles.mediaBadgePrimaryText} numberOfLines={1}>
-              {card.keyTerm}
+            <IconOutline name="book" size={12} color={memfeedColor.primaryDeep} />
+            <Text style={styles.mediaBadgeText} numberOfLines={1}>
+              {card.chapter}
             </Text>
           </View>
+          {/* `keyTerm` é o conceito que a pergunta cobra, então quase sempre É a resposta.
+              Ele só aparece depois que o aluno responde. */}
+          {selectedOptionId ? (
+            <View style={styles.mediaBadgePrimary}>
+              <Text style={styles.mediaBadgePrimaryText} numberOfLines={1}>
+                {card.keyTerm}
+              </Text>
+            </View>
+          ) : null}
         </View>
       </View>
 
