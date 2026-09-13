@@ -5,6 +5,13 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        jk: ['PlusJakartaSans_400Regular'],
+        'jk-medium': ['PlusJakartaSans_500Medium'],
+        'jk-semibold': ['PlusJakartaSans_600SemiBold'],
+        'jk-bold': ['PlusJakartaSans_700Bold'],
+        'jk-extrabold': ['PlusJakartaSans_800ExtraBold'],
+      },
       colors: {
         primary: '#10b981',
         'primary-deep': '#059669',

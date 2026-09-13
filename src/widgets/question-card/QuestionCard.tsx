@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Icon } from '../../shared/ui/Icon';
 import { Image, Pressable, Text, View } from 'react-native';
 
 import type { Card, OptionId } from '../../entities/card/schema';
@@ -65,14 +66,14 @@ const OptionRow = ({
             <Badge letter={letter} state={badgeState} />
             <Text
               style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
-              className="text-sm font-semibold text-text"
+              className="text-sm font-jk-semibold text-text"
               numberOfLines={1}
             >
               {label}
             </Text>
           </View>
-          {badgeState === 'correct' ? <Text className="text-lg text-primary">✓</Text> : null}
-          {badgeState === 'wrong' ? <Text className="text-lg text-red-600">✕</Text> : null}
+          {badgeState === 'correct' ? <Icon name="acerto" size={20} color="#10b981" /> : null}
+          {badgeState === 'wrong' ? <Icon name="erro" size={20} color="#dc2626" /> : null}
         </View>
       </SolidShadow>
     </Pressable>
@@ -116,9 +117,9 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
           style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}
           className="flex-row flex-wrap items-center gap-1.5"
         >
-          <Pill icon="📖" label={`${card.subject} • ${card.chapter}`} tone="neutral" />
+          <Pill icon="livro" label={`${card.subject} • ${card.chapter}`} tone="neutral" />
           <Pill
-            icon="🧠"
+            icon="cerebro"
             label={formatReviewLabel(card.reviewNumber, card.fsrs.scheduled_days)}
             tone="accent"
           />
@@ -131,15 +132,15 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
       <View className="h-36 w-full overflow-hidden rounded-2xl bg-surface-soft">
         <Image source={{ uri: card.imageUrl }} className="h-full w-full" resizeMode="cover" />
         <View className="absolute inset-x-2.5 bottom-2.5 flex-row items-center justify-between">
-          <Pill icon="✨" label="Recall Flashcard Hook" tone="neutral" />
+          <Pill icon="brilho" label="Recall Flashcard Hook" tone="neutral" />
           <Pill label={card.keyTerm} tone="primary" />
         </View>
       </View>
 
-      <Text className="text-lg font-bold leading-snug text-text">
+      <Text className="text-lg font-jk-bold leading-snug text-text">
         {question.before}
         {question.match ? (
-          <Text className="text-primary-deep underline">{question.match}</Text>
+          <Text className="text-primary-deep underline font-jk">{question.match}</Text>
         ) : null}
         {question.after}
       </Text>
@@ -162,18 +163,18 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
           className="items-center justify-end gap-3.5 pb-1"
         >
           <View className="items-center gap-0.5">
-            <Text className="text-lg">🧠</Text>
-            <Text className="text-xs font-bold text-text-muted">{card.masteryPercent}%</Text>
+            <Icon name="cerebro" size={22} color="#131b2e" />
+            <Text className="text-xs font-jk-bold text-text-muted">{card.masteryPercent}%</Text>
           </View>
           <View className="items-center gap-0.5">
-            <Text className="text-lg">🔖</Text>
-            <Text className="text-xs font-bold text-text-muted">
+            <Icon name="salvar" size={22} color="#131b2e" />
+            <Text className="text-xs font-jk-bold text-text-muted">
               {compactCount(card.bookmarkCount)}
             </Text>
           </View>
           <View className="items-center gap-0.5">
-            <Text className="text-lg">↪️</Text>
-            <Text className="text-xs font-bold text-text-muted">
+            <Icon name="responder" size={22} color="#131b2e" />
+            <Text className="text-xs font-jk-bold text-text-muted">
               {compactCount(card.shareCount)}
             </Text>
           </View>
@@ -182,7 +183,7 @@ export const QuestionCard = ({ card, height, onRate }: QuestionCardProps) => {
 
       <SelfEvaluation fsrsData={card.fsrs} onRate={onRate} disabled={selectedOptionId === null} />
 
-      <Text className="text-center text-xs text-text-muted opacity-60">
+      <Text className="text-center text-xs text-text-muted opacity-60 font-jk">
         Avalie sua lembrança para avançar automaticamente
       </Text>
     </View>

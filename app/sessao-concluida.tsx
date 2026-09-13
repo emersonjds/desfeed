@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { Icon } from '../src/shared/ui/Icon';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -40,12 +41,12 @@ const StatCard = ({
 }) => (
   <View className="flex-1 gap-2 rounded-2xl bg-surface p-4 shadow-sm">
     <View className="flex-row items-center justify-between">
-      <Text className="text-[10px] font-bold uppercase tracking-wider text-text-muted">{label}</Text>
-      <Text className="text-base">{icon}</Text>
+      <Text className="text-[10px] font-jk-bold uppercase tracking-wider text-text-muted">{label}</Text>
+      <Text className="text-base font-jk">{icon}</Text>
     </View>
     <View>
-      <Text className="text-xl font-extrabold text-text">{value}</Text>
-      <Text className="mt-0.5 text-xs text-text-muted">{helper}</Text>
+      <Text className="text-xl font-jk-extrabold text-text">{value}</Text>
+      <Text className="mt-0.5 text-xs text-text-muted font-jk">{helper}</Text>
     </View>
   </View>
 );
@@ -67,17 +68,17 @@ export default function SessaoConcluidaScreen() {
       <View className="flex-1 gap-4 px-4 pt-6">
         <View className="items-center gap-2">
           <View className="h-20 w-20 items-center justify-center rounded-full bg-surface shadow-sm">
-            <Text className="text-4xl">🧠</Text>
+            <Icon name="cerebro" size={44} color="#10b981" />
           </View>
           <View className="rounded-full bg-primary/10 px-3 py-1">
-            <Text className="text-[11px] font-extrabold uppercase tracking-wider text-primary-deep">
+            <Text className="text-[11px] font-jk-extrabold uppercase tracking-wider text-primary-deep">
               Modo repouso consciente
             </Text>
           </View>
-          <Text className="mt-2 text-center text-2xl font-extrabold tracking-tight text-text">
-            Acabou por hoje! 🧠✨
+          <Text className="mt-2 text-center text-2xl font-jk-extrabold tracking-tight text-text">
+            Acabou por hoje
           </Text>
-          <Text className="text-center text-sm text-text-muted">
+          <Text className="text-center text-sm text-text-muted font-jk">
             Seu cérebro concluiu a cota de hoje. O algoritmo pausou seu feed de propósito para evitar
             fadiga neural e fixar a memória de longo prazo.
           </Text>
@@ -85,7 +86,7 @@ export default function SessaoConcluidaScreen() {
 
         <View className="flex-row gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <View className="w-1.5 rounded-full bg-primary" />
-          <Text className="flex-1 text-sm italic leading-relaxed text-text">
+          <Text className="flex-1 text-sm italic leading-relaxed text-text font-jk">
             "Seu cérebro precisa esquecer um pouco para lembrar melhor. A neurociência agradece a
             pausa."
           </Text>
@@ -96,12 +97,12 @@ export default function SessaoConcluidaScreen() {
             label="Cards revisados"
             value={`${completed} cards`}
             helper={`${formatFocusTime(startedAt)} de foco`}
-            icon="🗂️"
+            icon="pasta"
           />
-          <StatCard label="Sequência" value={`${streak} dias`} helper="Streak protegido 🔥" icon="🔥" />
+          <StatCard label="Sequência" value={`${streak} dias`} helper="Streak protegido" icon="streak" />
         </View>
         <View className="flex-row gap-3">
-          <StatCard label="XP ganho" value={`+${xpEarned} XP`} helper="Nesta sessão" icon="⚡" />
+          <StatCard label="XP ganho" value={`+${xpEarned} XP`} helper="Nesta sessão" icon="xp" />
           <StatCard
             label="Próxima revisão"
             value={lastIntervalLabel ?? '—'}
@@ -113,8 +114,8 @@ export default function SessaoConcluidaScreen() {
         <View className="mt-auto gap-3 pb-2">
           {closed ? (
             <View className="h-14 items-center justify-center rounded-2xl bg-primary/10">
-              <Text className="text-base font-bold text-primary-deep">
-                Sessão salva! Até amanhã 🌱
+              <Text className="text-base font-jk-bold text-primary-deep">
+                Sessão salva. Até amanhã
               </Text>
             </View>
           ) : (

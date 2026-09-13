@@ -37,7 +37,7 @@ export const CircularTimer = ({ secondsLeft, totalSeconds }: CircularTimerProps)
         />
       </Svg>
       <View className="absolute inset-0 items-center justify-center">
-        <Text className="text-[10px] font-extrabold tracking-tighter text-text">
+        <Text className="text-[10px] font-jk-extrabold tracking-tighter text-text">
           {formatSeconds(secondsLeft)}
         </Text>
       </View>

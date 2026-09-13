@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { Icon } from '../../src/shared/ui/Icon';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,14 +18,14 @@ import { FeedList } from '../../src/widgets/feed-list/FeedList';
 const FeedHeader = ({ streak, xp }: { streak: number; xp: number }) => (
   <View className="flex-row items-center justify-between px-4 pb-2">
     <View className="flex-row items-center gap-1.5">
-      <Text className="text-xl">🧠</Text>
-      <Text className="text-lg font-extrabold tracking-tight text-text">Desfeed</Text>
+      <Icon name="infinito" size={24} color="#10b981" />
+      <Text className="text-lg font-jk-extrabold tracking-tight text-text">Desfeed</Text>
     </View>
     <View className="flex-row items-center gap-2">
-      <Pill icon="🔥" label={`${streak}d`} tone="neutral" />
-      <Pill icon="⚡" label={`${xp}`} tone="neutral" />
+      <Pill icon="streak" label={`${streak}d`} tone="neutral" />
+      <Pill icon="xp" label={`${xp}`} tone="neutral" />
       <View className="h-8 w-8 items-center justify-center rounded-full bg-primary/15">
-        <Text className="text-sm">🙂</Text>
+        <Icon name="perfil" size={18} color="#059669" />
       </View>
     </View>
   </View>
@@ -74,13 +75,13 @@ export default function FeedScreen() {
         {queueQuery.isLoading ? (
           <View className="flex-1 items-center justify-center gap-3">
             <ActivityIndicator color="#10b981" />
-            <Text className="text-sm text-text-muted">Carregando a fila de hoje…</Text>
+            <Text className="text-sm text-text-muted font-jk">Carregando a fila de hoje…</Text>
           </View>
         ) : null}
 
         {queueQuery.isError ? (
           <View className="flex-1 items-center justify-center gap-4 px-8">
-            <Text className="text-center text-sm text-text-muted">
+            <Text className="text-center text-sm text-text-muted font-jk">
               Não deu para buscar a fila de hoje. Confira sua conexão e tente de novo.
             </Text>
             <Button label="Tentar novamente" variant="neutral" onPress={() => queueQuery.refetch()} />
@@ -89,9 +90,9 @@ export default function FeedScreen() {
 
         {queueQuery.data && queueQuery.data.cards.length === 0 ? (
           <View className="flex-1 items-center justify-center gap-2 px-8">
-            <Text className="text-2xl">🌱</Text>
-            <Text className="text-center text-base font-bold text-text">Nada para revisar agora</Text>
-            <Text className="text-center text-sm text-text-muted">
+            <Icon name="broto" size={32} color="#10b981" />
+            <Text className="text-center text-base font-jk-bold text-text">Nada para revisar agora</Text>
+            <Text className="text-center text-sm text-text-muted font-jk">
               Escaneie um caderno para gerar novos cards de recuperação ativa.
             </Text>
           </View>

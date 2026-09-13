@@ -1,19 +1,20 @@
-import { Tabs } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Tabs } from 'expo-router'
+import { View } from 'react-native'
 
-import { SolidShadow } from '../../src/shared/ui/SolidShadow';
+import { Icon, type IconName } from '../../src/shared/ui/Icon'
+import { SolidShadow } from '../../src/shared/ui/SolidShadow'
 
-const TabIcon = ({ emoji, focused }: { emoji: string; focused: boolean }) => (
-  <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.55 }}>{emoji}</Text>
-);
+const TabIcon = ({ name, focused }: { name: IconName; focused: boolean }) => (
+  <Icon name={name} size={24} color={focused ? '#10b981' : '#94a3b8'} />
+)
 
 const ScanTabIcon = () => (
   <SolidShadow height={48} shadowColor="#059669" borderRadius={24}>
     <View className="h-full w-full items-center justify-center rounded-full bg-primary">
-      <Text style={{ fontSize: 22 }}>📷</Text>
+      <Icon name="escanear" size={24} color="#ffffff" />
     </View>
   </SolidShadow>
-);
+)
 
 export default function TabsLayout() {
   return (
@@ -21,20 +22,25 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#10b981',
-        tabBarInactiveTintColor: '#131b2e',
-        tabBarStyle: { height: 80, paddingTop: 8, paddingBottom: 20 },
-        tabBarLabelStyle: { fontSize: 11, fontWeight: '700' },
+        tabBarInactiveTintColor: '#94a3b8',
+        tabBarStyle: {
+          height: 84,
+          paddingTop: 10,
+          paddingBottom: 22,
+          borderTopColor: '#dfe2f1',
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontFamily: 'PlusJakartaSans_700Bold',
+        },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{ href: null }}
-      />
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
         name="feed"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="♾️" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="infinito" focused={focused} />,
         }}
       />
       <Tabs.Screen
@@ -42,23 +48,27 @@ export default function TabsLayout() {
         options={{
           title: 'Escanear',
           tabBarIcon: () => <ScanTabIcon />,
-          tabBarLabelStyle: { fontSize: 11, fontWeight: '700', marginTop: 4 },
+          tabBarLabelStyle: {
+            fontSize: 11,
+            fontFamily: 'PlusJakartaSans_700Bold',
+            marginTop: 6,
+          },
         }}
       />
       <Tabs.Screen
         name="ranking"
         options={{
           title: 'Ranking',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="🏆" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="ranking" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="cadernos"
         options={{
           title: 'Cadernos',
-          tabBarIcon: ({ focused }) => <TabIcon emoji="📓" focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="cadernos" focused={focused} />,
         }}
       />
     </Tabs>
-  );
+  )
 }

@@ -1,4 +1,5 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { Icon } from '../../src/shared/ui/Icon';
 import * as ImagePicker from 'expo-image-picker';
 import { useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
@@ -28,7 +29,7 @@ const ProcessingBanner = ({ stage }: { stage: ScanStage }) => {
   return (
     <View className="flex-row items-center gap-2 rounded-2xl bg-surface-soft px-4 py-3">
       <ActivityIndicator color="#10b981" size="small" />
-      <Text className="text-sm font-semibold text-text">{message}</Text>
+      <Text className="text-sm font-jk-semibold text-text">{message}</Text>
     </View>
   );
 };
@@ -65,11 +66,11 @@ const CaptureScreen = () => {
   if (!permission.granted) {
     return (
       <View className="flex-1 items-center justify-center gap-4 px-8">
-        <Text className="text-4xl">📷</Text>
-        <Text className="text-center text-base font-bold text-text">
+        <Icon name="camera" size={44} color="#10b981" />
+        <Text className="text-center text-base font-jk-bold text-text">
           O Desfeed usa a câmera para fotografar seu caderno
         </Text>
-        <Text className="text-center text-sm text-text-muted">
+        <Text className="text-center text-sm text-text-muted font-jk">
           A foto vira perguntas de revisão automaticamente. Sem a câmera, você ainda pode escolher
           uma foto já salva na galeria.
         </Text>
@@ -82,8 +83,8 @@ const CaptureScreen = () => {
   if (stage === 'error') {
     return (
       <View className="flex-1 items-center justify-center gap-4 px-8">
-        <Text className="text-4xl">⚠️</Text>
-        <Text className="text-center text-sm text-text-muted">{errorMessage}</Text>
+        <Icon name="atencao" size={44} color="#b45309" />
+        <Text className="text-center text-sm text-text-muted font-jk">{errorMessage}</Text>
         <Button label="Tentar novamente" onPress={reset} />
       </View>
     );
@@ -93,11 +94,11 @@ const CaptureScreen = () => {
     if (result.confidence === 'baixa' || result.cards.length === 0) {
       return (
         <View className="flex-1 items-center justify-center gap-4 px-8">
-          <Text className="text-4xl">🤔</Text>
-          <Text className="text-center text-base font-bold text-text">
+          <Icon name="duvida" size={44} color="#131b2e" />
+          <Text className="text-center text-base font-jk-bold text-text">
             Não deu para ler essa página com confiança
           </Text>
-          <Text className="text-center text-sm text-text-muted">
+          <Text className="text-center text-sm text-text-muted font-jk">
             Prefira gerar cards ruins? Não. Tire outra foto com mais luz e o texto mais legível.
           </Text>
           <Button label="Tirar nova foto" onPress={reset} />
@@ -108,15 +109,15 @@ const CaptureScreen = () => {
     return (
       <View className="flex-1 gap-4 px-4 pt-4">
         <View className="flex-row items-center justify-between">
-          <Text className="text-lg font-extrabold text-text">Cards gerados</Text>
+          <Text className="text-lg font-jk-extrabold text-text">Cards gerados</Text>
           <Pill label={`Confiança ${result.confidence}`} tone="primary" />
         </View>
         {result.cards.map((card) => (
           <View key={card.id} className="gap-1.5 rounded-2xl bg-surface p-4 shadow-sm">
-            <Text className="text-xs font-bold uppercase tracking-wide text-text-muted">
+            <Text className="text-xs font-jk-bold uppercase tracking-wide text-text-muted">
               {card.subject} • {card.chapter}
             </Text>
-            <Text className="text-base font-bold text-text">{card.question}</Text>
+            <Text className="text-base font-jk-bold text-text">{card.question}</Text>
           </View>
         ))}
         <Button
@@ -140,7 +141,7 @@ const CaptureScreen = () => {
         <Pressable style={{ opacity: stage !== 'idle' ? 0.5 : 1 }} onPress={handleCapture} disabled={stage !== 'idle'} onPressIn={() => setPressed(true)} onPressOut={() => setPressed(false)}>
           <SolidShadow height={64} shadowColor="#059669" borderRadius={32} pressed={pressed}>
             <View className="h-full w-full items-center justify-center rounded-full bg-primary">
-              <Text className="text-2xl">📸</Text>
+              <Icon name="camera" size={28} color="#ffffff" />
             </View>
           </SolidShadow>
         </Pressable>
@@ -153,8 +154,8 @@ export default function EscanearScreen() {
   return (
     <SafeAreaView className="flex-1 bg-surface" edges={['top']}>
       <View className="flex-row items-center gap-2 px-4 pb-2">
-        <Text className="text-xl">🧠</Text>
-        <Text className="text-lg font-extrabold tracking-tight text-text">Desfeed</Text>
+        <Icon name="cerebro" size={24} color="#10b981" />
+        <Text className="text-lg font-jk-extrabold tracking-tight text-text">Desfeed</Text>
       </View>
       <CaptureScreen />
     </SafeAreaView>

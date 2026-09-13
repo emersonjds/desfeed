@@ -44,8 +44,8 @@ export const Button = ({
         style={{ height, minHeight: 44 }}
         className="flex-row items-center justify-center gap-2"
       >
-        {icon ? <Text className="text-base">{icon}</Text> : null}
-        <Text className="font-semibold text-text-muted">{label}</Text>
+        {icon ? <Text className="text-base font-jk">{icon}</Text> : null}
+        <Text className="font-jk-semibold text-text-muted">{label}</Text>
       </Pressable>
     );
   }
@@ -64,8 +64,8 @@ export const Button = ({
           style={{ backgroundColor: colors.background, height }}
           className="w-full flex-row items-center justify-center gap-2 rounded-2xl"
         >
-          {icon ? <Text className="text-lg">{icon}</Text> : null}
-          <Text style={{ color: colors.text }} className="text-base font-bold">
+          {icon ? <Text className="text-lg font-jk">{icon}</Text> : null}
+          <Text style={{ color: colors.text }} className="text-base font-jk-bold">
             {label}
           </Text>
         </View>

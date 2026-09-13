@@ -18,7 +18,7 @@ export const Badge = ({ letter, state = 'idle' }: BadgeProps) => {
   const classes = classesByState[state];
   return (
     <View className={`h-8 w-8 items-center justify-center rounded-xl ${classes.container}`}>
-      <Text className={`text-base font-bold ${classes.text}`}>{letter}</Text>
+      <Text className={`text-base font-jk-bold ${classes.text}`}>{letter}</Text>
     </View>
   );
 };
