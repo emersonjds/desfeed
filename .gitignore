@@ -1,0 +1,51 @@
+node_modules/
+.pnpm-store/
+
+# builds e artefatos
+dist/
+build/
+web-build/
+*.tsbuildinfo
+# expo
+.expo/
+.expo-shared/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+# ambiente — nunca versionar chave de API
+.env
+.env.*
+!.env.example
+# ferramentas
+coverage/
+.DS_Store
+*.log
+npm-debug.log*
+yarn-error.log*
+# config pessoal do Claude Code (o settings.json do time é versionado)
+.claude/settings.local.json
+# screenshots gerados a partir do app em execução
+docs/design/app/*.png
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# dependencies
+# Expo
+expo-env.d.ts
+# Native
+.kotlin/
+# Metro
+.metro-health-check*
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+# macOS
+*.pem
+# local env files
+.env*.local
+# typescript
+# generated native folders
+/ios
+/android
