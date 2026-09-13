@@ -49,3 +49,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# venv local do gerador de deck
+docs/pitch/.venv/
+docs/pitch/slides-png/

@@ -1,0 +1,13 @@
+[build]
+  command = "npx tsc --noEmit && npx expo export --platform web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# expo.web.output e "single": o roteamento e todo no cliente, entao qualquer
+# caminho precisa devolver o index em vez de 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
