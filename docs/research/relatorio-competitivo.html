@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Desfeed — Análise Competitiva</title>
+<style>
+  :root{
+    --primary:#10b981;
+    --primary-dark:#059669;
+    --text:#0f131d;
+    --surface:#ffffff;
+    --surface-subtle:#faf8ff;
+    --border:#cbd5e1;
+    --accent:#4f46e5;
+    --green:#10b981;
+    --amber:#b45309;
+    --amber-bg:#fef3c7;
+    --red:#dc2626;
+    --red-bg:#fee2e2;
+    --green-bg:#d1fae5;
+  }
+  @page{ size:A4; margin:18mm; }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    background:var(--surface);
+    color:var(--text);
+    font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:10.5pt;
+    line-height:1.5;
+  }
+  h1,h2,h3,h4{ font-family:-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--text); margin:0 0 8px 0; }
+  h1{ font-size:22pt; font-weight:700; }
+  h2{ font-size:15pt; font-weight:700; color:var(--primary-dark); border-bottom:2px solid var(--primary); padding-bottom:6px; margin-bottom:14px; }
+  h3{ font-size:12pt; font-weight:700; margin-top:16px; }
+  p{ margin:0 0 8px 0; }
+  a{ color:var(--accent); }
+  section.page{ page-break-before:always; }
+  section.page:first-of-type{ page-break-before:auto; }
+
+  /* ---------- Capa ---------- */
+  .cover{
+    min-height:255mm;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center;
+  }
+  .cover .eyebrow{
+    font-size:10pt; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:700; margin-bottom:18px;
+  }
+  .cover h1{ font-size:40pt; color:var(--primary-dark); margin-bottom:10px; }
+  .cover .subtitle{ font-size:14pt; font-style:italic; color:var(--text); margin-bottom:36px; max-width:120mm; }
+  .cover .doctype{ font-size:16pt; font-weight:700; color:var(--text); margin-bottom:6px; }
+  .cover .meta{ margin-top:40px; font-size:10.5pt; color:#475569; }
+  .cover .meta div{ margin-bottom:4px; }
+  .cover .badge{
+    display:inline-block; margin-top:30px; padding:8px 20px;
+    background:var(--primary); color:#fff; font-weight:700; border-radius:999px; font-size:10.5pt;
+  }
+
+  /* ---------- Genéricos ---------- */
+  .lede{ font-size:11.5pt; color:#1e293b; }
+  .callout{
+    background:var(--surface-subtle); border:1px solid var(--border); border-left:4px solid var(--accent);
+    border-radius:8px; padding:12px 16px; margin:14px 0;
+  }
+  .callout strong{ color:var(--accent); }
+
+  /* ---------- Big stats ---------- */
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+  .stat-card{
+    background:var(--surface-subtle); border:1px solid var(--border); border-radius:10px;
+    padding:16px; break-inside:avoid;
+  }
+  .stat-number{ font-size:34pt; font-weight:800; color:var(--primary-dark); line-height:1; margin-bottom:6px; }
+  .stat-label{ font-size:10pt; font-weight:600; margin-bottom:4px; }
+  .stat-source{ font-size:8.5pt; color:#64748b; }
+
+  /* ---------- Tabelas ---------- */
+  table{ width:100%; border-collapse:collapse; margin:10px 0 18px 0; font-size:8.7pt; }
+  table.wide th, table.wide td{ padding:5px 6px; border:1px solid var(--border); vertical-align:top; text-align:left; }
+  table.wide thead th{ background:var(--primary); color:#fff; font-weight:700; font-size:8.5pt; }
+  table.wide tbody tr:nth-child(even){ background:#f6fbf9; }
+  table.wide tr{ break-inside:avoid; }
+  table.evidence th, table.evidence td{ padding:7px 8px; border:1px solid var(--border); vertical-align:top; text-align:left; font-size:8.8pt; }
+  table.evidence thead th{ background:var(--primary); color:#fff; }
+  table.evidence tbody tr:nth-child(even){ background:#f6fbf9; }
+  table.evidence tr{ break-inside:avoid; }
+
+  .block-title{
+    margin-top:20px; margin-bottom:4px; font-size:11pt; font-weight:700; color:var(--primary-dark);
+    display:flex; align-items:center; gap:8px;
+  }
+  .block-title::before{ content:""; width:10px; height:10px; background:var(--primary); border-radius:2px; display:inline-block; }
+
+  /* ---------- Hipóteses ---------- */
+  .hypothesis{
+    border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:14px;
+    break-inside:avoid; background:var(--surface);
+  }
+  .hypothesis-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:8px; }
+  .hypothesis-title{ font-weight:700; font-size:10.8pt; flex:1; }
+  .verdict{
+    display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px;
+    font-size:8.8pt; font-weight:700; white-space:nowrap;
+  }
+  .verdict .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .verdict.confirmada{ background:var(--green-bg); color:#065f46; }
+  .verdict.confirmada .dot{ background:var(--green); }
+  .verdict.parcial{ background:var(--amber-bg); color:var(--amber); }
+  .verdict.parcial .dot{ background:#f59e0b; }
+  .verdict.refutada{ background:var(--red-bg); color:var(--red); }
+  .verdict.refutada .dot{ background:var(--red); }
+
+  .highlight-box{
+    background:linear-gradient(135deg,#fff7ed,#fef3c7); border:2px solid var(--red);
+    border-radius:10px; padding:14px 16px; margin:14px 0; break-inside:avoid;
+  }
+  .highlight-box .tag{
+    display:inline-block; background:var(--red); color:#fff; font-size:8pt; font-weight:700;
+    padding:3px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;
+  }
+
+  /* ---------- Diferenciais ---------- */
+  .diff-lead{
+    border:2px solid var(--primary-dark); border-radius:12px; padding:16px 18px; margin:16px 0 20px 0;
+    background:var(--green-bg); break-inside:avoid;
+  }
+  .diff-lead .tag{
+    display:inline-block; background:var(--primary-dark); color:#fff; font-size:8pt; font-weight:700;
+    padding:3px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;
+  }
+  .diff-lead h3{ margin-top:0; font-size:12.5pt; }
+  .diff-item{
+    border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:10px;
+    break-inside:avoid; background:var(--surface);
+  }
+  .diff-item .num{
+    display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px;
+    background:var(--primary); color:#fff; border-radius:50%; font-size:9pt; font-weight:700; margin-right:8px;
+  }
+  .diff-item h4{ display:inline; font-size:10.3pt; }
+  .diff-item p{ margin-top:6px; margin-bottom:0; }
+  .beats{ font-size:8.7pt; color:#475569; font-style:italic; }
+
+  /* ---------- Riscos ---------- */
+  .risk-item{ border-left:3px solid var(--red); padding:6px 0 6px 12px; margin-bottom:10px; break-inside:avoid; }
+  .risk-item .who{ font-weight:700; }
+  .protection{
+    margin-top:16px; background:var(--surface-subtle); border:1px solid var(--primary); border-radius:10px;
+    padding:14px 16px; break-inside:avoid;
+  }
+  .protection .tag{
+    display:inline-block; background:var(--primary); color:#fff; font-size:8pt; font-weight:700;
+    padding:3px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;
+  }
+
+  /* ---------- Referências ---------- */
+  .refs{ font-size:8.8pt; line-height:1.7; columns:1; }
+  .refs .ref-group{ margin-bottom:10px; break-inside:avoid; }
+  .refs .ref-group b{ display:block; margin-bottom:2px; }
+  .refs a{ word-break:break-all; }
+
+  .footer-note{ margin-top:24px; font-size:8pt; color:#94a3b8; text-align:center; }
+  .small{ font-size:8.8pt; color:#475569; }
+</style>
+</head>
+<body>
+
+<!-- ======================= CAPA ======================= -->
+<section class="page cover">
+  <div class="eyebrow">Análise Competitiva</div>
+  <h1>Desfeed</h1>
+  <div class="subtitle">"A interface do TikTok, o algoritmo do Ebbinghaus."</div>
+  <div class="doctype">HACKTUDO 2026</div>
+  <div class="meta">
+    <div>13ª edição · 11–19 de setembro · 100% online</div>
+    <div>12 de setembro de 2026</div>
+  </div>
+  <div class="badge">Mapa de concorrentes · hipóteses testadas · evidência científica</div>
+</section>
+
+<!-- ======================= SUMÁRIO EXECUTIVO ======================= -->
+<section class="page">
+  <h2>Sumário executivo</h2>
+  <p class="lede">O Desfeed é um app mobile de feed vertical infinito — swipe, streak, liga, XP — em que cada card é uma micro-recuperação ativa do conteúdo que o aluno estudou. O conteúdo vem do próprio caderno: o aluno fotografa a página, a IA lê e gera os cards. Depois de responder, o aluno se auto-avalia em quatro graus (Errei / Difícil / Bom / Fácil) e o algoritmo FSRS decide quando o card volta. A sessão não é infinita: ela termina de propósito, com uma tela que anuncia o fim e a próxima revisão agendada. O professor abre uma sala com PIN em aula, e o que o aluno respondeu ali entra no seu FSRS individual e reaparece no feed nos dias seguintes.</p>
+
+  <p>A pesquisa de mercado testou quatro hipóteses sobre o espaço competitivo, contra 30 produtos identificados em três categorias: feed/short-form de aprendizagem, sala de aula ao vivo e edtech brasileira. O resultado foi honesto, não favorável por padrão: duas hipóteses confirmadas, uma parcial e uma refutada. A refutada importa mais que as confirmadas — o mercado brasileiro já tem três produtos (PlayAula, Unoquizz, Educa AI) atendendo à exceção pedagógica da Lei 15.100/2025. Não existe "somos os únicos no Brasil".</p>
+
+  <div class="callout">
+    <strong>Posição competitiva defensável:</strong> nenhum concorrente de sala ao vivo (Kahoot, Quizizz, Blooket, Gimkit, Wooclap, PlayAula, Unoquizz) transforma o resultado da aula em revisão espaçada individual para cada aluno. E nenhum produto de feed/microlearning (StudyTok, Nibble, Duolingo) encerra a sessão de propósito — todos otimizam tempo de tela. A defesa do Desfeed não é uma feature isolada: é a combinação de FSRS real, fim proposital de sessão e a ponte sala-ao-vivo → revisão individual. Essa combinação exige decisões de produto contrárias ao modelo de receita de quase todo concorrente, que monetiza por tempo de uso ou DAU. Copiar a peça técnica é fácil; copiar a filosofia de produto contraria a própria métrica de quem já vive de engajamento.</p>
+  </div>
+</section>
+
+<!-- ======================= O PROBLEMA ======================= -->
+<section class="page">
+  <h2>O problema</h2>
+  <p>O celular na escola não é o problema — é a ausência de tecnologia desenhada a favor da cognição. Quatro números documentam a escala e a urgência disso.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">47s</div>
+      <div class="stat-label">Atenção média sustentada em tela, caiu de 2,5 minutos em 2004</div>
+      <div class="stat-source">Fonte: Gloria Mark, UC Irvine</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">83%</div>
+      <div class="stat-label">Dos usuários de LLM não conseguem citar uma frase do próprio texto que acabaram de escrever</div>
+      <div class="stat-source">Fonte: Kosmyna et al., MIT Media Lab, 2025 (arXiv:2506.08872)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">73%</div>
+      <div class="stat-label">Dos alunos brasileiros estão abaixo do nível básico em matemática</div>
+      <div class="stat-source">Fonte: PISA 2022 / INEP-OCDE</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">92%</div>
+      <div class="stat-label">Das escolas já aplicam a Lei 15.100/2025, de forma improvisada</div>
+      <div class="stat-source">Fonte: MEC, junho de 2026 (8.189 escolas)</div>
+    </div>
+  </div>
+
+  <p>Os quatro números apontam para o mesmo vácuo. A atenção sustentada caiu a um patamar em que qualquer conteúdo precisa ser resolvido em segundos, não minutos. O uso de IA generativa para gerar texto pronto está associado a queda de conectividade neural e a incapacidade de o próprio autor reconhecer o que escreveu — o oposto do que a aprendizagem exige. O desempenho em matemática mostra que o problema de base já existe, independentemente de celular. E a Lei 15.100/2025 já mudou o comportamento de quase toda escola brasileira, mas de forma improvisada — sem uma ferramenta desenhada para a exceção pedagógica que a própria lei prevê.</p>
+</section>
+
+<!-- ======================= MAPA COMPETITIVO ======================= -->
+<section class="page">
+  <h2>Mapa competitivo</h2>
+  <p class="small">Colunas: Produto · País · Formato · Geração por IA · Repetição espaçada · Sala ao vivo · Modelo de negócio. Fontes e links de cada linha estão na seção de Referências.</p>
+
+  <div class="block-title">Feed / short-form de aprendizagem</div>
+  <table class="wide">
+    <thead><tr><th>Produto</th><th>País</th><th>Formato</th><th>Geração por IA</th><th>Repetição espaçada</th><th>Sala ao vivo</th><th>Modelo de negócio</th></tr></thead>
+    <tbody>
+      <tr><td><b>StudyTok</b></td><td>EUA</td><td>Feed vertical estilo TikTok, swipe entre flashcards/quiz</td><td>Sim — foto/PDF/PPTX/YouTube → flashcards e questões</td><td>Não encontrado — sem evidência de FSRS/SM-2; usa streak/pontos/leaderboard</td><td>Não</td><td>Freemium por assinatura</td></tr>
+      <tr><td><b>Nibble</b></td><td>EUA</td><td>Feed vertical de microlearning geral, não currículo escolar</td><td>Não encontrado — conteúdo parece curado</td><td>Não</td><td>Não</td><td>Assinatura, sem free tier permanente</td></tr>
+      <tr><td><b>Quizlet (Magic Notes)</b></td><td>EUA</td><td>Sets de flashcards + "Quizlet Live"; não é feed vertical infinito</td><td>Sim — foto/PDF/Word/Drive → flashcards, resumos, testes</td><td>Parcial — modos de estudo com repetição, algoritmo proprietário não documentado como FSRS/SM-2</td><td>Sim (Quizlet Live, em sala)</td><td>Freemium, IA atrás de assinatura</td></tr>
+      <tr><td><b>Knowt</b></td><td>EUA</td><td>Sets de flashcards/quiz, não é feed vertical</td><td>Sim — PDF/PPT → flashcards, grátis</td><td>Modos de estudo tipo Quizlet, não documentado como FSRS</td><td>Não encontrado</td><td>Freemium</td></tr>
+      <tr><td><b>Anki / AnkiDroid</b></td><td>Open source</td><td>Cartões, sem feed</td><td>Não (add-ons de comunidade, não nativo)</td><td><b>Sim — FSRS-4.5 nativo desde Anki 23.10</b></td><td>Não</td><td>Gratuito / open source</td></tr>
+      <tr><td><b>RemNote</b></td><td>EUA</td><td>Notas + flashcards</td><td>Parcial (assistente de notas)</td><td><b>Sim — FSRS é o scheduler padrão desde 2024</b></td><td>Não</td><td>Freemium</td></tr>
+      <tr><td><b>Mochi</b></td><td>EUA</td><td>Flashcards</td><td>Não encontrado</td><td>FSRS opcional, não é padrão</td><td>Não</td><td>Assinatura</td></tr>
+      <tr><td><b>Brainscape</b></td><td>EUA</td><td>Flashcards</td><td>Não encontrado</td><td>Não — algoritmo proprietário "CBR" por confiança autodeclarada, não FSRS/SM-2</td><td>Não</td><td>Freemium</td></tr>
+      <tr><td><b>Duolingo</b></td><td>EUA</td><td>Lições em módulos, não feed vertical</td><td>Sim — exercícios adaptativos via motor "Birdbrain"</td><td>Não usa FSRS/SM-2 — modelo próprio (Half-Life Regression → Birdbrain)</td><td>Não</td><td>Freemium + assinatura Super</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-title">Sala de aula ao vivo</div>
+  <table class="wide">
+    <thead><tr><th>Produto</th><th>País</th><th>Formato</th><th>Geração por IA</th><th>Repetição espaçada</th><th>Sala ao vivo</th><th>Modelo de negócio</th></tr></thead>
+    <tbody>
+      <tr><td><b>Kahoot!</b></td><td>Noruega</td><td>Quiz ao vivo em sala + modo assíncrono</td><td>Sim — gerador de quiz por IA, planos superiores</td><td>Não</td><td><b>Sim — via PIN, participante entra grátis</b></td><td>Freemium; paga-se pelo host</td></tr>
+      <tr><td><b>Quizizz (Wayground)</b></td><td>EUA/Índia</td><td>Quiz ao vivo + "homework" assíncrono</td><td>Sim, atrás do paywall</td><td>Não</td><td>Sim, via PIN</td><td>Freemium</td></tr>
+      <tr><td><b>Blooket</b></td><td>EUA</td><td>Quiz-jogo ao vivo/assíncrono</td><td>Sim — via Khanmigo (Khan Academy), desde jan/2025</td><td>Não</td><td>Sim, via PIN</td><td>Freemium</td></tr>
+      <tr><td><b>Gimkit</b></td><td>EUA</td><td>Quiz-jogo ao vivo/assíncrono</td><td>Sim — gerador próprio, 10–30 perguntas/tópico</td><td>Não</td><td>Sim, via PIN</td><td>Freemium</td></tr>
+      <tr><td><b>Wooclap</b></td><td>Bélgica</td><td>Slides interativos + quiz ao vivo</td><td>Sim — "Quiz Wizard" gera MCQ/flashcards de PDF/PPT/vídeo</td><td>Não</td><td>Sim, via PIN/código</td><td>Freemium</td></tr>
+      <tr><td><b>Mentimeter</b></td><td>Suécia</td><td>Slides interativos/enquetes</td><td>Sim — gerador de quiz por IA</td><td>Não</td><td>Sim, via código</td><td>Freemium</td></tr>
+      <tr><td><b>Nearpod</b></td><td>EUA</td><td>Aulas interativas + quiz</td><td>Não encontrado com detalhe</td><td>Não</td><td>Sim</td><td>Freemium</td></tr>
+      <tr><td><b>Pear Deck</b></td><td>EUA</td><td>Slides interativos</td><td>Não encontrado com detalhe</td><td>Não</td><td>Sim</td><td>Freemium/institucional</td></tr>
+      <tr><td><b>Socrative</b></td><td>EUA</td><td>Quiz/enquete em sala</td><td>Em desenvolvimento — equipe confirma que "explora" IA em 2026</td><td>Não</td><td>Sim</td><td>Freemium</td></tr>
+      <tr><td><b>Plickers</b></td><td>EUA</td><td>Cartões de resposta física + app</td><td>Não encontrado</td><td>Não</td><td>Sim (sem celular do aluno)</td><td>Não encontrado</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-title">Edtech brasileira</div>
+  <table class="wide">
+    <thead><tr><th>Produto</th><th>País</th><th>Formato</th><th>Geração por IA</th><th>Repetição espaçada</th><th>Sala ao vivo</th><th>Modelo de negócio</th></tr></thead>
+    <tbody>
+      <tr><td><b>PlayAula</b></td><td>Brasil</td><td>Jogos em sala (quiz, memória, cruzadinha, anagrama)</td><td>Sim — gera atividade a partir de um tópico digitado</td><td>Não</td><td><b>Sim — sala com PIN, navegador do celular, sem instalar app</b></td><td>Assinatura</td></tr>
+      <tr><td><b>Unoquizz</b></td><td>Brasil</td><td>Quiz ao vivo em sala</td><td>Não encontrado — site não menciona IA</td><td>Não</td><td>Sim, sala/ranking em tempo real</td><td>Freemium</td></tr>
+      <tr><td><b>Educa AI</b></td><td>Brasil</td><td>Ferramentas de IA para professor (quiz, correção, alertas)</td><td>Sim</td><td>Não encontrado</td><td>Sim (mencionado, não detalhado)</td><td>Não encontrado</td></tr>
+      <tr><td><b>Plurall (SOMOS Educação)</b></td><td>Brasil</td><td>Plataforma didática + apostila digital</td><td>Sim — "Plurall IA" gera questões, listas e planos de aula</td><td>Não encontrado</td><td>Não encontrado</td><td>B2B2C via escolas</td></tr>
+      <tr><td><b>Árvore</b></td><td>Brasil</td><td>Leitura gamificada (livros/audiolivros)</td><td>Parcial — IA acompanha alfabetização, não gera cards de revisão</td><td>Não</td><td>Não</td><td>B2B via escolas</td></tr>
+      <tr><td><b>Descomplica</b></td><td>Brasil</td><td>Videoaulas + lives + exercícios (cursinho)</td><td>Não encontrado com evidência de geração por foto</td><td>Não</td><td>Não (lives com professor)</td><td>Assinatura direta ao aluno</td></tr>
+      <tr><td><b>Stoodi</b></td><td>Brasil</td><td>Videoaulas + exercícios (cursinho)</td><td>Não encontrado</td><td>Não</td><td>Não</td><td>Assinatura</td></tr>
+      <tr><td><b>Me Salva! / Aprova Total</b></td><td>Brasil</td><td>Videoaulas + exercícios</td><td>Não encontrado</td><td>Não</td><td>Não</td><td>Assinatura</td></tr>
+      <tr><td><b>Geekie</b></td><td>Brasil</td><td>Plataforma adaptativa (B2B escola)</td><td>Parcial — algoritmo adaptativo personaliza trilha</td><td>Não</td><td>Não</td><td>B2B (licenciamento escolar)</td></tr>
+      <tr><td><b>Khan Academy Brasil / Khanmigo</b></td><td>Global/BR</td><td>Tutor de IA em chat + exercícios</td><td>Sim, tutor conversacional, não feed de recall</td><td>Não</td><td>Não</td><td>Gratuito / Khanmigo licenciado</td></tr>
+      <tr><td><b>Evolucional, Eduqo, AppProva, Explicaê, Studeo</b></td><td>Brasil</td><td>Gestão pedagógica, videoaulas ENEM, AVA universitário</td><td>Não encontrada evidência de feed vertical ou IA de foto</td><td>Não</td><td>Não</td><td>B2B escolar / assinatura</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ======================= HIPÓTESES ======================= -->
+<section class="page">
+  <h2>As quatro hipóteses testadas</h2>
+  <p>A pesquisa testou quatro afirmações sobre o espaço competitivo do Desfeed contra o mercado real. O critério foi honestidade: uma hipótese sem evidência direta foi marcada "não encontrado", nunca preenchida por estimativa.</p>
+
+  <div class="hypothesis">
+    <div class="hypothesis-head">
+      <div class="hypothesis-title">H1 — Ninguém combina feed vertical + FSRS real + IA a partir de foto do caderno</div>
+      <span class="verdict parcial"><span class="dot"></span>Parcial</span>
+    </div>
+    <p>O StudyTok chega mais perto: tem feed vertical estilo TikTok e gera flashcards/quiz a partir de foto, PDF, PPTX e vídeo do YouTube. Mas a pesquisa não encontrou evidência de que ele use FSRS ou qualquer scheduler de repetição espaçada real — a retenção parece sustentada por streak, pontuação e gamificação, não por um algoritmo de memória. Nenhum produto com feed vertical foi encontrado combinando os três elementos simultaneamente. O Desfeed seria o primeiro a fechar esse triângulo, se implementar FSRS de fato.</p>
+  </div>
+
+  <div class="hypothesis">
+    <div class="hypothesis-head">
+      <div class="hypothesis-title">H2 — Ninguém faz fim proposital de sessão; todos otimizam tempo de tela</div>
+      <span class="verdict confirmada"><span class="dot"></span>Confirmada</span>
+    </div>
+    <p>Todo produto de feed/microlearning encontrado (StudyTok, Nibble, Duolingo) usa mecânicas de scroll contínuo, streak e leaderboard desenhadas para maximizar tempo de app e frequência de retorno — não para encerrar a sessão de forma proativa. Não foi encontrado nenhum produto que anuncie "fim de sessão" como funcionalidade central ou filosofia de design anti-engajamento. Esta é a lacuna mais limpa das quatro.</p>
+  </div>
+
+  <div class="highlight-box">
+    <span class="tag">Achado que muda o discurso</span>
+    <div class="hypothesis-head" style="margin-bottom:6px;">
+      <div class="hypothesis-title">H3 — Nenhum produto no Brasil atende à exceção pedagógica da Lei 15.100/2025</div>
+      <span class="verdict refutada"><span class="dot"></span>Refutada</span>
+    </div>
+    <p>Pelo menos três produtos brasileiros de quiz ao vivo já existem, e o Kahoot (não brasileiro) já se posiciona em marketing como compatível com a lei. O <b>PlayAula</b> é brasileiro, usa IA para gerar a atividade, roda em sala com PIN pelo navegador do celular — e por natureza já atende à exceção pedagógica da lei, ainda que sem citá-la explicitamente. <b>Educa AI</b> e <b>Unoquizz</b> também são brasileiros e atuam nesse nicho. Já existe concorrência brasileira nativa na parte "sala ao vivo com IA". Nenhum dos três, porém, estende isso para revisão espaçada individual no celular do aluno depois da aula — que é exatamente a lacuna da hipótese 4. <b>Consequência para o discurso do pitch: não afirmar "somos os únicos no Brasil".</b> Essa frase morre diante de qualquer jurado que conheça o PlayAula.</p>
+  </div>
+
+  <div class="hypothesis">
+    <div class="hypothesis-head">
+      <div class="hypothesis-title">H4 — Nenhum produto de sala ao vivo alimenta um sistema de revisão espaçada individual depois da aula</div>
+      <span class="verdict confirmada"><span class="dot"></span>Confirmada</span>
+    </div>
+    <p>Em nenhuma das fontes sobre Kahoot, Quizizz, Blooket, Gimkit, Wooclap, Mentimeter, Nearpod, Pear Deck, Socrative, Plickers, PlayAula, Unoquizz ou Educa AI foi encontrada menção a um sistema que pegue os erros da sala ao vivo e os transforme automaticamente em cartões de revisão espaçada individual nos dias seguintes. Todos tratam os dados de desempenho como relatório/analytics para o professor, não como insumo de um scheduler de memória individual. Esta é a segunda lacuna mais limpa, e a mais ligada à funcionalidade de sala ao vivo do Desfeed.</p>
+  </div>
+</section>
+
+<!-- ======================= DIFERENCIAL ======================= -->
+<section class="page">
+  <h2>Nosso diferencial</h2>
+  <p>Cinco pontos defensáveis, cada um nomeando o concorrente que ele supera e por quê.</p>
+
+  <div class="diff-lead">
+    <span class="tag">Diferencial-chave</span>
+    <h3>Ponte sala ao vivo → revisão individual</h3>
+    <p>Nenhum player — Kahoot, Quizizz, Blooket, Gimkit, Wooclap, PlayAula — alimenta um sistema de revisão espaçada individual depois da aula. Todos tratam o desempenho do aluno como relatório para o professor e param aí. O Desfeed fecha esse ciclo: o que o aluno respondeu na sala entra no FSRS individual dele e volta no feed nos dias seguintes. É o diferencial mais forte e o mais difícil de refutar — ausente em todo o setor, não apenas nos concorrentes diretos.</p>
+  </div>
+
+  <div class="diff-item">
+    <h4><span class="num">1</span>Fim proposital de sessão vs. otimização de tempo de tela</h4>
+    <p><span class="beats">Supera Duolingo, StudyTok e Nibble.</span> Todos medem e recompensam tempo e frequência de uso. O Desfeed é o único desenhado para dizer "acabou por hoje" de propósito, alinhado à evidência de que sessões distribuídas superam sessões longas (Cepeda et al., 2006). É diferenciação estrutural, não de feature: um produto que vive de DAU não consegue encerrar a sessão sem contrariar a própria métrica.</p>
+  </div>
+
+  <div class="diff-item">
+    <h4><span class="num">2</span>FSRS real, não gamificação disfarçada de memória</h4>
+    <p><span class="beats">Supera StudyTok e Duolingo.</span> StudyTok tem feed e IA de foto, mas sem scheduler de memória comprovado. Duolingo usa Half-Life Regression/Birdbrain proprietário, não FSRS. FSRS já é usado em produção por Anki (nativo desde a v23.10) e RemNote (padrão desde 2024), com biblioteca TypeScript MIT pronta (<code>ts-fsrs</code>) — o aluno vê o agendamento na tela ("+3d"), algo que algoritmos opacos como o Birdbrain ou o CBR do Brainscape não expõem.</p>
+  </div>
+
+  <div class="diff-item">
+    <h4><span class="num">3</span>IA a partir de foto do caderno, dentro de um feed de recall</h4>
+    <p><span class="beats">Supera Quizlet, Knowt e StudyTok.</span> Quizlet e Knowt geram flashcards de PDF/foto, mas a experiência de estudo é um deck ou lista — não um feed de recuperação ativa contínua com repetição espaçada real por trás. StudyTok é o mais próximo em formato, mas não usa FSRS documentado.</p>
+  </div>
+
+  <div class="diff-item">
+    <h4><span class="num">4</span>Conformidade com a Lei 15.100/2025 combinada com ciência da memória</h4>
+    <p><span class="beats">Supera PlayAula, Unoquizz e Educa AI parcialmente.</span> Os três já exploram a brecha pedagógica no Brasil, mas nenhum foi encontrado combinando isso com IA de foto e repetição espaçada individual pós-aula. A combinação de conformidade regulatória local com ciência da memória é o espaço que sobra.</p>
+  </div>
+
+  <div class="diff-item">
+    <h4><span class="num">5</span>Produto brasileiro nativo, não adaptação de produto internacional</h4>
+    <p><span class="beats">Contexto: mercado internacional (StudyTok, Duolingo) não constrói para a Lei 15.100.</span> O Desfeed nasce desenhado para a exceção pedagógica da lei brasileira, com a sala ao vivo como ponto de entrada institucional — o mesmo caminho que PlayAula, Educa AI e Unoquizz já usam para operar dentro da lei, mas sem a segunda metade: revisão individual pós-aula.</p>
+  </div>
+</section>
+
+<!-- ======================= RISCOS COMPETITIVOS ======================= -->
+<section class="page">
+  <h2>Riscos competitivos</h2>
+  <p>Quem pode copiar o Desfeed, em quanto tempo, e o que de fato protege o produto.</p>
+
+  <div class="risk-item">
+    <p><span class="who">StudyTok — candidato mais óbvio a copiar em 3 meses.</span> Já tem feed vertical e IA de foto/PDF/PPTX funcionando; falta "só" adicionar um scheduler FSRS real e a mecânica de encerramento de sessão. Como <code>ts-fsrs</code> é open-source e MIT, a barreira técnica para eles adicionarem é baixa.</p>
+  </div>
+
+  <div class="risk-item">
+    <p><span class="who">Kahoot, Quizizz e Wooclap — distribuição e caixa para comprar ou copiar rápido.</span> Todos já têm IA de geração de questões e login de aluno; falta conectar isso a um scheduler individual para fechar a ponte sala ao vivo → revisão individual.</p>
+  </div>
+
+  <div class="risk-item">
+    <p><span class="who">PlayAula, Educa AI e Unoquizz — vantagem de já serem brasileiros e já atenderem a Lei 15.100 na prática.</span> Sala com PIN, sem instalar app. Podem evoluir para IA de foto e revisão espaçada mais rápido que um player internacional, por já terem distribuição em escolas do Brasil.</p>
+  </div>
+
+  <div class="protection">
+    <span class="tag">O que nos protege</span>
+    <p>A proteção não é técnica — é de modelo de negócio. A combinação simultânea dos quatro elementos (feed + FSRS real + fim proposital de sessão + ponte sala-ao-vivo → individual) exige decisões de produto que vão contra o instinto de crescimento de quase todo concorrente atual, que monetiza tempo de tela e engajamento. Copiar a peça técnica (FSRS) é fácil; copiar a filosofia anti-engajamento contraria o modelo de receita de quem já vive de DAU e streak — caso de Duolingo e StudyTok. Um produto que monetiza por usuário ativo diário não consegue adotar o fim proposital de sessão sem contrariar a própria métrica que sustenta seu negócio. Isso é vantagem de posicionamento, não de tecnologia: o Desfeed precisa comunicar e proteger essa filosofia de produto, não apenas o código.</p>
+  </div>
+</section>
+
+<!-- ======================= EVIDÊNCIA CIENTÍFICA ======================= -->
+<section class="page">
+  <h2>Evidência científica</h2>
+  <p>Cada decisão de produto do Desfeed tem uma referência revisada por pares por trás — não intuição de design.</p>
+
+  <table class="evidence">
+    <thead><tr><th style="width:26%">Estudo</th><th style="width:40%">Achado</th><th style="width:34%">O que decide no produto</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Roediger &amp; Karpicke (2006), <i>Perspectives on Psychological Science</i></td>
+        <td>Testing effect: testar-se (retrieval practice) produz retenção maior que reler, especialmente em testes tardios (dias/semanas depois). Reler 4× vs. auto-testar: 83%/71% após 5 min, mas 40%/61% após 1 semana.</td>
+        <td>O card é sempre recuperação ativa, nunca releitura.</td>
+      </tr>
+      <tr>
+        <td>Cepeda, Pashler, Vul, Wixted &amp; Rohrer (2006), <i>Psychological Bulletin</i> 132(3)</td>
+        <td>Spacing effect: prática distribuída no tempo supera prática maciça, em 839 comparações e 317 experimentos.</td>
+        <td>Espaçamento é o núcleo do algoritmo — agendamento por FSRS.</td>
+      </tr>
+      <tr>
+        <td>Murre &amp; Dros (2015), <i>PLOS ONE</i> 10(7)</td>
+        <td>Replicação do experimento de Ebbinghaus: confirma queda acentuada de retenção nas primeiras horas/dias — retenção cai a ~34% em 1 dia e ~21% em 1 mês sem revisão.</td>
+        <td>Agendamento por FSRS, não por calendário fixo.</td>
+      </tr>
+      <tr>
+        <td>Freeman et al. (2014), <i>PNAS</i> 111(23)</td>
+        <td>Aprendizagem ativa aumenta nota média em exames (~6%, 0,47 desvio-padrão) e reduz reprovação (odds ratio 1,95 para aula expositiva tradicional), em 225 estudos de STEM.</td>
+        <td>Sala ao vivo é peer instruction instrumentada, não um quiz isolado.</td>
+      </tr>
+      <tr>
+        <td>Kosmyna, Hauptmann, Yuan, Situ, Liao et al. (2025), MIT Media Lab, arXiv:2506.08872</td>
+        <td>"Your Brain on ChatGPT": uso de LLM para redigir reduz conectividade cerebral (EEG) e gera "dívida cognitiva" — 83% dos usuários de LLM não conseguiram citar frase própria do texto que acabaram de escrever.</td>
+        <td>A IA gera a pergunta, nunca a resposta. O esforço de recuperação continua sendo do aluno.</td>
+      </tr>
+      <tr>
+        <td>"Feeds, feelings, and focus" (2025), <i>Psychological Bulletin</i></td>
+        <td>Meta-análise com 71 estudos e N=98.299: uso de vídeo de formato curto (TikTok/Reels/Shorts) associado a pior cognição (r=-0,34), atenção (r=-0,38) e controle inibitório (r=-0,41).</td>
+        <td>Sessão com fim proposital, sem scroll infinito — o mesmo formato, direção oposta de efeito.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Leitura estratégica para o pitch:</strong> o Desfeed usa o formato viciante do vídeo curto (testing effect + spacing) precisamente para o oposto do que a evidência mais recente mostra que o formato curto e a IA generativa costumam causar — atrofia de atenção e terceirização cognitiva. Mesmo mecanismo de interface, direção oposta de efeito cognitivo, porque o motor por trás é recuperação ativa espaçada, não consumo passivo.
+  </div>
+</section>
+
+<!-- ======================= REFERÊNCIAS ======================= -->
+<section class="page">
+  <h2>Referências</h2>
+  <div class="refs">
+    <div class="ref-group"><b>StudyTok</b><a href="https://studytok.com/">studytok.com</a> · <a href="https://apps.apple.com/us/app/studytok-learn-and-questions/id6738703017">App Store</a></div>
+    <div class="ref-group"><b>Nibble</b><a href="https://nibble-app.com/">nibble-app.com</a> · <a href="https://nibble-app.com/blog/educational-scrolling-apps">nibble-app.com/blog/educational-scrolling-apps</a> · <a href="https://nibble-app.com/blog/how-much-is-nibble-app">nibble-app.com/blog/how-much-is-nibble-app</a></div>
+    <div class="ref-group"><b>Imprint</b><a href="https://www.imprintapp.com/">imprintapp.com</a> · <a href="https://makeheadway.com/blog/imprint-app-review/">makeheadway.com/blog/imprint-app-review</a></div>
+    <div class="ref-group"><b>Quizlet</b><a href="https://quizlet.com/features/ai-flashcard-generator">quizlet.com/features/ai-flashcard-generator</a> · <a href="https://quizlet.com/study-guides/upload">quizlet.com/study-guides/upload</a></div>
+    <div class="ref-group"><b>Knowt</b><a href="https://knowt.com/ai-flashcard-maker">knowt.com/ai-flashcard-maker</a> · <a href="https://toolchase.com/tool/knowt/">toolchase.com/tool/knowt</a></div>
+    <div class="ref-group"><b>Revisely, StudyFetch, TurboLearn, Unstuck, Wisdolia/Jungle</b><a href="https://studyglen.com/guides/best-ai-study-guide-generator">studyglen.com/guides/best-ai-study-guide-generator</a> · <a href="https://www.revisely.com/flashcard-generator">revisely.com/flashcard-generator</a></div>
+    <div class="ref-group"><b>Quizgecko, Gizmo</b><a href="https://quizgecko.com/">quizgecko.com</a> · <a href="https://quizgecko.com/learn/gizmo-study-app-for-academic-success-spoiwn">quizgecko.com/learn/gizmo-study-app</a></div>
+    <div class="ref-group"><b>Anki / FSRS</b><a href="https://studycardsai.com/blog/anki-fsrs-algorithm">studycardsai.com/blog/anki-fsrs-algorithm</a> · <a href="https://github.com/open-spaced-repetition/fsrs4anki/blob/main/docs/tutorial.md">github.com/open-spaced-repetition/fsrs4anki</a></div>
+    <div class="ref-group"><b>ts-fsrs</b><a href="https://github.com/open-spaced-repetition/ts-fsrs">github.com/open-spaced-repetition/ts-fsrs</a> · <a href="https://www.npmjs.com/package/ts-fsrs">npmjs.com/package/ts-fsrs</a></div>
+    <div class="ref-group"><b>RemNote</b><a href="https://www.remnote.com/feature/fsrs">remnote.com/feature/fsrs</a></div>
+    <div class="ref-group"><b>Mochi / Brainscape</b><a href="https://studyglen.com/guides/best-spaced-repetition-apps">studyglen.com/guides/best-spaced-repetition-apps</a> · <a href="https://memstride.com/blog/fsrs-vs-sm2-algorithm-comparison/">memstride.com/blog/fsrs-vs-sm2-algorithm-comparison</a></div>
+    <div class="ref-group"><b>Duolingo</b><a href="https://research.duolingo.com/papers/settles.acl16.pdf">research.duolingo.com/papers/settles.acl16.pdf</a> · <a href="https://www.buildmvpfast.com/blog/ai-learning-personalization-duolingo-ai-driven-lessons-2026">buildmvpfast.com — Duolingo AI 2026</a> · <a href="https://www.trypropel.ai/resources/duolingo-customer-retention-strategy">trypropel.ai — retenção Duolingo</a> · <a href="https://foundercoho.substack.com/p/inside-duolingos-6b-playbook-gamification">foundercoho.substack.com</a></div>
+    <div class="ref-group"><b>Kahoot!</b><a href="https://www.panquiz.com/en/blog/kahoot-pricing/">panquiz.com/en/blog/kahoot-pricing</a> · <a href="https://porvir.org/kahoot-novos-recursos-passo-a-passo/">porvir.org/kahoot-novos-recursos-passo-a-passo</a></div>
+    <div class="ref-group"><b>Quizizz/Wayground, Blooket, Gimkit</b><a href="https://www.teachfloor.com/blog/blooket-vs-gimkit-vs-kahoot--vs-quizizz">teachfloor.com — comparativo</a> · <a href="https://nibble-app.com/blog/blooket-vs-quizizz">nibble-app.com/blog/blooket-vs-quizizz</a></div>
+    <div class="ref-group"><b>Wooclap</b><a href="https://wooclap.com/en/quiz-wizard/">wooclap.com/en/quiz-wizard</a> · <a href="https://kvistly.com/blog/best-mentimeter-alternatives">kvistly.com/blog/best-mentimeter-alternatives</a></div>
+    <div class="ref-group"><b>Mentimeter</b><a href="https://www.mentimeter.com/features/ai-quiz-generator">mentimeter.com/features/ai-quiz-generator</a></div>
+    <div class="ref-group"><b>Nearpod / Pear Deck</b><a href="https://www.classpoint.io/blog/audience-response-systems-for-classrooms">classpoint.io — audience response systems</a></div>
+    <div class="ref-group"><b>Socrative</b><a href="https://www.myengineeringbuddy.com/blog/socrative-reviews-alternatives-pricing-offerings/">myengineeringbuddy.com — Socrative</a></div>
+    <div class="ref-group"><b>PlayAula</b><a href="https://lp.playaula.com.br/">lp.playaula.com.br</a></div>
+    <div class="ref-group"><b>Unoquizz</b><a href="https://unoquizz.com.br/">unoquizz.com.br</a></div>
+    <div class="ref-group"><b>Educa AI</b><a href="https://educa-ai.pro/">educa-ai.pro</a></div>
+    <div class="ref-group"><b>Plurall / SOMOS Educação</b><a href="https://blogsomoseducacao.com.br/plurall-ia/">blogsomoseducacao.com.br/plurall-ia</a> · <a href="https://www.plurall.net/ia.html">plurall.net/ia.html</a></div>
+    <div class="ref-group"><b>Árvore</b><a href="https://www.arvore.com.br/">arvore.com.br</a></div>
+    <div class="ref-group"><b>Descomplica, Stoodi, Me Salva, Aprova Total</b><a href="https://br.my-best.com/21197">br.my-best.com/21197</a> · <a href="https://dezesseisegredos.blogspot.com/2017/02/me-salva-descomplica-proenem-ou-stoodi.html">dezesseisegredos.blogspot.com (dado antigo, tratar com cautela)</a></div>
+    <div class="ref-group"><b>Geekie</b><a href="https://www.geekie.com.br/como-funciona-uma-plataforma-de-aprendizagem-adaptativa-geekie-one/">geekie.com.br — plataforma adaptativa</a></div>
+    <div class="ref-group"><b>Khan Academy Brasil / Khanmigo</b><a href="https://blog.khanacademy.org/pt-br/como-o-khanmigo-funciona/">blog.khanacademy.org/pt-br — como o Khanmigo funciona</a></div>
+    <div class="ref-group"><b>Redação Nota 1000</b><a href="https://www.redacaonota1000.com.br/">redacaonota1000.com.br</a></div>
+    <div class="ref-group"><b>Explicaê / Studeo</b><a href="https://apps.apple.com/us/app/explicae/id6743809912">apps.apple.com/explicae</a></div>
+    <div class="ref-group"><b>Lei 15.100/2025</b><a href="https://www.gov.br/mec/pt-br/assuntos/noticias/2025/janeiro/sancionada-lei-que-restringe-uso-de-celulares-nas-escolas">gov.br/mec — lei sancionada</a> · <a href="https://mpce.mp.br/institucional/centros-de-apoio-operacional/caoeduc/kits-de-atuacao/kit-lei-15100-2025/">mpce.mp.br — kit Lei 15.100</a> · <a href="https://www.conjur.com.br/2025-mar-06/lei-no-15-100-25-proibe-aparelhos-eletronicos-pessoais-na-educacao-basica-em-prol-dos-hipervulneraveis/">conjur.com.br</a> · <a href="https://agenciabrasil.ebc.com.br/educacao/noticia/2026-06/lei-que-restringe-uso-de-celulares-ja-e-adotada-por-92-das-escolas">agenciabrasil.ebc.com.br — 92% das escolas</a></div>
+    <div class="ref-group"><b>Roediger &amp; Karpicke (2006)</b><a href="https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x">journals.sagepub.com</a></div>
+    <div class="ref-group"><b>Cepeda et al. (2006)</b><a href="https://www.yorku.ca/ncepeda/publications/CPVWR2006.html">yorku.ca/ncepeda/publications/CPVWR2006</a></div>
+    <div class="ref-group"><b>Murre &amp; Dros (2015)</b><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644">journals.plos.org/plosone</a></div>
+    <div class="ref-group"><b>Freeman et al. (2014)</b><a href="https://www.pnas.org/doi/10.1073/pnas.1319030111">pnas.org/doi/10.1073/pnas.1319030111</a></div>
+    <div class="ref-group"><b>Kosmyna et al. (2025)</b><a href="https://www.media.mit.edu/publications/your-brain-on-chatgpt/">media.mit.edu/publications/your-brain-on-chatgpt</a> · <a href="https://arxiv.org/abs/2506.08872">arxiv.org/abs/2506.08872</a></div>
+    <div class="ref-group"><b>"Feeds, feelings, and focus" (2025)</b><a href="https://pubmed.ncbi.nlm.nih.gov/41231585/">pubmed.ncbi.nlm.nih.gov/41231585</a></div>
+    <div class="ref-group"><b>Stack técnica</b> — detalhes de implementação (Expo, NativeWind, ts-fsrs, expo-sqlite/drizzle-orm, socket.io, claude-sonnet-5) em <code>docs/research/decisao-stack.md</code>, quando relevante ao pitch de viabilidade técnica.</div>
+  </div>
+  <div class="footer-note">Desfeed — Análise Competitiva · HACKTUDO 2026 · 12 de setembro de 2026</div>
+</section>
+
+</body>
+</html>

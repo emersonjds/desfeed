@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f131d;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-high": "#262a35", "on-primary-fixed": "#002111", "surface-tint": "#00e38f", "tertiary-fixed-dim": "#ffb95f", "secondary-container": "#571bc1", "on-primary-container": "#006b41", "on-surface-variant": "#b9cbbd", "surface-variant": "#313540", "surface-container-low": "#171b26", "primary-fixed-dim": "#00e38f", "on-secondary": "#3c0091", "on-tertiary-container": "#835200", "surface-container-highest": "#313540", "on-background": "#dfe2f1", "secondary-fixed": "#e9ddff", "outline": "#849588", "primary-container": "#00f59b", "on-secondary-fixed": "#23005c", "on-primary-fixed-variant": "#005231", "secondary-fixed-dim": "#d0bcff", "error-container": "#93000a", "inverse-primary": "#006d42", "tertiary": "#fff1e4", "primary-fixed": "#53ffab", "on-secondary-container": "#c4abff", "on-secondary-fixed-variant": "#5516be", "inverse-surface": "#dfe2f1", "on-error": "#690005", "surface-dim": "#0f131d", "tertiary-container": "#ffce95", "on-tertiary": "#472a00", "surface-container-lowest": "#0a0e18", "on-tertiary-fixed-variant": "#653e00", "surface-container": "#1c1f2a", "on-tertiary-fixed": "#2a1700", "on-primary": "#003920", "background": "#0f131d", "on-error-container": "#ffdad6", "surface": "#0f131d", "on-surface": "#dfe2f1", "error": "#ffb4ab", "tertiary-fixed": "#ffddb8", "surface-bright": "#353944", "primary": "#cdffdc", "secondary": "#d0bcff", "outline-variant": "#3b4a3f", "inverse-on-surface": "#2c303b" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "1rem", "space-lg": "1.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "2rem" }, "fontFamily": { "label-sm": ["Space Mono"], "mono-timer": ["Space Mono"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Space Mono"], "label-md": ["Space Mono"] }, "fontSize": { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "mono-timer": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_12px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Desfeed Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClbavMyfeACa26h0I75ud3xYxvljseRr97G7BhGoBpjLZkg6DGbTf-Jv09JppVUFweJf_tqgt4sjeRB0lnzEGQLUsGfXVrndBHMhIv_SxlEWziz5cOo_jkEm0gEjiLo4gEomLopEGzYe2wsysJ--NVNgXHdSt0b9k4LY24PHXLeYvbPs9I22HjXarUAqsOBCtMB7EMZIMfp6QdQt37CsPaj7w7lkQtUrpvULYfgQsj_yDlbx3WygztAQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none tracking-tight">Desfeed</span><span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Cadernos</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/90 text-on-surface"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">local_fire_department</span><span class="font-label-sm text-label-sm text-tertiary-fixed-dim font-bold">14</span></div><div class="hidden xs:flex items-center px-2 py-1 rounded-full bg-surface-container-low text-on-surface-variant"><span class="font-label-sm text-label-sm text-on-surface-variant">12/20 • FSRS</span></div><a class="min-w-[44px] min-h-[44px] flex items-center justify-center p-0.5 rounded-full transition-transform active:scale-95" data-path="perfil" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_0_8px_rgba(0,245,155,0.25)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHIm65TGrsH4kvkLrsaZE555SyVrDeg0vPcZx6Q2sAQ2mU9nXbIWLRERZi2aQgUoDjdi4oUF96uUEEA6dU-C2pTGEhBzbu-4lZ5582v3ohwj46Qnu3-OSHyqthg_qGSonD0qwK2ftwv74w2vG877NtpDvKEgNhai7JxK4Cwmaxt5EVAFH8vLosBikYFBNf2WAatUh43HA5eAJalpSlWcm7NT-nQTmrK_s2e_Y_4ab4SceeH1cahe5viw"/></a></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-surface"><div class="flex flex-col w-full px-margin pb-space-xl gap-space-lg">
+<!-- Retention Master Status Banner -->
+<section class="relative overflow-hidden rounded-xl bg-surface-container-high p-space-md shadow-xl">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-space-sm relative z-10">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">FSRS • Algoritmo Ativo</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">Zona de Memória Permanente</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seus circuitos neurais estão altamente consolidados.</p>
+</div>
+<!-- Animated Circular Progress -->
+<div class="relative flex items-center justify-center shrink-0 w-20 h-20">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 72 72">
+<circle class="text-surface-variant" cx="36" cy="36" fill="transparent" r="30" stroke="currentColor" stroke-width="5"></circle>
+<circle class="text-primary-container" cx="36" cy="36" fill="transparent" r="30" stroke="currentColor" stroke-dasharray="188.49" stroke-dashoffset="16.96" stroke-linecap="round" stroke-width="5"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="font-mono-timer text-mono-timer text-on-surface font-bold leading-none">91%</span>
+<span class="font-label-sm text-[9px] text-primary-fixed-dim uppercase">Retenção</span>
+</div>
+</div>
+</div>
+<!-- Quick Micro Stats Bar -->
+<div class="grid grid-cols-3 gap-2 mt-space-md pt-space-sm bg-surface-container-lowest/60 rounded-lg p-2.5">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cards Vivos</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">318</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Esquecimento</span>
+<span class="font-headline-sm text-headline-sm text-error">9%</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Próx. Janela</span>
+<span class="font-headline-sm text-headline-sm text-tertiary-fixed-dim">20:45</span>
+</div>
+</div>
+</section>
+<!-- Interactive Quick Action CTA Button -->
+<div>
+<button class="w-full relative flex items-center justify-center gap-2.5 py-3.5 px-space-md rounded-xl bg-gradient-to-r from-primary-container via-surface-tint to-secondary-container text-on-primary-fixed font-headline-sm text-headline-sm shadow-xl active:scale-[0.98] transition-transform" id="scan-trigger">
+<span class="material-symbols-outlined text-[24px]">document_scanner</span>
+<span class="font-bold tracking-tight">+ Escanear Nova Página de Caderno</span>
+<span class="absolute right-4 px-2 py-0.5 rounded-full bg-surface-container-lowest/30 font-label-sm text-label-sm">IA OCR</span>
+</button>
+</div>
+<!-- Section 1: Live Synaptic Health -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary-container">psychology</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Saúde Sináptica por Matéria</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Curva Viva</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Biologia Celular Card -->
+<div class="flex flex-col gap-2 p-3.5 rounded-xl bg-surface-container-high">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">Biologia Celular</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-mono-timer text-body-md font-bold text-primary-container">96%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">• +3d</span>
+</div>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-primary-container rounded-full shadow-[0_0_8px_rgba(0,245,155,0.7)]" style="width: 96%"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Próxima revisão em 3 dias</span>
+<span class="text-primary-fixed-dim">Sinapse Forte</span>
+</div>
+</div>
+<!-- Termodinâmica Card -->
+<div class="flex flex-col gap-2 p-3.5 rounded-xl bg-surface-container-high">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim shrink-0"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">Termodinâmica</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-mono-timer text-body-md font-bold text-tertiary-fixed-dim">82%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">• Hoje</span>
+</div>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full shadow-[0_0_8px_rgba(255,185,95,0.7)]" style="width: 82%"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="text-tertiary-fixed-dim font-semibold">Revisão recomendada hoje à noite</span>
+<span>Desgaste Leve</span>
+</div>
+</div>
+<!-- História Contemporânea Card - Alert state -->
+<div class="flex flex-col gap-2 p-3.5 rounded-xl bg-surface-container-high relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-error shrink-0 animate-pulse"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">História Contemporânea</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-mono-timer text-body-md font-bold text-error">64%</span>
+<span class="font-label-sm text-label-sm text-error font-bold">ALERTA</span>
+</div>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)]" style="width: 64%"></div>
+</div>
+<div class="flex items-center justify-between text-error font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+            Caindo na curva de esquecimento
+          </span>
+<button class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-bold hover:brightness-110">Reforçar</button>
+</div>
+</div>
+<!-- Cálculo I Card -->
+<div class="flex flex-col gap-2 p-3.5 rounded-xl bg-surface-container-high">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shrink-0"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">Cálculo I</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-mono-timer text-body-md font-bold text-secondary">89%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">• +1d</span>
+</div>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-low overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 89%"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Intervalo estável</span>
+<span class="text-secondary">Conexão Ativa</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Cadernos & Apostilas Alimentadas -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">auto_stories</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Cadernos &amp; Apostilas</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 Fontes Ativas</span>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Card 1: Caderno de Física -->
+<div class="flex gap-3.5 p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-md">
+<div class="relative w-20 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Close up shot of hand-written physics notes on graph notebook paper with mathematical formulas, mechanical vector diagrams, and electric neon highlighter accents on deep dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgV0vQzBPlutgaAkQQmm59ycK63R_68IGrkLZcfrSeKNTfRp04mWstjwlGjwIc90uHx9Qo9TIAzj-husBzoK2hQE9MOK78QAPOCN7Gp3WtPudzutDSmyCb38eABo32paoOOmoEOrz4jpaFNbfYlh-QBeRJ6CCYLf-ZsDiYfHvttqBGqRis9vt11BhfRfauL1_TQQxZPSEy1Xx7jzRnwOqlxRi0bIMw0N7aN_DSETvOYv5Lu2jmUUIhEQ"/>
+<div class="absolute bottom-1 right-1 px-1 rounded bg-surface-container-lowest/80 text-on-surface font-label-sm text-[9px]">FOTO</div>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase">Física • Págs. 12 à 18</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">more_vert</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Caderno de Física - Módulo 2</h4>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-low/50 rounded p-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary-container">neurology</span>
+<span class="font-label-sm text-label-sm">24 cards IA ativos</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary-container">Estudar →</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Resumo Biologia Fuvest -->
+<div class="flex gap-3.5 p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-md">
+<div class="relative w-20 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="High tech tablet screen rendering a biology summary PDF document of cell mitosis and genetics charts illuminated by ambient dark teal and lime glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkvqJymZ1zNL3C6qwB7w2qBLYA7DU3rnIcF2joH7XG5jKzYfy16vG5b-86FlWRRCMHT6NcvSIWnfxXt5Bbvw7s2fBmbL3eVDLazKssE5BKVUxM-csAA9Ja_Eg3Mz302YcezOJ1_SH43Nyw2LOMEa2BJnmaym0_Y_Zfj9k6dIswbGgSeND9uFyUtnwDBFrNQrl27D3a8swIushnnNiQZmm--A0_uagni56Lk79lz_k7OyxKr1vuhj_cLg"/>
+<div class="absolute bottom-1 right-1 px-1 rounded bg-surface-container-lowest/80 text-on-surface font-label-sm text-[9px]">PDF</div>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Fuvest • 14 páginas</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">more_vert</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Resumo Biologia - Fuvest</h4>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-low/50 rounded p-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">model_training</span>
+<span class="font-label-sm text-label-sm">48 cards FSRS</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-secondary">Revisar →</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Química Orgânica Coletiva -->
+<div class="flex gap-3.5 p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors shadow-md">
+<div class="relative w-20 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Digital binder cover for organic chemistry molecular benzene structures glowing in violet and cyber amber hues on an obsidian slate background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2GurNlHjOjwEaYCR-ETaaqMQano7YuTchYd4G7FDUqWsvtK_XWLYECtV8d0ww9diPKkX0AEeFA2OeFwu3jT5caWoUeX9mPCNSnhcDkhcmtvDsVlNyCEyfNwz1z_RjaeYHSngqaSDc1fTowjVv2Dbn1uYdFhiy_MNbZSSuxmOFrhNhcSFeaZf4t_I394Yg4H871-H79q3NHUUcbMB4-ILqGgLLKDpHqY9ZymO2wvN4TwVjDvrKRKR58A"/>
+<div class="absolute bottom-1 right-1 px-1 rounded bg-surface-container-lowest/80 text-on-surface font-label-sm text-[9px]">TURMA</div>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-tertiary-fixed-dim uppercase">Prof. Marcos • Química</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">group</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Apostila Química Orgânica</h4>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-low/50 rounded p-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">groups</span>
+<span class="font-label-sm text-label-sm">32 colegas ativos</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-tertiary-fixed-dim">Acessar →</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Anti-Doomscroll Habit Metrics -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim">verified</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Métricas Anti-Vício Dopaminérgico</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Metric 1: Time Saved -->
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-high shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px] text-primary-container">timelapse</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tempo Resgatado Hoje</span>
+<span class="font-mono-timer text-headline-sm font-bold text-primary-container leading-tight mt-0.5">42 min salvos</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Convertidos de scroll fútil em 68 repetições espaçadas de alto impacto.</p>
+</div>
+</div>
+<!-- Metric 2: Retention Multiplier -->
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-high shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px] text-secondary">speed</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Multiplicador Sináptico</span>
+<span class="font-mono-timer text-headline-sm font-bold text-secondary leading-tight mt-0.5">4.2x mais rápido</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Eficiência validada contra o método passivo tradicional de releitura.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    const scanBtn = document.getElementById('scan-trigger');
+    if (scanBtn) {
+      scanBtn.addEventListener('click', function() {
+        this.classList.add('scale-95');
+        setTimeout(() => {
+          this.classList.remove('scale-95');
+        }, 150);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)]" data-active-classes="text-primary-container font-bold"><div class="flex justify-around items-center h-20 px-space-xs max-w-md mx-auto"><a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="feed-desfeed" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">bolt</span><span class="absolute -top-1 -right-3 px-1 py-0.2 rounded-full bg-tertiary-fixed-dim/20 text-tertiary-fixed-dim font-label-sm text-[9px] font-bold leading-none">14</span></div><span class="font-label-sm text-label-sm tracking-tight">Desfeed</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] -mt-4 text-on-primary group" data-path="scanner-ia" href="#"><div class="flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-fixed shadow-[0_0_20px_rgba(0,245,155,0.35)] transition-transform active:scale-95 group-hover:shadow-[0_0_28px_rgba(87,27,193,0.5)]"><span class="material-symbols-outlined text-[20px] text-on-primary-fixed">photo_camera</span><span class="font-label-sm text-label-sm text-on-primary-fixed font-bold tracking-wider whitespace-nowrap">+ Foto IA</span></div></a><a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="curva-ebbinghaus" href="#"><span class="material-symbols-outlined text-[24px]">ssid_chart</span><span class="font-label-sm text-label-sm tracking-tight">Ebbinghaus</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 transition-colors text-primary-container font-bold" data-path="cadernos" href="#"><span class="material-symbols-outlined text-[24px]">folder_special</span><span class="font-label-sm text-label-sm tracking-tight">Cadernos</span></a></div></nav></body></html>

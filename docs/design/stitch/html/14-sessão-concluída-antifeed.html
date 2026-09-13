@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f131d;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-high": "#262a35", "on-primary-fixed": "#002111", "surface-tint": "#00e38f", "tertiary-fixed-dim": "#ffb95f", "secondary-container": "#571bc1", "on-primary-container": "#006b41", "on-surface-variant": "#b9cbbd", "surface-variant": "#313540", "surface-container-low": "#171b26", "primary-fixed-dim": "#00e38f", "on-secondary": "#3c0091", "on-tertiary-container": "#835200", "surface-container-highest": "#313540", "on-background": "#dfe2f1", "secondary-fixed": "#e9ddff", "outline": "#849588", "primary-container": "#00f59b", "on-secondary-fixed": "#23005c", "on-primary-fixed-variant": "#005231", "secondary-fixed-dim": "#d0bcff", "error-container": "#93000a", "inverse-primary": "#006d42", "tertiary": "#fff1e4", "primary-fixed": "#53ffab", "on-secondary-container": "#c4abff", "on-secondary-fixed-variant": "#5516be", "inverse-surface": "#dfe2f1", "on-error": "#690005", "surface-dim": "#0f131d", "tertiary-container": "#ffce95", "on-tertiary": "#472a00", "surface-container-lowest": "#0a0e18", "on-tertiary-fixed-variant": "#653e00", "surface-container": "#1c1f2a", "on-tertiary-fixed": "#2a1700", "on-primary": "#003920", "background": "#0f131d", "on-error-container": "#ffdad6", "surface": "#0f131d", "on-surface": "#dfe2f1", "error": "#ffb4ab", "tertiary-fixed": "#ffddb8", "surface-bright": "#353944", "primary": "#cdffdc", "secondary": "#d0bcff", "outline-variant": "#3b4a3f", "inverse-on-surface": "#2c303b" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "1rem", "space-lg": "1.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "2rem" }, "fontFamily": { "label-sm": ["Space Mono"], "mono-timer": ["Space Mono"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Space Mono"], "label-md": ["Space Mono"] }, "fontSize": { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "mono-timer": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_12px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Desfeed Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClbavMyfeACa26h0I75ud3xYxvljseRr97G7BhGoBpjLZkg6DGbTf-Jv09JppVUFweJf_tqgt4sjeRB0lnzEGQLUsGfXVrndBHMhIv_SxlEWziz5cOo_jkEm0gEjiLo4gEomLopEGzYe2wsysJ--NVNgXHdSt0b9k4LY24PHXLeYvbPs9I22HjXarUAqsOBCtMB7EMZIMfp6QdQt37CsPaj7w7lkQtUrpvULYfgQsj_yDlbx3WygztAQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none tracking-tight">Desfeed</span><span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Curva Ebbinghaus</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/90 text-on-surface"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">local_fire_department</span><span class="font-label-sm text-label-sm text-tertiary-fixed-dim font-bold">14</span></div><div class="hidden xs:flex items-center px-2 py-1 rounded-full bg-surface-container-low text-on-surface-variant"><span class="font-label-sm text-label-sm text-on-surface-variant">12/20 • FSRS</span></div><a class="min-w-[44px] min-h-[44px] flex items-center justify-center p-0.5 rounded-full transition-transform active:scale-95" data-path="perfil" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_0_8px_rgba(0,245,155,0.25)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHIm65TGrsH4kvkLrsaZE555SyVrDeg0vPcZx6Q2sAQ2mU9nXbIWLRERZi2aQgUoDjdi4oUF96uUEEA6dU-C2pTGEhBzbu-4lZ5582v3ohwj46Qnu3-OSHyqthg_qGSonD0qwK2ftwv74w2vG877NtpDvKEgNhai7JxK4Cwmaxt5EVAFH8vLosBikYFBNf2WAatUh43HA5eAJalpSlWcm7NT-nQTmrK_s2e_Y_4ab4SceeH1cahe5viw"/></a></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-surface"><div class="flex flex-col w-full px-margin pb-space-xl relative overflow-hidden">
+<!-- Dynamic Neural Consolidation Glow -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-80 h-80 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 -right-20 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Hero Visual: Synaptic Rest State -->
+<div class="flex flex-col items-center text-center mt-space-sm mb-space-lg relative z-10">
+<div class="relative flex items-center justify-center mb-space-md">
+<!-- Outer pulsing aura ring -->
+<div class="absolute w-32 h-32 rounded-full bg-gradient-to-tr from-primary-container/20 to-secondary-container/30 blur-md animate-pulse"></div>
+<!-- Center Orb Backdrop -->
+<div class="relative w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center shadow-[0_0_32px_rgba(0,245,155,0.22)]">
+<!-- Ambient Spark SVG Overlay -->
+<svg class="absolute inset-0 w-full h-full text-primary-fixed-dim/30 animate-[spin_12s_linear_infinite]" fill="none" viewbox="0 0 100 100">
+<circle cx="50" cy="50" r="46" stroke="currentColor" stroke-dasharray="6 8" stroke-width="1.5"></circle>
+<circle cx="82" cy="50" fill="#00f59b" r="3"></circle>
+<circle cx="28" cy="74" fill="#d0bcff" r="2.5"></circle>
+<circle cx="36" cy="22" fill="#ffb95f" r="2"></circle>
+</svg>
+<span class="material-symbols-outlined text-[48px] text-primary-container drop-shadow-[0_0_12px_rgba(0,245,155,0.6)]" style="font-variation-settings: 'FILL' 1;">
+          psychology_alt
+        </span>
+</div>
+<!-- Small Zen Pill Badge -->
+<div class="absolute -bottom-2 px-2.5 py-0.5 rounded-full bg-surface-container-highest shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">bedtime</span>
+<span class="font-label-sm text-label-sm text-tertiary-fixed-dim uppercase tracking-wider font-bold">Modo Repouso</span>
+</div>
+</div>
+<!-- Motivational Hook -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/10 text-primary-container mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm font-bold tracking-wide uppercase">Ciclo Diário Concluído</span>
+</div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight mt-1 mb-space-xs">
+      Acabou por hoje! 🧠✨
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs leading-snug">
+      Seu cérebro precisa esquecer um pouco para fixar melhor. A neurociência agradece a pausa.
+    </p>
+</div>
+<!-- Session Metrics Bento Grid -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<!-- Stat 1: Cards & Time -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-high relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Volume Ativo</span>
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">style</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 mt-auto">
+<span class="font-mono-timer text-mono-timer text-on-surface">20</span>
+<span class="font-label-md text-label-md text-on-surface-variant">cards</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">timer</span> 6m 40s de foco
+      </span>
+</div>
+<!-- Stat 2: Active Recall Rate -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-high relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Retenção Ativa</span>
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">insights</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 mt-auto">
+<span class="font-mono-timer text-mono-timer text-secondary-fixed">88%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">acerto</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">arrow_upward</span> +6% vs ontem
+      </span>
+</div>
+<!-- Stat 3: Streak Protection -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-high relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Frequência</span>
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 mt-auto">
+<span class="font-mono-timer text-mono-timer text-tertiary-fixed">14</span>
+<span class="font-label-md text-label-md text-on-surface-variant">dias</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary-fixed-dim mt-0.5">Streak protegido 🔥</span>
+</div>
+<!-- Stat 4: FSRS Synapse Boost -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-high relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Algoritmo FSRS</span>
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-primary-container">hub</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 mt-auto">
+<span class="font-mono-timer text-mono-timer text-primary-fixed">+18</span>
+<span class="font-label-md text-label-md text-on-surface-variant">nós</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim mt-0.5">Sinapses ativadas</span>
+</div>
+</div>
+<!-- Interactive/Rich Visualizer: Ebbinghaus Curve Reinforcement -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container mb-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Impacto no Esquecimento</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Curva de Hermann Ebbinghaus recalibrada</span>
+</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high">
+<span class="font-label-sm text-label-sm text-primary-container font-bold">+74%</span>
+</div>
+</div>
+<!-- Inline SVG Graphic of the Curve of Forgetting -->
+<div class="w-full h-36 bg-surface-container-low rounded-lg p-2.5 relative flex flex-col justify-between overflow-hidden">
+<!-- Background subtle grid lines -->
+<div class="absolute inset-x-2 top-6 h-px bg-surface-variant opacity-40"></div>
+<div class="absolute inset-x-2 top-16 h-px bg-surface-variant opacity-40"></div>
+<div class="absolute inset-x-2 top-24 h-px bg-surface-variant opacity-40"></div>
+<!-- Retenção markers -->
+<div class="relative z-10 flex justify-between items-start text-on-surface-variant">
+<span class="font-label-sm text-[9px] text-primary-fixed-dim font-bold">100% Retenção</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">Hoje</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">+3 dias</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">+7 dias</span>
+</div>
+<!-- Vector SVG Curve Chart -->
+<svg class="w-full h-20 overflow-visible" preserveaspectratio="none" viewbox="0 0 300 80">
+<!-- Natural Decay Line (Red/Amber dashed) -->
+<path d="M 10 15 Q 60 55 120 68 T 290 74" fill="none" opacity="0.65" stroke="#ffb4ab" stroke-dasharray="3 3" stroke-width="2"></path>
+<!-- Boosted FSRS Re-consolidation Curve (Neon Green/Emerald) -->
+<path d="M 10 15 Q 45 10 90 22 T 180 28 T 290 34" fill="none" stroke="#00f59b" stroke-linecap="round" stroke-width="3"></path>
+<!-- Area fill under reinforced curve -->
+<path d="M 10 15 Q 45 10 90 22 T 180 28 T 290 34 L 290 80 L 10 80 Z" fill="url(#boost-gradient)" opacity="0.18"></path>
+<!-- Synapse Nodes / Points -->
+<circle cx="10" cy="15" fill="#00f59b" r="4.5"></circle>
+<circle cx="90" cy="22" fill="#00f59b" r="3.5"></circle>
+<circle cx="180" cy="28" fill="#53ffab" r="3.5"></circle>
+<circle cx="290" cy="34" fill="#00f59b" r="4"></circle>
+<!-- Forgotten node marker -->
+<circle cx="290" cy="74" fill="#ffb4ab" opacity="0.7" r="3"></circle>
+<defs>
+<lineargradient id="boost-gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#00f59b"></stop>
+<stop offset="100%" stop-color="#0f131d" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Curve Legend -->
+<div class="relative z-10 flex items-center justify-between pt-1 font-label-sm text-[10px]">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-on-surface">Com Desfeed: <strong class="text-primary-container">94%</strong></span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-0.5 bg-error"></span>
+<span class="text-on-surface-variant">Sem revisão: <span class="text-error">20%</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Next Scheduled Window Card -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-high mb-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-variant flex items-center justify-center shrink-0 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[22px]">alarm_on</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-primary-fixed-dim font-bold uppercase tracking-wider">Próxima Janela Ótima</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-0.5">
+          Amanhã às 19:30 <span class="font-label-md text-label-md text-on-surface-variant font-normal">(+24h)</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+          O algoritmo identificou este horário como o limiar exato para consolidação no córtex de longo prazo.
+        </p>
+</div>
+</div>
+<div class="mt-space-sm pt-space-sm flex items-center justify-between bg-surface-container-low/70 px-3 py-2 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">notifications_active</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Lembrete FSRS Ativado</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="fsrs-toggle" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary-fixed after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<!-- Mindful Encouragement Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest flex items-center gap-space-sm mb-space-lg shadow-sm">
+<span class="material-symbols-outlined text-[24px] text-secondary shrink-0">spa</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+      Sua cota cognitiva foi atingida. Continuar rolando agora gera apenas fadiga e ilusão de competência.
+    </p>
+</div>
+<!-- Action CTA Stack -->
+<div class="flex flex-col gap-space-sm">
+<!-- Primary Exit & Rest CTA -->
+<button class="w-full py-3.5 px-space-md rounded-full bg-primary-container text-on-primary-fixed font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,245,155,0.3)] transition-transform active:scale-[0.98] hover:shadow-[0_0_26px_rgba(0,245,155,0.45)]" id="btn-rest">
+<span class="material-symbols-outlined text-[22px]">self_improvement</span>
+<span>Fechar App e Descansar</span>
+</button>
+<!-- Secondary Library Link -->
+<a class="w-full py-3 px-space-md rounded-full bg-surface-container-high text-on-surface font-body-md text-body-md font-medium text-center flex items-center justify-center gap-1.5 transition-colors hover:bg-surface-container-highest active:scale-[0.98]" data-path="cadernos" href="#">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">folder_special</span>
+<span>Apenas ver meus cadernos</span>
+</a>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for conscious exit confirmation
+  const restBtn = document.getElementById('btn-rest');
+  if (restBtn) {
+    restBtn.addEventListener('click', () => {
+      restBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span><span>Consolidando memórias...</span>';
+      setTimeout(() => {
+        restBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-on-primary-fixed">done_all</span><span>Até amanhã! 🌙</span>';
+      }, 700);
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)]" data-active-classes="text-primary-container font-bold"><div class="flex justify-around items-center h-20 px-space-xs max-w-md mx-auto"><a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="feed-desfeed" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">bolt</span><span class="absolute -top-1 -right-3 px-1 py-0.2 rounded-full bg-tertiary-fixed-dim/20 text-tertiary-fixed-dim font-label-sm text-[9px] font-bold leading-none">14</span></div><span class="font-label-sm text-label-sm tracking-tight">Desfeed</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] -mt-4 text-on-primary group" data-path="scanner-ia" href="#"><div class="flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-fixed shadow-[0_0_20px_rgba(0,245,155,0.35)] transition-transform active:scale-95 group-hover:shadow-[0_0_28px_rgba(87,27,193,0.5)]"><span class="material-symbols-outlined text-[20px] text-on-primary-fixed">photo_camera</span><span class="font-label-sm text-label-sm text-on-primary-fixed font-bold tracking-wider whitespace-nowrap">+ Foto IA</span></div></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 transition-colors text-primary-container font-bold" data-path="curva-ebbinghaus" href="#"><span class="material-symbols-outlined text-[24px]">ssid_chart</span><span class="font-label-sm text-label-sm tracking-tight">Ebbinghaus</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="cadernos" href="#"><span class="material-symbols-outlined text-[24px]">folder_special</span><span class="font-label-sm text-label-sm tracking-tight">Cadernos</span></a></div></nav></body></html>

@@ -1,0 +1,219 @@
+[
+  {
+    "n": 1,
+    "title": "Recreate this exact app icon logo on a clean white background with rounded corners app icon style. Keep the exact same geometry and design: the sleek infinity loop where the right side gracefully arcs upwards into a dynamic neural spark star with radiant spark lines. Instead of dark glowing neon, render it in a modern, vibrant emerald green (#10b981 / #059669) and deep indigo/slate accent (#0f172a or #4f46e5) lines on a pristine, clean solid white background. Clean, high quality vector 3D minimalist tech app icon, premium Duolingo and TikTok clean aesthetic. Keep the exact same shape and composition of the infinity loop and star burst as the original reference image.",
+    "id": "42b9a89c6480401f8210507298893183",
+    "w": "1024",
+    "h": "1024",
+    "device": null,
+    "file": "01-logo-icon-branco",
+    "png": "ERRO: [Errno 63] File name too long: '/Users/emerson/Documents/workspace/hackathons/hackatudo/docs/design/stitch/png/01-recreate-this-exact-app-icon-logo-on-a-clean-white-background-with-rounded-corners-app-icon-style-keep-the-exact-same-geometry-and-design-the-sleek-infinity-loop-where-the-right-side-gracefully-arcs-upwards-into-a-dynamic-neural-spark-star-with-radiant-spark-lines-instead-of-dark-glowing-neon-render-it-in-a-modern-vibrant-emerald-green-10b981-059669-and-deep-indigoslate-accent-0f172a-or-4f46e5-lines-on-a-pristine-clean-solid-white-background-clean-high-quality-vector-3d-minimalist-tech-app-icon-premium-duolingo-and-tiktok-clean-aesthetic-keep-the-exact-same-shape-and-composition-of-the-infinity-loop-and-star-burst-as-the-original-reference-image.png'"
+  },
+  {
+    "n": 2,
+    "title": "Sessão Concluída - Antifeed (Clean)",
+    "id": "b6ad91cf3cb444a2a47d88ac5b47d9c9",
+    "w": "780",
+    "h": "3232",
+    "device": "MOBILE",
+    "file": "02-sessão-concluída-antifeed-clean",
+    "html": 20221,
+    "png": 42852
+  },
+  {
+    "n": 3,
+    "title": "Detalhes do Caderno - Biologia Celular",
+    "id": "ce2c67132fb348828218d40022eeb279",
+    "w": "780",
+    "h": "2788",
+    "device": "MOBILE",
+    "file": "03-detalhes-do-caderno-biologia-celular",
+    "html": 21861,
+    "png": 38975
+  },
+  {
+    "n": 4,
+    "title": "Cadernos & Retenção (Clean)",
+    "id": "e7e3f5e0ef214da08e22ea06091ececa",
+    "w": "780",
+    "h": "3312",
+    "device": "MOBILE",
+    "file": "04-cadernos-retenção-clean",
+    "html": 23333,
+    "png": 40774
+  },
+  {
+    "n": 5,
+    "title": "Retenção & Cadernos",
+    "id": "c744978e67b645ffb9dc7ee2588715a6",
+    "w": "780",
+    "h": "3274",
+    "device": "MOBILE",
+    "file": "05-retenção-cadernos",
+    "html": 25243,
+    "png": 56730
+  },
+  {
+    "n": 6,
+    "title": "Escanear & IA Generator",
+    "id": "e29b3096b2fa4d29b6c49ab6aacf8b3f",
+    "w": "780",
+    "h": "2460",
+    "device": "MOBILE",
+    "file": "06-escanear-ia-generator",
+    "html": 23909,
+    "png": 88958
+  },
+  {
+    "n": 7,
+    "title": "Feed de Microrecuperação",
+    "id": "6e3fee9a91f8416dbf70a03823787697",
+    "w": "780",
+    "h": "1768",
+    "device": "MOBILE",
+    "file": "07-feed-de-microrecuperação",
+    "html": 25943,
+    "png": 61258
+  },
+  {
+    "n": 8,
+    "title": "Ranking & Liga Social",
+    "id": "2c4b021aee0c4f0bbc636b707b537866",
+    "w": "780",
+    "h": "2884",
+    "device": "MOBILE",
+    "file": "08-ranking-liga-social",
+    "html": 31755,
+    "png": 46175
+  },
+  {
+    "n": 9,
+    "title": "Scanner IA de Caderno (Clean)",
+    "id": "16d4475a5ee54c508949ebbdcb0f232f",
+    "w": "780",
+    "h": "2394",
+    "device": "MOBILE",
+    "file": "09-scanner-ia-de-caderno-clean",
+    "html": 23785,
+    "png": 74320
+  },
+  {
+    "n": 10,
+    "title": "Perfil & Saúde Cognitiva",
+    "id": "ea1ac657cea04ef1b8146807ab569734",
+    "w": "780",
+    "h": "4006",
+    "device": "MOBILE",
+    "file": "10-perfil-saúde-cognitiva",
+    "html": 31356,
+    "png": 34472
+  },
+  {
+    "n": 11,
+    "title": "Configuração do Algoritmo & Metas",
+    "id": "9e714f4bf65442ed90ac61941e70f92f",
+    "w": "780",
+    "h": "2982",
+    "device": "MOBILE",
+    "file": "11-configuração-do-algoritmo-metas",
+    "html": 22642,
+    "png": 41767
+  },
+  {
+    "n": 12,
+    "title": "Feed de Microrecuperação",
+    "id": "5f6b81a32eee44b2b1513c5dedbfc3b1",
+    "w": "780",
+    "h": "1912",
+    "device": "MOBILE",
+    "file": "12-feed-de-microrecuperação",
+    "html": 24332,
+    "png": 85323
+  },
+  {
+    "n": 13,
+    "title": "Desfeed Logo",
+    "id": "c484209404054b12b58f7ccef0e63a17",
+    "w": "1024",
+    "h": "1024",
+    "device": null,
+    "file": "13-desfeed-logo",
+    "png": 40994
+  },
+  {
+    "n": 14,
+    "title": "Sessão Concluída (Antifeed)",
+    "id": "11eb86d89df54d04abcc00f9d5841c76",
+    "w": "780",
+    "h": "2674",
+    "device": "MOBILE",
+    "file": "14-sessão-concluída-antifeed",
+    "html": 22574,
+    "png": 60536
+  },
+  {
+    "n": 15,
+    "title": "Ranking Social & Ligas",
+    "id": "0f152dee893e408e81bed302b1f55ae4",
+    "w": "780",
+    "h": "2724",
+    "device": "MOBILE",
+    "file": "15-ranking-social-ligas",
+    "html": 29471,
+    "png": 45954
+  },
+  {
+    "n": 16,
+    "title": "Feed de Microrecuperação (Clean)",
+    "id": "69a5eff5f1e1400e91492b11c51ff4ba",
+    "w": "780",
+    "h": "1928",
+    "device": "MOBILE",
+    "file": "16-feed-de-microrecuperação-clean",
+    "html": 23201,
+    "png": 65352
+  },
+  {
+    "n": 17,
+    "title": "Close-up modern avatar photo of an energetic college student smiling, studying with headphones, soft dark studio neon ambient light with emerald and purple rim highlights",
+    "id": "d5ef1dd505d246108d620bb1a161ea91",
+    "w": "1024",
+    "h": "1024",
+    "device": null,
+    "file": "17-close-up-modern-avatar-photo-of-an-energetic-college-student-smiling-studying-with-headphones-soft-dark-studio-neon-ambient-light-with-emerald-and-purple-rim-highlights",
+    "png": 62811
+  },
+  {
+    "n": 18,
+    "title": "Cadernos & Retenção",
+    "id": "e5184888d3b442af981cdb3d38841a68",
+    "w": "780",
+    "h": "2816",
+    "device": "MOBILE",
+    "file": "18-cadernos-retenção",
+    "html": 25543,
+    "png": 61980
+  },
+  {
+    "n": 19,
+    "title": "Scanner IA de Caderno",
+    "id": "ef800f94727342c0815812f126ed8aa2",
+    "w": "780",
+    "h": "2074",
+    "device": "MOBILE",
+    "file": "19-scanner-ia-de-caderno",
+    "html": 18320,
+    "png": 89693
+  },
+  {
+    "n": 20,
+    "title": "Sessão Concluída (Antifeed)",
+    "id": "cd5a676da746407fa9fc0c3b4d6646e9",
+    "w": "780",
+    "h": "3244",
+    "device": "MOBILE",
+    "file": "20-sessão-concluída-antifeed",
+    "html": 23970,
+    "png": 59072
+  }
+]
